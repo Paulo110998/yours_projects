@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -8,7 +9,15 @@
     </head>
     <body>
 
-    <h1>Sobre nós</h1>
+    <div class="container">
+    <header class="header">
+    <nav class="navbar" >
+        <ul>
+        <li><a href="{% url 'homepaginas' %}">Home</a></li>
+        </ul> 
+    </nav>
+        
+    </header>
 
     </body>
 </html>
