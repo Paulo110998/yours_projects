@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+        
+        <!--<link rel="icon" type="image/x-icon" href="imgs/retrato.jpg">-->
+        {% block title %}
+        <title>Yours Projects</title>
+        {% endblock title %}
+        
+    
+    </head>
+    <body>
+    <header>
+    <nav>
+    <div class="hamburger-menu">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="menu">
+      <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
+      <li><a href="#">Público Alvo</a></li>
+      <li><a href="#">Planos</a></li>
+    </ul>
+    </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+     <div class="container" >
+        <div class="child">
+        <table class="table-responsive">
+            <tr>
+            <h2  style="text-align:center"> Yours Projects</h2>
+            </tr>
+            <tr>
+            <td><h3 style="text-align:Justify">Pensando em dar um up nos seus projetos? Nós da Yours Projects temos
+            ferramentas que te auxiliam a alavancar o seu negócio por meio de gerenciamento de processos, com ferramentas
+            práticas e acessíveis a qualquer empresa. Vem com a gente!</h3></td>
+            </tr>
+            <tr>
+            <td>
+            <br>
+            </td>
+            </tr>
+           
+            <br>
+        </table>
+        </div>
+        <br>
+        <br>
+        
+        
+    
+    </div>  
+
+
+
+    </body>
+    
+<script>
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.menu');
+    hamburgerMenu.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    });
+</script> 
