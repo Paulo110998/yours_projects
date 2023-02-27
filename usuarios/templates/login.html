@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -18,6 +19,18 @@
     </nav>
         
     </header>
+    <br>
+    {% block login %}
+    <h3 style="text-align:center">Login</h3>
+    <br>
+    <form action="" method="POST">
+    {% csrf_token %}
+
+    {{ form|crispy }}
+    <br>
+    <button type="submit" class="btn btn-primary ">Entrar</button>
+    </form>
+    {% endblock login %}
 
     </body>
 </html>

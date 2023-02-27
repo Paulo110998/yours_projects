@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
     'usuarios.apps.UsuariosConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,8 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = ((os.path.join(BASE_DIR, 'static')), )
 
+#CRISPY_TEMPLATE_PACK = 'uni_form'
+
 # ARQUIVOS DE MEDIA/UPLOAD
 
 #Direcionando os uploads para uma pasta do projeto chamada "uploads"
@@ -138,3 +141,12 @@ MEDIA_URL = '/uploads/' # Constante que possibilita a vizualização do arquivo
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CONFIGURAÇÃO DE AUTENTICAÇÃO (Login/Logout) -> Controle de entrada e saída do usuário
+
+LOGIN_REDIRECT_URL = 'welcome' # Após o login, redireciona para o 'welcome'
+
+LOGIN_URL = "login" # Redireciona para a url de login
+
+LOGOUT_REDIRECT = "logout"

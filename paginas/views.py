@@ -7,3 +7,6 @@ class Homepaginas(TemplateView):
 
 class Sobre(TemplateView):
     template_name = "sobre.html"
+
+class Welcome(TemplateView):
+    template_name = "welcome.html"

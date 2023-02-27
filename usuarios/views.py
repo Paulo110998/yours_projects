@@ -12,6 +12,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 # Importando o model de perfil do usuário
 from .models import Perfil
+from django.views.generic import TemplateView
+
 
 
 # Create your views here.
@@ -64,3 +66,7 @@ class PerfilUpdate(UpdateView):
         context['botao'] ="Atualizar"
 
         return context  
+    
+
+class Welcome(TemplateView):
+    template_name = "welcome.html"
