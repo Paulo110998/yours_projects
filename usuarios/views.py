@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Classes de create e update
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
 # Autenticação e autenticação por grupos
 from django.contrib.auth.models import User, Group
 # Formulário personalizado
@@ -13,6 +14,8 @@ from django.shortcuts import get_object_or_404
 # Importando o model de perfil do usuário
 from .models import Perfil
 from django.views.generic import TemplateView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -48,7 +51,8 @@ class UsuarioCreate(CreateView):
        # return context
 
 # UPDATE 
-class PerfilUpdate(UpdateView):
+class PerfilUpdate(UpdateView, LoginRequiredMixin):
+    login_url = '/login/'
     template_name = 'perfilupdate.html' 
     model = Perfil #nova classe
     fields = ['foto_perfil','nome_completo', 'cpf', 'telefone', 'endereço', 'cidade' ,'estado', 'pais']
@@ -68,5 +72,6 @@ class PerfilUpdate(UpdateView):
         return context  
     
 
-class Welcome(TemplateView):
+class Welcome(TemplateView, LoginRequiredMixin, Group):
     template_name = "welcome.html"
+    login_url = reverse_lazy('login')
