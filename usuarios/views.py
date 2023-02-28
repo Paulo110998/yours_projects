@@ -19,25 +19,25 @@ from django.views.generic import TemplateView
 # Create your views here.
 # CREATEVIEW PARA CADASTRO DE USUÁRIO
 class UsuarioCreate(CreateView):
-    template_name = 'usuarios/cadastro_user.html' # Template html
+    template_name = 'cadastro_user.html' # Template html
     #classe que criará o registro
     form_class = Usuarioform
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('cadastro-concluido')
     
     # Validando o cadastro e redirecionando o usuário ao um grupo de acesso
-    #def  form_valid(self, form):
+    def  form_valid(self, form):
         #chamando o grupo
-     #   grupo = get_object_or_404(Group, name='Funcionários')
+        grupo = get_object_or_404(Group, name='Assistants')
         # Validando com o super 
-      #  url = super().form_valid(form)
+        url = super().form_valid(form)
         #Adicionando o usuario/objeto ao grupo e salvando
-       # self.object.groups.add(grupo)
-        #self.object.save()
+        self.object.groups.add(grupo)
+        self.object.save()
         
         # Criando um perfil para o usuário que acabou de se cadastrar
-        #Perfil.objects.create(usuario=self.object)
+        Perfil.objects.create(usuario=self.object)
 
-        #return url
+        return url
 
     
     # As fields já estão na classe 'Usuarioform', por isso não precisamos criálas 
@@ -49,7 +49,7 @@ class UsuarioCreate(CreateView):
 
 # UPDATE 
 class PerfilUpdate(UpdateView):
-    template_name = 'usuarios/perfilupdate.html' 
+    template_name = 'perfilupdate.html' 
     model = Perfil #nova classe
     fields = ['foto_perfil','nome_completo', 'cpf', 'telefone', 'endereço', 'cidade' ,'estado', 'pais']
     success_url = reverse_lazy('atualizar-dados')

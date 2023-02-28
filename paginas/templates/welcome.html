@@ -5,20 +5,89 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+        <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+    
+    <style>
+ .menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  position: relative;
+}
+
+
+.menu ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+   
+}
+
+.menu li:hover > ul {
+  display: block;
+ 
+}
+
+.menu a {
+  display: block;
+  padding: 10px;
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background-color: white;
+  color: blue;
+}
+
+
+    </style>
     </head>
     <body>
     {% if request.user.is_authenticated %}
+    
     <div class="container">
     <header class="header">
-    <nav class="navbar" >
-        <ul>
-        <li><a href="{% url 'logout' %}">Sair</a></li>
-        </ul> 
+    <nav>
+    <a href="#">Yours Projects</a>
     </nav>
-        
+    <div class="hamburger-menu">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="menu">
+    <li><a href="#">Conta</a>
+    <ul>
+      <li><a href="#">Alterar Senha</a></li>
+      <li><a href="#">Perfil</a></li>
+      <li><a href="#">Sair</a></li>
+    </ul>
+  </li>
+  </ul>
+    
+
+    
+
+    
     </header>
-    <h1>Welcome</h1>
+    </div>
     {% endif %}
+    
     </body>
+
+
+
+<script>
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.menu');
+    hamburgerMenu.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    });
+</script>
 </html>

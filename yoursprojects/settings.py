@@ -149,4 +149,4 @@ LOGIN_REDIRECT_URL = 'welcome' # Após o login, redireciona para o 'welcome'
 
 LOGIN_URL = "login" # Redireciona para a url de login
 
-LOGOUT_REDIRECT = "logout"
+LOGOUT_REDIRECT = "login"

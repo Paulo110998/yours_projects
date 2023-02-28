@@ -100,7 +100,7 @@ a:link, a:visited, a:active {
 a:hover, img{text-decoration: underline;
   color: aquamarine;
   font-size:100%;
-  background-image: linear-gradient(to bottom right, transparent, #333);
+  background-image: linear-gradient(to bottom right, transparent, #ffffff);
   border-radius: 30px 30px 30px 30px;
     }
 

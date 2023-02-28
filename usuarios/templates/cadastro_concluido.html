@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>Cadastre-se</title>
+        <title>Cadastro Concluído</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{% static 'css/homepage.css' %}" rel="stylesheet">
@@ -12,9 +12,10 @@
     <style>
    .col-md-4{
         border: 5px solid black;
-        width: 300px;        
+        width: 300px;
         border-radius: 10px 10px 10px 10px;
-        margin-top: 30px;
+        margin: auto;
+        margin-top: 40px;
         text-align: center;
         background: white;
         
@@ -22,16 +23,21 @@
     form{
         color: black;
         text-align: justify;
+       
         
+
     }
     h2{
         color: black;
+        text-align: justify;
+       
     }
     a{  
         color: black;
-        
+        margin-top: 10px;
     }
-   </style>
+   
+    </style>
     </head>
     <body>
 
@@ -45,19 +51,9 @@
         
     </header>
     <div class= "col-md-4 mx-auto">
-    <div class="shadow p-5 mb-5 bg-white rounded">
-    {% block cadastro %}
-    <h2>Cadastre-se</h2>
     <br>
-    <form action="" method="POST">
-    {% csrf_token %}
-
-    {{ form|crispy }}
-    <hr class="mt-4">
-    <button type="submit" class="btn btn-primary ">Concluir</button>
-    </form>
+    <h5>Seja Bem-vindo a Yours Projects!</h5>
+    <br>
     </div>
-    {% endblock cadastro %}
-
     </body>
 </html>
