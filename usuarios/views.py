@@ -52,11 +52,10 @@ class UsuarioCreate(CreateView):
 
 # UPDATE 
 class PerfilUpdate(UpdateView, LoginRequiredMixin):
-    login_url = '/login/'
-    template_name = 'perfilupdate.html' 
+    template_name = 'perfil_update.html' 
     model = Perfil #nova classe
     fields = ['foto_perfil','nome_completo', 'cpf', 'telefone', 'endereço', 'cidade' ,'estado', 'pais']
-    success_url = reverse_lazy('atualizar-dados')
+    success_url = reverse_lazy('perfil-update')
 
     # Buscando o objeto autenticado
     def get_object(self, queryset=None):
@@ -70,7 +69,11 @@ class PerfilUpdate(UpdateView, LoginRequiredMixin):
         context['botao'] ="Atualizar"
 
         return context  
-    
+
+
+
+
+
 
 class Welcome(TemplateView, LoginRequiredMixin, Group):
     template_name = "welcome.html"

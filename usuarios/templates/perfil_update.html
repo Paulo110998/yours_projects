@@ -1,0 +1,79 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'css/welcome.css' %}" rel="stylesheet">
+    <style>
+   .col-md-4{
+        border: 5px solid black;
+        width: 400px;
+        height: 600px;
+        border-radius: 10px 10px 10px 10px;
+        margin: auto;
+        margin-top: 50px;
+        text-align: justify;
+        background: white;
+        
+    }
+    img{
+        margin-left: 110px;
+       
+    }
+    form{
+        margin-left: 10px;
+    }
+    h2{
+        color: black;
+        text-align: center;
+       
+    }
+    a{  
+        color: black;
+    
+    }
+    </style>
+    </head>
+    
+    <body>
+    {% block conteudo %}
+    <div class="container">
+    <header class="header">
+    <nav class="navbar" >
+        <ul>
+        <li><a href="{% url 'welcome' %}">Início</a></li>
+        </ul> 
+    </nav>
+        
+    </header>
+    
+   
+    <div class= "col-md-4 mx-auto">
+    <div class="shadow p-5 mb-5 bg-white rounded">
+    <br>
+    {% block perfil %}
+    <h2>Perfil</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if user.perfil.foto_perfil %}
+    <img src="{{ user.perfil.foto_perfil.url }}" alt="Foto" width=150>
+    {% else %}
+    <img src="" alt="" height=150, width=110>
+    {% endif %}
+    
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <button type="submit" class="btn btn-primary ">Atualizar</button>
+    
+    </form>
+    </div>
+  
+    {% endblock perfil %}
+    {% endblock conteudo %}
+    </body>
+</html>

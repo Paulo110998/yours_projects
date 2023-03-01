@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'paginas.apps.PaginasConfig',
     'usuarios.apps.UsuariosConfig',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

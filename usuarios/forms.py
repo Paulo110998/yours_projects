@@ -6,6 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 # Método que gera um erro se os dados não corresponderem
 from django.core.exceptions import ValidationError 
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, Submit
+
 
 # Criando uma nova view e usando herança do UserCreationForm
 class Usuarioform(UserCreationForm):
@@ -26,4 +29,22 @@ class Usuarioform(UserCreationForm):
             raise ValidationError(f' Este e-mail já existe! Tente outro!')
         else:
             return existente #Se o email não for repetido, cadastro concluído com sucesso!  
-    
+
+
+
+class ExampleForm(forms.Form):
+    [...]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Fieldset(
+                'first arg is the legend of the fieldset',
+                'like_website',
+                'favorite_number',
+                'favorite_color',
+                'favorite_food',
+                'notes'
+            ),
+            Submit('submit', 'Submit', css_class='button white'),
+        )
