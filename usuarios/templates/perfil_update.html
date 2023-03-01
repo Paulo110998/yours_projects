@@ -18,20 +18,12 @@
         margin-top: 50px;
         text-align: center;
         background: white; 
-
-
-        
 }
-    
-   
     form{
         color:black;
         text-align: justify;
         margin-left: -30px;
         width: 200px;
-        
-        
-       
     }
     h2{
         color: black;
@@ -39,12 +31,11 @@
     }
     a{  
         color: black;
-    
     }
     </style>
     </head>
-    
     <body>
+
     {% block conteudo %}
     <div class="container">
     <header class="header">
@@ -53,16 +44,13 @@
         <li><a href="{% url 'welcome' %}">Início</a></li>
         </ul> 
     </nav>
-        
     </header>
     
-    
-  
     <div class= "row">
-    <div class="shadow p-5 mb-5  rounded">
+    <div class="shadow p-5 mb-5 rounded">
   
     {% block perfil %}
-     {% csrf_token %}
+    {% csrf_token %}
     {% if user.perfil.foto_perfil %}
     <img src="{{ user.perfil.foto_perfil.url }}"  alt="Foto" width=150>
     <hr>
@@ -80,14 +68,12 @@
     
     </form>
     </div>
-
-    
- 
-  
     {% endblock perfil %}
     {% endblock conteudo %}
     </body>
 </html>
+
+
 {% block scripts %}
 <script src="{% static 'js/jquery.mask.min.js' %}"></script>
 
@@ -110,4 +96,4 @@ $(document).ready(function(){
         
 });    
 </script>
-{% endblock %}
+{% endblock scripts %}
