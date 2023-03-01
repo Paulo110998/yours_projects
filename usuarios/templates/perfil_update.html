@@ -8,29 +8,34 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{% static 'css/welcome.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <style>
-   .col-md-4{
+   .row{
         border: 5px solid black;
-        width: 400px;
-        height: 600px;
+        width: 390px;
         border-radius: 10px 10px 10px 10px;
         margin: auto;
         margin-top: 50px;
-        text-align: justify;
-        background: white;
+        text-align: center;
+        background: white; 
+
+
         
-    }
-    img{
-        margin-left: 110px;
-       
-    }
+}
+    
+   
     form{
-        margin-left: 10px;
+        color:black;
+        text-align: justify;
+        margin-left: -30px;
+        width: 200px;
+        
+        
+       
     }
     h2{
         color: black;
         text-align: center;
-       
     }
     a{  
         color: black;
@@ -51,29 +56,58 @@
         
     </header>
     
-   
-    <div class= "col-md-4 mx-auto">
-    <div class="shadow p-5 mb-5 bg-white rounded">
-    <br>
+    
+  
+    <div class= "row">
+    <div class="shadow p-5 mb-5  rounded">
+  
     {% block perfil %}
-    <h2>Perfil</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+     {% csrf_token %}
     {% if user.perfil.foto_perfil %}
-    <img src="{{ user.perfil.foto_perfil.url }}" alt="Foto" width=150>
+    <img src="{{ user.perfil.foto_perfil.url }}"  alt="Foto" width=150>
+    <hr>
     {% else %}
     <img src="" alt="" height=150, width=110>
     {% endif %}
+   
+    <form action="" method="POST" enctype="multipart/form-data">
     
     {% csrf_token %}
+    
     {{ form|crispy }}
-    <br>
+    <hr>
     <button type="submit" class="btn btn-primary ">Atualizar</button>
     
     </form>
     </div>
+
+    
+ 
   
     {% endblock perfil %}
     {% endblock conteudo %}
     </body>
 </html>
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+$(document).ready(function(){
+        $("#id_cpf").mask("000.000.000-00");
+        
+        // Máscara do telefone abaixo:
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+            spOptions = {
+                onKeyPress: function(val, e, field, options) {
+                    field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('#id_telefone').mask(SPMaskBehavior, spOptions);
+
+        
+});    
+</script>
+{% endblock %}
