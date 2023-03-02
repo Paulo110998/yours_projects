@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Perfil(models.Model):
-    nome_completo = models.CharField(max_length=50, null=True)
+    nome_completo = models.CharField(max_length=50, null=True, verbose_name="Nome Completo")
     cpf = models.CharField(max_length=17, null=True, verbose_name='CPF')
     telefone = models.CharField(max_length=16, null=True)
     endereço = models.CharField(max_length=150, null=True)
