@@ -49,9 +49,14 @@
   margin-left: 10px;
   margin-top: -40px;
 }
+.card{
+  margin-left: 40px;
 
+}
 
-
+h5, h6, p{
+  color: black;
+}
     </style>
     </head>
     <body>
@@ -87,9 +92,25 @@
   </div>
   
 </ul>
+<br>
+{% csrf_token %}
+{% for projectos in object_list %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{projectos.titulo}}</h5>
+    <p class="card-text">{{projectos.descriçao}}</p>
+    <h6 href="#" class="card-link">{{projectos.criador}}</h6>
+    <a href="{% url 'editar-projeto' projectos.pk %}" class="card-link">Editar</a>
+    <a href="{% url 'deletar-projeto' projectos.pk %}" class="card-link">Deletar</a>
+  </div>
+</div>
 
 
 
+
+{% empty %}
+
+{% endfor %}
 {% endif %}
     
 </body>

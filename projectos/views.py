@@ -22,7 +22,7 @@ from django.urls import reverse_lazy
 class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'login'
-    group_required = [u'Managers']
+    group_required = [u'Managers', u'Assistants']
     model = Projetos
     fields = ['titulo', 'descriçao', 'criador']
     template_name = 'criarprojetos.html'
@@ -46,12 +46,12 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     group_required = [u'Managers']
     model = Projetos
     fields = ['titulo', 'descriçao', 'criador']
-    template_name = 'projectos/editarprojeto.html'
-    success_url = reverse_lazy('listar-cards')
+    template_name = 'criarprojetos.html'
+    success_url = reverse_lazy('listar-projetos')
 
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['editar_card'] = 'Editar card'
+        context['editar_projeto'] = 'Editar Projeto'
         return context
 
 
@@ -61,12 +61,12 @@ class ProjetosDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     redirect_field_name = 'login'
     group_required = [u'Managers']
     models = Projetos
-    template_name = 'projectos/excluirprojeto.html'
-    success_url = reverse_lazy('listar-cards')  
+    template_name = 'excluirprojeto.html'
+    success_url = reverse_lazy('listar-projetos')  
 
-    #def get(self, queryset=None):
-     #   self.object = get_object_or_404(Cards, pk=self.kwargs['pk'], usuario=self.request.user) 
-       # return self.object
+    def get(self, queryset=None):
+        self.object = get_object_or_404(Projetos, pk=self.kwargs['pk'], usuario=self.request.user) 
+        return self.object
 
     def get_context_data(self, *args , **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -80,11 +80,11 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     models = Projetos
-    template_name = 'projectos/projetos.html'
-    paginate_by = 7
-
-
-    # Buscando os objetos(cards) no banco, veja abaixo:
+    template_name = 'welcome.html'
+    paginate_by = 4
+    
+    
+   # Buscando os objetos(cards) no banco, veja abaixo:
     def get_queryset(self):
 
         get_cards = self.request.GET.get('nome')
