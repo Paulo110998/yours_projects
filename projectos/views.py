@@ -25,7 +25,7 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     group_required = [u'Managers']
     model = Projetos
     fields = ['titulo', 'descriçao', 'criador']
-    template_name = 'projectos/criarprojetos.html'
+    template_name = 'criarprojetos.html'
     success_url = reverse_lazy('listar-projetos')
 
     def form_valid(self, form):
@@ -35,7 +35,7 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
 
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['card'] = 'Criar Card'
+        context['criar_pj'] = 'Criar projeto'
         return context
     
 
@@ -44,7 +44,7 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     login_url = 'login/'
     redirect_field_name = 'login'
     group_required = [u'Managers']
-    model = Cards
+    model = Projetos
     fields = ['titulo', 'descriçao', 'criador']
     template_name = 'projectos/editarprojeto.html'
     success_url = reverse_lazy('listar-cards')
@@ -60,7 +60,7 @@ class ProjetosDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     login_url ='/login/'     
     redirect_field_name = 'login'
     group_required = [u'Managers']
-    models = Cards
+    models = Projetos
     template_name = 'projectos/excluirprojeto.html'
     success_url = reverse_lazy('listar-cards')  
 
@@ -79,7 +79,7 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
-    models = Cards
+    models = Projetos
     template_name = 'projectos/projetos.html'
     paginate_by = 7
 
@@ -89,9 +89,9 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
         get_cards = self.request.GET.get('nome')
         if get_cards:
-            cards = Cards.objects.filter(nome__icontains=get_cards)
+            cards = Projetos.objects.filter(nome__icontains=get_cards)
         else:
-            cards = Cards.objects.all()
+            cards = Projetos.objects.all()
             
         return cards     
 

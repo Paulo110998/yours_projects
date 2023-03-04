@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <style>
  .menu {
@@ -36,7 +37,7 @@
   display: block;
   padding: 10px;
   background-color: transparent;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -44,6 +45,11 @@
   background-color: white;
   color: blue;
 }
+.btn-group{
+  margin-left: 10px;
+  margin-top: -40px;
+}
+
 
 
     </style>
@@ -62,7 +68,8 @@
       <div class="line"></div>
     </div>
     <ul class="menu">
-    <li><a href="#">Conta</a>
+    <li><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></li>
+    <li><a style="color:black" href="#">Conta</a>
     <ul>
       <li><a href="#">Alterar Senha</a></li>
       <li><a href="{% url 'perfil-update' %}">Perfil</a></li>
@@ -70,16 +77,22 @@
     </ul>
   </li>
   </ul>
-    
+  </header>
+</div>
+<ul>
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-light"><a class="btn btn-light" href="{% url 'criar-projeto' %}">Adicionar Projetos</a></button>
+  <button type="button" class="btn btn-light"><a class="btn btn-light" href="#">Cards</a></button>
+  <button type="button" class="btn btn-light"><a class="btn btn-light" href="#">Business</a></button>
+  </div>
+  
+</ul>
 
-    
 
+
+{% endif %}
     
-    </header>
-    </div>
-    {% endif %}
-    
-    </body>
+</body>
 
 
 
