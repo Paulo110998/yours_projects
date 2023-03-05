@@ -16,7 +16,9 @@ from .models import Perfil
 from django.views.generic import TemplateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from braces.views import GroupRequiredMixin
+from projectos.views import ProjetosList
+from projectos.models import Projetos
 
 
 # Create your views here.
@@ -72,9 +74,21 @@ class PerfilUpdate(UpdateView, LoginRequiredMixin):
 
 
 
+class Welcome(ListView, LoginRequiredMixin, GroupRequiredMixin):
+    login_url = '/login/'
+    redirect_field_name = 'login'
+    group_required = [u'Managers', u'Assistants']
+    models = Projetos
+    template_name = 'welcome.html'
+    paginate_by = 4
 
+    # Buscando os objetos(cards) no banco, veja abaixo:
+    def get_queryset(self):
 
-
-class Welcome(TemplateView, LoginRequiredMixin, Group):
-    template_name = "welcome.html"
-    login_url = reverse_lazy('login')
+        get_projetos = self.request.GET.get('nome')
+        if get_projetos:
+            projetos = Projetos.objects.filter(nome__icontains=get_projetos)
+        else:
+            projetos = Projetos.objects.all()
+            
+        return projetos     

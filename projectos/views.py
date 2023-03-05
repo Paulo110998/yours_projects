@@ -64,9 +64,9 @@ class ProjetosDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = 'excluirprojeto.html'
     success_url = reverse_lazy('listar-projetos')  
 
-    def get(self, queryset=None):
-        self.object = get_object_or_404(Projetos, pk=self.kwargs['pk'], usuario=self.request.user) 
-        return self.object
+    #def get(self, queryset=None):
+     #   self.object = get_object_or_404(Projetos, pk=self.kwargs['pk'], usuario=self.request.user) 
+      #  return self.object
 
     def get_context_data(self, *args , **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -87,12 +87,12 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
    # Buscando os objetos(cards) no banco, veja abaixo:
     def get_queryset(self):
 
-        get_cards = self.request.GET.get('nome')
-        if get_cards:
-            cards = Projetos.objects.filter(nome__icontains=get_cards)
+        get_projetos = self.request.GET.get('nome')
+        if get_projetos:
+            projetos = Projetos.objects.filter(nome__icontains=get_projetos)
         else:
-            cards = Projetos.objects.all()
+            projetos = Projetos.objects.all()
             
-        return cards     
+        return projetos     
 
 
