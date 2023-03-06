@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <style>
+
  .menu {
   list-style: none;
   padding: 0;
@@ -54,21 +55,29 @@
 h5, h6, p{
   color: black;
 }
-.card {
-      width: 200px;
-      height: 240px;
-      margin-right: 20px;
-      margin-left: 10px;
-        background-color: #fff;
-        border-radius: 5px;
-        
-      }
- .card-container {
-        display: flex;
-        margin-left: 10px;
-        
-      }
-    </style>
+.card{
+      width: 210px;
+      height: 250px;
+      margin-left: 20px;
+      background-color: #fff;
+      border: 3px solid black;
+      border-radius: 15px 15px 15px 15px;
+      
+}
+.card-container {
+    /* container responsivo abaixo*/
+    display: flex;
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    display:inline-flex;
+    margin-left: 10px;
+    
+}
+@media screen and (max-width: 767px) {
+	.container {
+		max-width: 100%;
+	}
+}
+</style>
     </head>
     <body>
     {% if request.user.is_authenticated %}
@@ -97,22 +106,25 @@ h5, h6, p{
 </div>
 <ul>
   <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-light"><a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projetos</a></button>
-  <button type="button" class="btn btn-light"><a class="btn btn-light" href="#">Business</a></button>
+  <a class="btn btn-primary" href="{% url 'criar-projeto' %}">Criar Projeto</a>
   </div>
 </ul>
 <br>
 {% csrf_token %}
 {% for projectos in object_list %}
 <div class="card-container">
-      <div class="card">
-        <h5 style="text-align:center">{{projectos.titulo}}</h5>
-        <p>{{projectos.descriçao}}</p>
-        <p>Manager: {{projectos.criador}}</p>
-        <a href="{% url 'editar-projeto' projectos.pk %}">Editar</a>
-        <a href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
-      </div>
+    <div class="card">
+        <h5 style="text-align:center; margin-top:10px;">{{projectos.titulo}}</h5>
+        <br>
+        <p style="margin-left:10px">{{projectos.descriçao}}</p>
+        <p style="margin-left:10px">Manager: {{projectos.criador}}</p>
+        <a style="margin-left:10px" href="{% url 'editar-projeto' projectos.pk %}">Editar</a>
+        <a style="margin-left:10px" href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
+      </div></a>
+
 <br>
+
+
 {% empty %}
 {% endfor %}
  
