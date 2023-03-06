@@ -48,15 +48,47 @@
 .btn-group{
   margin-left: 10px;
   margin-top: -40px;
-}
-.card{
-  margin-left: 40px;
-
+  position: fixed; /* Fixar */
 }
 
 h5, h6, p{
   color: black;
 }
+
+.card {
+      width: 210px;
+      height: 230px;
+      background-color: #fff;
+      margin-top: 55px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-left: 10px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+        margin: 19px;
+        text-align: center;
+      }
+
+      .card p {
+        font-size: 14px;
+        margin: 10px;
+        text-align: justify;
+      }
+
+      .card-container {
+        display: flex;
+        margin-left: 30px;
+      }
+      .page-item{
+        margin-left: 10px;
+
+      }
+      ul{
+        margin-left: 40px;
+      }
+      
     </style>
     </head>
     <body>
@@ -86,31 +118,55 @@ h5, h6, p{
 </div>
 <ul>
   <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-light"><a class="btn btn-light" href="{% url 'criar-projeto' %}">Adicionar Projetos</a></button>
-  <button type="button" class="btn btn-light"><a class="btn btn-light" href="#">Cards</a></button>
+  <button type="button" class="btn btn-light"><a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projetos</a></button>
   <button type="button" class="btn btn-light"><a class="btn btn-light" href="#">Business</a></button>
   </div>
-  
 </ul>
-<br>
+
+
+
 {% csrf_token %}
 {% for projectos in object_list %}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{projectos.titulo}}</h5>
-    <p class="card-text">{{projectos.descriçao}}</p>
-    <h6 href="#" class="card-link">{{projectos.criador}}</h6>
-    <a href="{% url 'editar-projeto' projectos.pk %}" class="card-link">Editar</a>
-    <a href="{% url 'deletar-projeto' projectos.pk %}" class="card-link">Deletar</a>
-  </div>
-</div>
+<div class="card-container">
+      <div class="card">
+        <h3>{{projectos.titulo}}</h3>
+        <p>{{projectos.descriçao}}</p>
+        <p>Criador: {{projectos.criador}}</p>
+        <a  style="margin-left:10px"href="{% url 'editar-projeto' projectos.pk %}">Editar</a>
+        <a style="margin-left:10px" href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
+      </div>
+
+<br>
 <br>
 {% empty %}
 {% endfor %}
-
+ 
 {% endif %}
+<!--Se eu tiver uma página anterior -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item"><a class="btn btn-primary" class="page-link" href="?page{{page_obj.previous_page_number}}">Anterior</a></li>
+    <li class="page-item" ><a class="btn btn-primary" class="page-link" href="?page=1">1</a></li>
+    <li class="page-item"><a class="btn btn-primary" class="page-link"  href="?page=2">2</a></li>
     
+    {% endif %}
+
+    {% if page_obj.has_next %}
+    
+    <li class="page-item"><a class="btn btn-primary" class="page-link" href="?page={{page_obj.next_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+  <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+</svg></a></li>
+    
+    {% endif %}
+    </ul>
+</nav>
+
 </body>
+
+
+
+   
 
 
 
