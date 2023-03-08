@@ -12,16 +12,22 @@
     <style>
      .col-md-4{
         border: 5px solid black;
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 15px 15px 15px 15px;
+        margin: auto 0;
+        width: 310px;
         margin-top: 40px;
+        text-align: justify;
         background: white;
+        align-items: center;
+        justify-content: center; /* opcional - para centralizar horizontalmente também */
+       /* definir a altura da div pai */
         
 }
     </style>
     </head>
     <body>
       <div class= "col-md-4 mx-auto">
-    <div class="shadow p-5 mb-5 bg-white rounded">
+    <div class="shadow p-5 mb-7 bg-white rounded">
     
     {% block criar_projeto %}
     <h2>{{criar_pj}}</h2> <h2>{{editar_projeto}}</h2>

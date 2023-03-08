@@ -61,7 +61,7 @@ h5, h6, p{
       height: 250px;
       margin-left: 20px;
       background-color: white;
-      border: 3px solid black;
+      border: 5px solid black;
       border-radius: 15px 15px 15px 15px;
       
 }
@@ -139,7 +139,7 @@ h5, h6, p{
  
 {% endif %}
 <!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-left:10px;">
+<nav aria-label="Page navigation example" style="margin-left:50px;">
     <ul class="pagination">
     {% if page_obj.has_previous %}
     <li class="page-item"><a class="btn btn-light" class="page-link" href="?page{{page_obj.previous_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">

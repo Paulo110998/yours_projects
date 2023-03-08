@@ -80,7 +80,7 @@ class Welcome(ListView, LoginRequiredMixin, GroupRequiredMixin):
     group_required = [u'Managers', u'Assistants']
     models = Projetos
     template_name = 'welcome.html'
-    paginate_by = 5
+    paginate_by = 4
 
     # Buscando os objetos(cards) no banco, veja abaixo:
     def get_queryset(self):
