@@ -3,6 +3,9 @@ from distutils.command.upload import upload
 from tabnanny import verbose
 from django.contrib.auth.models import User
 
+# Definindo a data de criação
+from django.utils.timezone import now
+
 
 
 # Create your models here.
@@ -10,10 +13,11 @@ class Projetos(models.Model):
     titulo = models.CharField(max_length=70, null=True, verbose_name='Título')
     descriçao = models.CharField(max_length=100, null=True, verbose_name='Descrição')
     criador = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Criador")
+    data_registro = models.DateTimeField(auto_now_add=True) # Valor padrão = now(), não editável 
 
 
     def __str__(self):
-        return f'{self.titulo} - {self.descriçao} - {self.criador}'
+        return f'{self.titulo} - {self.descriçao} - {self.criador} '
 
 
 PRIORIDADE_CARDS = (
