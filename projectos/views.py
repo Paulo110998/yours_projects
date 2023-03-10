@@ -42,7 +42,7 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Cards
-    fields = ['titulo', 'descriçao', 'prioridade', 'membros']
+    fields = ['titulo', 'descriçao', 'prioridade', 'membros', 'projetos']
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-cards') 
 

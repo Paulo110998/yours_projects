@@ -28,6 +28,7 @@ class Cards(models.Model):
     descriçao = models.CharField(max_length=100, null=True, verbose_name="Descrição")
     prioridade = models.CharField(max_length=5, choices=PRIORIDADE_CARDS , verbose_name = 'Prioridade')
     membros = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Membros")
+    projetos = models.ForeignKey(Projetos, on_delete=models.CASCADE, verbose_name="Adicionar Projeto")
 
     def __str__(self):
         return f'{self.titulo} - {self.descriçao} - {self.prioridade} - {self.membros}'
