@@ -6,7 +6,7 @@ from django.conf.urls import include
 from django.urls import path
 from django.contrib.auth import views as auth_views 
 from .views import Welcome, UsuarioCreate, PerfilUpdate
-from projectos.models import Projetos
+from projectos.models import Projetos, Cards
 from projectos.views import ListView
 
 

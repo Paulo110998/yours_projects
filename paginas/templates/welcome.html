@@ -121,7 +121,7 @@ h5, h6, p{
 
 {% csrf_token %}
 {% for projectos in object_list %}
-<a href="#"><div class="card-container">
+<a href="{% url 'listar-cards' %}"><div class="card-container">
     <div class="card">
         <h5 style="text-align:center; margin-top:12px;">{{projectos.titulo}}</h5>
         <br>
@@ -130,7 +130,7 @@ h5, h6, p{
         <a style="margin-left:10px" href="{% url 'editar-projeto' projectos.pk %}">Editar</a>
         <a style="margin-left:10px" href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
       </div></a>
-</a>
+
 
 <br>
 

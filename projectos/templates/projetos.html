@@ -10,8 +10,14 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     </head>
     <body>
-    <div class="container" > 
-      zz
+    <div class="container" >
+    {% csrf_token %}
+    {% for projectos in object_list %} 
+    <h1>{{projectos.titulo}}</h1>
+    <br>
+    <h5>{{projectos.descriçao}}</h5>
+    <br>
+    <p>Criador: {{projectos.criador}}</p>
     </div>
     </body>
 </html>
