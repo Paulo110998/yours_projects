@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class Projetos(models.Model):
     titulo = models.CharField(max_length=70, null=True, verbose_name='Título')
     descriçao = models.CharField(max_length=100, null=True, verbose_name='Descrição')
-    criador = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Membros do Projeto")
+    criador = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Criador")
 
 
     def __str__(self):

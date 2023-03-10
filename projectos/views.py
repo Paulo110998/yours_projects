@@ -39,9 +39,18 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         return context
     
 
+#class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
+ #   login_url = '/login/'
+  #  redirect_field_name = 'login'
+   # group_required = [u'Managers', u'Assistants']
+    #model = Cards
+    #fields = ['titulo', 'descriçao', 'prioridade', 'membros']
+    #template_name= "criarcards.html"
+    #success_url = reverse_lazy('listar-cards')   
+
 # UPDATEVIEW
 class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
-    login_url = 'login/'
+    login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers']
     model = Projetos

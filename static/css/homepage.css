@@ -97,14 +97,16 @@ nav {
   
 a:link, a:visited, a:active {
   text-decoration: none;
+  
   }
 a:hover, img{text-decoration: underline;
-  color: aquamarine;
+  color: blue;
   font-size:100%;
-  background-image: linear-gradient(to bottom right, transparent, #ffffff);
+  background-image: linear-gradient(to bottom right, transparent, transparent);
   border-radius: 30px 30px 30px 30px;
     }
 
+ 
 
 li{ 
   float: left ;

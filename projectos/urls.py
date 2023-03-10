@@ -14,5 +14,7 @@ urlpatterns = [
     path('deletar_projeto/<int:pk>/', ProjetosDelete.as_view(queryset=Projetos.objects.all()), name='deletar-projeto'),
     # List
     path('projetos', ProjetosList.as_view(queryset=Projetos.objects.all()), name='listar-projetos'),
+
+    
 ]
 

@@ -58,8 +58,8 @@ h5, h6, p{
 }
 .card{
       width: 210px;
-      height: 250px;
-      margin-left: 20px;
+      height: 230px;
+      margin-left: 30px;
       background-color: white;
       border: 5px solid black;
       border-radius: 15px 15px 15px 15px;
@@ -70,13 +70,13 @@ h5, h6, p{
     display: flex;
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     display:inline-flex;
-    margin-left: 10px;
+    
     
     
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 750px) {
 	.container {
-		max-width: 100%;
+		max-width: 70%;
 	}
 }
 </style>
@@ -106,9 +106,9 @@ h5, h6, p{
   </ul>
   </header>
 </div>
-<div style="display: flex; align-items: center; justify-content: center;">
-  <h5 href="#" style="color:white; ">Hey {{request.user}}! Good joob.</h5>
-</div>
+
+<h5 style="text-align:center; color:white;" href="#" style="color:white; ">Hey {{request.user}}! Good joob.</h5>
+<br>
 
 <ul style="margin-top: 40px;">
   <div class="btn-group" role="group" aria-label="Basic example">
@@ -117,11 +117,11 @@ h5, h6, p{
   <br>
 </ul>
 <br>
-<br>
+
 
 {% csrf_token %}
 {% for projectos in object_list %}
-<div class="card-container">
+<a href="#"><div class="card-container">
     <div class="card">
         <h5 style="text-align:center; margin-top:12px;">{{projectos.titulo}}</h5>
         <br>
@@ -130,6 +130,7 @@ h5, h6, p{
         <a style="margin-left:10px" href="{% url 'editar-projeto' projectos.pk %}">Editar</a>
         <a style="margin-left:10px" href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
       </div></a>
+</a>
 
 <br>
 
@@ -139,7 +140,7 @@ h5, h6, p{
  
 {% endif %}
 <!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-left:50px;">
+<nav aria-label="Page navigation example" style="margin-left:30px;">
     <ul class="pagination">
     {% if page_obj.has_previous %}
     <li class="page-item"><a class="btn btn-light" class="page-link" href="?page{{page_obj.previous_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
