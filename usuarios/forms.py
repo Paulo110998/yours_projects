@@ -30,21 +30,5 @@ class Usuarioform(UserCreationForm):
         else:
             return existente #Se o email não for repetido, cadastro concluído com sucesso!  
 
+    
 
-
-class ExampleForm(forms.Form):
-    [...]
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Fieldset(
-                'first arg is the legend of the fieldset',
-                'like_website',
-                'favorite_number',
-                'favorite_color',
-                'favorite_food',
-                'notes'
-            ),
-            Submit('submit', 'Submit', css_class='button white'),
-        )

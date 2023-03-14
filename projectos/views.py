@@ -134,14 +134,17 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
    # Buscando os objetos(cards) no banco, veja abaixo:
     def get_queryset(self):
 
-        get_projetos = self.request.GET.get('nome')
+        get_projetos = self.request.GET.get('titulo')
         if get_projetos:
-            projetos = Projetos.objects.filter(nome__icontains=get_projetos)
+            projetos = Projetos.objects.filter(nome__contains=get_projetos) 
         else:
             projetos = Projetos.objects.all()
             
-        return projetos     
+        return projetos   
 
+    
+   
+  
 # CARDS
 class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -153,10 +156,13 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 
     def get_queryset(self):
-        get_cards = self.request.GET.get('nome')
+        get_cards = self.request.GET.get('titulo')
         if get_cards:
-            cards = Cards.objects.filter(nome__icontains=get_cards)
+            cards = Cards.objects.filter(nome__contains=get_cards)
         else:
             cards = Cards.objects.all()
         
         return cards
+    
+    
+    

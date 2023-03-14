@@ -30,15 +30,14 @@
     <div class="shadow p-5 mb-7 bg-white rounded">
     
     {% block criar_cards %}
-    <h2>{{criar_card}}</h2> <h2>{{editar_card}}</h2>
+    <h4>Adicionar mebros na lista</h4>
     <br>
     <form action="" method="POST">
-    {% csrf_token %}
 
-    {{ form|crispy }}
-    <div class="input-group">
-  
-    <br>
+    <input style="text-align:center" type="text" name="nome_card" id ="" value="{{ request.GET.nome }}" class="p-1 border", placeholder="Pesquisar">
+
+    <button type="submit" class="btn btn-primary btn-sm-lg">Buscar</button>
+    
     <button type="submit" class="btn btn-primary ">Salvar</button>
     </form>
     </div>

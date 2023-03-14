@@ -120,6 +120,15 @@ h5, h6, p{
   <a class="btn btn-light" href="{% url 'listar-cards' %}">Listas</a>
   </div>
   <br>
+
+<form action="?" method="GET">
+    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{ request.GET.nome}}" class="p-1 border", placeholder="Pesquisar">
+
+    <button type="submit" class=" btn btn-primary btn-sm-lg">Buscar</button>
+
+    <a href="{% url 'listar-projetos' %}"  class="btn btn-light">Limpar</a>
+  
+</form>
 </ul>
 <br>
 {% csrf_token %}

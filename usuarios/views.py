@@ -43,14 +43,8 @@ class UsuarioCreate(CreateView):
         Perfil.objects.create(usuario=self.object)
 
         return url
-
     
-    # As fields já estão na classe 'Usuarioform', por isso não precisamos criálas 
-    # Configurando como o título deve aparecer com o get_context_data
-    #def get_context_data(self, *args ,**kwargs):
-     #   context = super().get_context_data(*args, **kwargs)
-      #  context['titulo'] = "Cadastre-se"
-       # return context
+  
 
 # UPDATE 
 class PerfilUpdate(UpdateView, LoginRequiredMixin):
@@ -71,7 +65,9 @@ class PerfilUpdate(UpdateView, LoginRequiredMixin):
         context['botao'] ="Atualizar"
 
         return context  
-
+    
+    
+  
 
 
 class Welcome(ListView, LoginRequiredMixin, GroupRequiredMixin):

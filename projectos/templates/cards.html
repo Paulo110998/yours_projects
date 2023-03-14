@@ -102,7 +102,18 @@ h5, h6, p{
     <ul style="margin-top: 160px;">
     <div class="btn-group" role="group" aria-label="Basic example">
     <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Listas</a>
-    </div>
+    <a class="btn btn-light" href="#">Adicionar Membros</a>
+</div>
+<br>
+<form action="?" method="GET">
+    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.nome}}" class="p-1 border", placeholder="Pesquisar">
+
+    <button type="submit" class=" btn btn-primary btn-sm-lg">Buscar</button>
+
+    <a href="{% url 'listar-cards' %}"  class="btn btn-light">Limpar</a>
+  
+</form>
+    <br>
     <h3 style="text-align:center; color:white; margin-right:20px;">Listagem</h3>
   <br>
 </ul>
@@ -114,6 +125,7 @@ h5, h6, p{
       <th>Descrição</th>
       <th>Prioridade</th>
       <th>Criador</th>
+      <th>Membros</th>
       <th>Projeto</th>
       <th>Editar|Deletar</th>
     </tr>
@@ -125,6 +137,7 @@ h5, h6, p{
       <td>{{projectos.descriçao}}</td>
       <td>{{projectos.prioridade}}</td>
       <td>{{projectos.membros}}</td>
+      <td>Membros</td>
       <td>{{projectos.projetos}}</td>
       <td>
       <a href="{% url 'editar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

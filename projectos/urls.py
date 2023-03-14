@@ -2,8 +2,14 @@
 from django.urls import path
 from projectos.models import Projetos, Cards, User
 
+
+
+
+
 from .views import ProjetosCreate, ProjetosUpdate, ProjetosDelete, ProjetosList
 from . views import CardsCreate, CardsUpdate, CardsDelete, CardsList
+from usuarios.models import User
+
 
 
 urlpatterns = [
@@ -24,6 +30,13 @@ urlpatterns = [
     path('deletar_card/<int:pk>/', CardsDelete.as_view(queryset=Cards.objects.all()), name='deletar-card'),
     # List Card
     path('cards', CardsList.as_view(queryset=Cards.objects.all()), name='listar-cards'),
+    
+
+
+
+
+    
+    
 
     
 ]
