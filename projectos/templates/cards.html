@@ -67,9 +67,9 @@ h5, h6, p{
 	}
 }
 .table-responsive{
-  border: 50px solid transparent;
-  border-radius: 100px 100px 120px 120px;
-  margin-top: -70px;
+  border: 40px solid transparent;
+  border-radius: 90px 90px 120px 120px;
+  margin-top: -60px;
 }
 </style>
     </head>
@@ -99,23 +99,21 @@ h5, h6, p{
   <br>
   <br>
 </div class="container">
-    <ul style="margin-top: 160px;">
+   <ul style="margin-top: 160px; margin-left:20px;">
     <div class="btn-group" role="group" aria-label="Basic example">
     <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Listas</a>
     <a class="btn btn-light" href="#">Adicionar Membros</a>
 </div>
 <br>
 <form action="?" method="GET">
-    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.nome}}" class="p-1 border", placeholder="Pesquisar">
+    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" class="p-1 border", placeholder="Pesquisar">
 
     <button type="submit" class=" btn btn-primary btn-sm-lg">Buscar</button>
 
     <a href="{% url 'listar-cards' %}"  class="btn btn-light">Limpar</a>
-  
 </form>
-    <br>
-    <h3 style="text-align:center; color:white; margin-right:20px;">Listagem</h3>
-  <br>
+<br>
+<br>
 </ul>
 <div style="text-align: center" class="table-responsive" >
 <table class="table table-striped table-hover table-light">

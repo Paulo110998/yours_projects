@@ -12,19 +12,21 @@
     <style>
    .row{
         border: 5px solid black;
-        width: 375px;
+        width: 370px;
         border-radius: 10px 10px 10px 10px;
         margin: auto;
-        margin-top: 50px;
+        margin-top: 40px;
         text-align: center;
         background: white; 
+        align-items: center;
+        justify-content: center;
         
 }
     form{
         color:black;
         text-align: justify;
-        margin-left: -30px;
-        width: 200px;
+        
+        
     }
     h2{
         color: black;
@@ -48,13 +50,14 @@
     </header>
     
     <div class= "row">
-    <div class="shadow p-5 mb-5 rounded">
+    <div class="shadow p-4 mb-7 bg-white rounded">
   
     {% block perfil %}
     {% csrf_token %}
     {% if user.perfil.foto_perfil %}
     <img src="{{ user.perfil.foto_perfil.url }}"  alt="Foto" width=150>
-    <hr>
+    <br>
+    <br>
     {% else %}
     <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -68,7 +71,7 @@
     {% csrf_token %}
     
     {{ form|crispy }}
-    <hr>
+    <br>
     <button type="submit" class="btn btn-primary ">Atualizar</button>
     
     </form>
