@@ -67,8 +67,10 @@ h5, h6, p{
 	}
 }
 .table-responsive{
-  border: 10px solid transparent;
-  border-radius: 20px 20px 50px 50px;
+  border: 15px solid transparent;
+  border-radius: 30px 30px 50px 50px;
+  margin-top: -70px;
+  
   
 }
     </style>
@@ -97,15 +99,17 @@ h5, h6, p{
   </header>
 </div class="container">
     <ul style="margin-top: 160px;">
-  <div class="btn-group" role="group" aria-label="Basic example">
-  <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Cards</a>
-  </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+    <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Cards</a>
+    </div>
+  <br>
  
 </ul>
     {% csrf_token %}
     {% for projectos in object_list %} 
     <br>
     <br>
+    
 
 <div style="text-align: center" class="table-responsive" >
 <table class="table table-hover table-light">
