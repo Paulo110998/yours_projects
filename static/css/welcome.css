@@ -19,7 +19,7 @@ header{
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
-    justify-content:space-between; /* Espaço entre os itens*/
+    justify-content:left; /* Espaço entre os itens*/
     background: #f8f8f8;
 }
   

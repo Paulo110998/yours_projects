@@ -9,9 +9,7 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <style>
-   
-
- .menu {
+.menu {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -88,7 +86,6 @@ h5, h6, p{
     <header class="header">
     <nav>
     <a href="{% url 'welcome' %}" style="color:black">Yours Projects</a>
-    
     </nav>
     <div class="hamburger-menu">
       <div class="line"></div>
@@ -113,22 +110,21 @@ h5, h6, p{
   </ul>
   </header>
 </div>
-
-<h5 style="text-align:center; color:white;" href="#" style="color:white; ">Hey {{request.user}}! Good joob.</h5>
+<br>
+<h4 style="text-align:center; color:white;" href="#" style="color:white; ">Hey {{request.user}}! Good joob.</h4>
 <br>
 
 <ul style="margin-top: 40px;">
   <div class="btn-group" role="group" aria-label="Basic example">
   <a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projeto</a>
-  <a class="btn btn-light" href="{% url 'listar-cards' %}">Cards</a>
+  <a class="btn btn-light" href="{% url 'listar-cards' %}">Listas</a>
   </div>
   <br>
 </ul>
 <br>
-
-
 {% csrf_token %}
 {% for projectos in object_list %}
+
 <a href="{% url 'editar-projeto' projectos.pk %}"><div class="card-container">
     <div class="card">
         <h5 style="text-align:center; margin-top:12px;">{{projectos.titulo}}</h5>

@@ -20,14 +20,15 @@
     </style>
     </head>
     <body>
+    <div class= "col-md-4 mx-auto">
+    <br>
     <h3 style="text-align: center">{{ excluir_projeto }}</h3>
-<br>
+    
+    <form action="" method="POST">
 
-<form action="" method="POST">
+    <p style="margin-left:10px;">
 
-    <p>
-
-        Deseja excluir esse registro? <b>{{ object }}</b>?
+        Deseja excluir essa lista? <b>{{ object }}</b>?
     
     </p>
 
@@ -35,8 +36,9 @@
 
     {{form.as_p}}
 
-    <h4><button type="submit" class="btn btn-danger">Excluir</button></h4>
+    <h4><button type="submit" class="btn btn-danger" style="margin-left:10px;">Excluir</button></h4>
 
 </form>
+ </div>
     </body>
 </html>
