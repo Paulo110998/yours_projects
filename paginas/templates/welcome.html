@@ -11,15 +11,17 @@
     <style>
 .menu {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  float: right;
+  
 }
 
 .menu li {
   position: relative;
 }
 
-.menu ul {
+.menu ul{
   position: absolute;
   top: 100%;
   left: 0;
@@ -34,7 +36,7 @@
 
 .menu a {
   display: block;
-  padding: 9px;
+  padding: 10px;
   background-color: transparent;
   color: white;
   text-decoration: none;
@@ -60,7 +62,6 @@ h5, h6, p{
       background-color: white;
       border: 5px solid black;
       border-radius: 15px 15px 15px 15px;
-      
 }
 .card-container {
     /* container responsivo abaixo*/
@@ -68,37 +69,43 @@ h5, h6, p{
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     display:inline-flex;
     
-    
-    
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 760px) {
 	.container {
 		max-width: 70%;
 	}
 }
+
+.sidebar {
+ display: inline;
+ width: 88%;
+ float: right;
+}
+
 </style>
     </head>
     <body>
     {% if request.user.is_authenticated %}
-    
     <div class="container">
     <header class="header">
     <nav>
-    <a href="{% url 'welcome' %}" style="color:black">Yours Projects</a>
+    <a href="{% url 'welcome' %}" style="color:black; ">Yours Projects</a>
     </nav>
     <div class="hamburger-menu">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </div>
-    <ul class="menu">
+    
+    <div class="sidebar">
+    <ul class="menu" >
     {% if user.perfil.foto_perfil %}
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
     {% else %}
-    <li><a style="color:black; " href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg></a></li>
+    <li><a style="color:black;" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </svg></a></li>
     {% endif %}
     <ul>
       <li><a href="#">Alterar Senha</a></li>
@@ -106,6 +113,7 @@ h5, h6, p{
       <li><a href="{% url 'logout' %}">Sair</a></li>
     </ul>
  </ul>
+ </div>
   </header>
 </div>
 <br>
@@ -133,9 +141,10 @@ h5, h6, p{
 {% csrf_token %}
 {% for projectos in object_list %}
 
-<a href="{% url 'editar-projeto' projectos.pk %}"><div class="card-container">
-    <div class="card">
-        <h5 style="text-align:center; margin-top:12px;">{{projectos.titulo}}</h5>
+<a href="{% url 'editar-projeto' projectos.pk %}">
+<div class="card-container">
+    <div class="card" >
+        <h5 style="text-align:center; margin-top:10px; ">{{projectos.titulo}}</h5>
         <br>
         <p style="margin-left:10px">{{projectos.descriçao}}</p>
         <p style="margin-left:10px">Manager: {{projectos.criador}}</p>
