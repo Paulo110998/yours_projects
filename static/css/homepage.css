@@ -128,8 +128,3 @@ h1,h2, h3, h5, a{
  a{
     color: black;
 }
-.container{
-    margin: auto;
-    border: 80px solid transparent;
-    border-radius: 20px 20px 20px 20px;
-}

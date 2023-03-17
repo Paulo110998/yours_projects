@@ -21,6 +21,7 @@ from projectos.views import ProjetosList
 from projectos.models import Projetos
 
 
+
 # Create your views here.
 # CREATEVIEW PARA CADASTRO DE USUÁRIO
 class UsuarioCreate(CreateView):
@@ -67,8 +68,6 @@ class PerfilUpdate(UpdateView, LoginRequiredMixin):
         return context  
     
     
-  
-
 
 class Welcome(ListView, LoginRequiredMixin, GroupRequiredMixin):
     login_url = '/login/'

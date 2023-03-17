@@ -62,9 +62,9 @@ h5, h6, p{
     </style>
     </head>
     <body>
-       <div class="container">
+    <div class="container">
     <header class="header">
-    <nav>
+    <nav style="margin-top:30px; text-align:justify;">
     <a href="{% url 'welcome' %}" style="color:black">Voltar</a>
     </nav>
     <div class="hamburger-menu">
@@ -72,6 +72,7 @@ h5, h6, p{
       <div class="line"></div>
       <div class="line"></div>
     </div>
+    <div class="sidebar">
     <ul class="menu">
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
     <ul>
@@ -81,6 +82,7 @@ h5, h6, p{
     </ul>
   </li>
   </ul>
+  </div>
   </header>
 </div>
 

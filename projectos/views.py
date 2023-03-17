@@ -15,7 +15,6 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 ########## CREATE ##############
-
 # PROJETOS
 class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     login_url = '/login/'
@@ -119,8 +118,8 @@ class CardsDelete(DeleteView, LoginRequiredMixin, GroupRequiredMixin):
         context['excluir_cards'] = 'Excluír Card'
         return context
 
-#################### LISTVIEW #############################
 
+#################### LISTVIEW #############################
 # PROJETOS
 class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'

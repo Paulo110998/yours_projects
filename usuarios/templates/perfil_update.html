@@ -12,19 +12,22 @@
     <style>
    .row{
         border: 5px solid black;
-        width: 370px;
+        width: 390px;
         border-radius: 10px 10px 10px 10px;
         margin: auto;
-        margin-top: 40px;
+        margin-top: 50px;
         text-align: center;
         background: white; 
-        align-items: center;
-        justify-content: center;
+        top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+       
         
 }
     form{
         color:black;
         text-align: justify;
+        margin-right:30px;
+        
+        
         
         
     }
@@ -66,7 +69,7 @@
 
     {% endif %}
    
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data" >
     
     {% csrf_token %}
     

@@ -13,27 +13,19 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  float: right;
-  
 }
-
 .menu li {
-  position: relative;
+  position: sticky;
 }
-
 .menu ul{
   position: absolute;
   top: 100%;
   left: 0;
   display: none;
-   
 }
-
 .menu li:hover > ul {
   display: block;
- 
 }
-
 .menu a {
   display: block;
   padding: 10px;
@@ -41,7 +33,6 @@
   color: white;
   text-decoration: none;
 }
-
 .menu a:hover {
   background-color: white;
   color: blue;
@@ -56,8 +47,8 @@ h5, h6, p{
   color: black;
 }
 .card{
-      width: 220px;
-      height: 270px;
+      width: 221px;
+      height: 285px;
       margin-left: 30px;
       background-color: white;
       border: 5px solid black;
@@ -77,9 +68,10 @@ h5, h6, p{
 }
 
 .sidebar {
- display: inline;
+
  width: 88%;
- float: right;
+ float: left;
+
 }
 
 </style>
@@ -88,8 +80,8 @@ h5, h6, p{
     {% if request.user.is_authenticated %}
     <div class="container">
     <header class="header">
-    <nav>
-    <a href="{% url 'welcome' %}" style="color:black; ">Yours Projects</a>
+    <nav style="margin-top:30px; text-align:justify;">
+     <a href="" style="color:black;">Yours Projects</a>
     </nav>
     <div class="hamburger-menu">
       <div class="line"></div>
@@ -102,10 +94,10 @@ h5, h6, p{
     {% if user.perfil.foto_perfil %}
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
     {% else %}
-    <li><a style="color:black;" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-    </svg></a></li>
+    <li><a href="" style="color:black;" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg></a>
     {% endif %}
     <ul>
       <li><a href="#">Alterar Senha</a></li>
@@ -165,31 +157,32 @@ h5, h6, p{
 <nav aria-label="Page navigation example" style="margin-left:30px;">
     <ul class="pagination">
     {% if page_obj.has_previous %}
-    <li class="page-item"><a class="btn btn-light" class="page-link" href="?page{{page_obj.previous_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-  <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
-</svg></a></li>
-    <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
-    <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
+      <li class="page-item"><a class="btn btn-light" class="page-link" href="?page{{page_obj.previous_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+      <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+      </svg></a></li>
+      <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
+      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
     
     {% endif %}
 
     {% if page_obj.has_next %}
     
-    <li class="page-item"><a class="btn btn-light" class="page-link" href="?page={{page_obj.next_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
-  <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
-</svg></a></li>
+      <li class="page-item"><a class="btn btn-light" class="page-link" href="?page={{page_obj.next_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+      <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+      </svg></a></li>
     
-    {% endif %}
+    
     </ul>
 </nav>
-
+{% endif %}
 </body>
 
 <script>
-const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
     const menu = document.querySelector('.menu');
     hamburgerMenu.addEventListener('click', () => {
     menu.classList.toggle('active');
     });
-</script>
+
+</script> 
 </html>
