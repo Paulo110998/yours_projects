@@ -68,26 +68,24 @@ h5, h6, p{
 }
 
 .sidebar {
-
- width: 88%;
- float: left;
-
+ margin-left: 1000px;
+ padding: -0.rem 10%;
 }
-
 </style>
     </head>
     <body>
     {% if request.user.is_authenticated %}
     <div class="container">
-    <header class="header">
-    <nav style="margin-top:30px; text-align:justify;">
-     <a href="" style="color:black;">Yours Projects</a>
-    </nav>
+    <header class="header" class="navbar">
+    
     <div class="hamburger-menu">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </div>
+    <nav style="text-align:center; margin-top:px;" >
+      <a href="#" style="color:black;">Y.P</a>
+    </nav>
     
     <div class="sidebar">
     <ul class="menu" >
@@ -108,12 +106,11 @@ h5, h6, p{
  </div>
   </header>
 </div>
-<br>
 <h4 style="text-align:center; color:white;" href="#" style="color:white; ">Hey {{request.user}}! Good joob.</h4>
 <br>
 <br>
 
-<ul style="margin-top: 40px;">
+<ul style="margin-top: 20px;">
   <div class="btn-group" role="group" aria-label="Basic example">
   <a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projeto</a>
   <a class="btn btn-light" href="{% url 'listar-cards' %}">Listas</a>
@@ -144,11 +141,7 @@ h5, h6, p{
         <a style="margin-left:10px" href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
         <p style="margin-left:10px; margin-top:10px;"> Criado: {{projectos.data_registro}}</p>
       </div></a>
-
-
 <br>
-
-
 {% empty %}
 {% endfor %}
  

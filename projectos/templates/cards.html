@@ -6,7 +6,7 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static  'css/welcome.css' %}" rel="stylesheet">
+        <link href="{% static  'css/homepage.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <style>
     .menu {
@@ -77,9 +77,8 @@ h5, h6, p{
 }
 
 .sidebar {
- display: inline;
- width: 91%;
- float: right;
+ margin-left: 900px;
+ padding: 0.1rem 10%;
 }
 </style>
     </head>
@@ -87,14 +86,7 @@ h5, h6, p{
     {% if request.user.is_authenticated %}
     <div class="container">
     <header class="header">
-    <nav style="margin-top:30px; text-align:justify; color:black;">
-    <a href="{% url 'welcome' %}" style="color:black;" >Voltar</a>
-    </nav>
-    <div class="hamburger-menu">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
+    <a href="{% url 'welcome' %}" class="btn btn-primary" style="color:white;margin-top:x;" >Voltar</a>
   <div class="sidebar">
   <ul class="menu" >
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
@@ -109,9 +101,11 @@ h5, h6, p{
   </div>
   <br>
   <br>
-
+  <br>
+  <br>
+  
 </div class="container">
-   <ul style="margin-top: 160px">
+   <ul style="margin-top: 100px">
     <div class="btn-group" role="group" aria-label="Basic example">
     <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Listas</a>
     <a class="btn btn-light" href="#">Adicionar Membros</a>

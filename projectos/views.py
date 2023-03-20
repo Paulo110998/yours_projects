@@ -136,7 +136,6 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     
    # Buscando os objetos(cards) no banco, veja abaixo:
     def get_queryset(self):
-
         get_projetos = self.request.GET.get('titulo')
         if get_projetos:
             projetos = Projetos.objects.filter(titulo__icontains=get_projetos) 

@@ -12,13 +12,13 @@
     <style>
     .menu {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 .menu li {
-  position: sticky;
+  position: relative;
 }
-.menu ul{
+.menu ul {
   position: absolute;
   top: 100%;
   left: 0;
@@ -26,10 +26,11 @@
 }
 .menu li:hover > ul {
   display: block;
+ 
 }
 .menu a {
   display: block;
-  padding: 10px;
+  padding: 9px;
   background-color: transparent;
   color: white;
   text-decoration: none;
@@ -43,11 +44,10 @@
   margin-top: -40px;
   position: fixed; /* Fixar */
 }
-
 h5, h6, p{
   color: black;
 }
-     .col-md-4{
+.col-md-4{
         border: 5px solid black;
         border-radius: 15px 15px 15px 15px;
         margin: auto 0;
@@ -57,21 +57,17 @@ h5, h6, p{
         align-items: center;
         justify-content: center; /* opcional - para centralizar horizontalmente também */
        /* definir a altura da div pai */
-        
+}
+.sidebar {
+ margin-left: 900px;
+ padding: -0.2rem 10%;
 }
     </style>
     </head>
     <body>
     <div class="container">
     <header class="header">
-    <nav style="margin-top:30px; text-align:justify;">
-    <a href="{% url 'welcome' %}" style="color:black">Voltar</a>
-    </nav>
-    <div class="hamburger-menu">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
+    <a href="{% url 'welcome' %}" class="btn btn-primary" style="color:white;margin-top:x;">Voltar</a>
     <div class="sidebar">
     <ul class="menu">
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>

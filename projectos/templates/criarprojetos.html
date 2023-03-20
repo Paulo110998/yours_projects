@@ -6,7 +6,7 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <style>
@@ -51,27 +51,24 @@ h5, h6, p{
         border: 5px solid black;
         border-radius: 15px 15px 15px 15px;
         margin: auto 0;
+        margin-top: 140px;
         width: 310px;
-        
         text-align: justify;
         background: white;
         align-items: center;
         justify-content: center; /* opcional - para centralizar horizontalmente também */
        /* definir a altura da div pai */
 }
+.sidebar {
+ margin-left: 900px;
+ padding: 0.1rem 10%;
+}
     </style>
     </head>
     <body>
     <div class="container">
     <header class="header">
-    <nav style="margin-top:30px; text-align:justify;">
-    <a href="{% url 'welcome' %}" style="color:black">Voltar</a>
-    </nav>
-    <div class="hamburger-menu">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
+    <a href="{% url 'welcome' %}" class="btn btn-primary" style="color:white;margin-top:x;" >Voltar</a>
     <div class="sidebar">
     <ul class="menu">
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
@@ -84,10 +81,11 @@ h5, h6, p{
   </ul>
   </div>
   </header>
+  </div>
 </div>
 
 <div class= "col-md-4 mx-auto">
-    <div class="shadow p-5 mb-7 bg-white rounded">
+<div class="shadow p-5 mb-7 bg-white rounded">
     {% block criar_projeto %}
     <h2>{{criar_pj}}</h2> <h2>{{editar_projeto}}</h2>
     <br>
