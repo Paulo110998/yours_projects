@@ -145,8 +145,6 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         return projetos   
 
     
-   
-  
 # CARDS
 class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
