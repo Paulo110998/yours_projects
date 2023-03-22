@@ -152,7 +152,7 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Cards
     template_name = 'cards.html'
-    paginate_by = 5
+    paginate_by = 7
 
 
     def get_queryset(self):
