@@ -10,6 +10,18 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <style>
+     header{
+    margin-top: 1px; /* Margem do topo*/
+    padding: 1.5rem 10%; /* Altura da borda*/
+    position: fixed; /* Fixar */
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    display:inline-flex;
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+    justify-content:left; /* Espaço entre os itens*/
+    background: transparent;
+    align-items: center;
+}
+  
     .menu {
   list-style: none;
   padding: 0;
@@ -52,6 +64,7 @@ h5, h6, p{
         border-radius: 15px 15px 15px 15px;
         margin: auto 0;
         width: 310px;
+        margin-top: -10px;
         text-align: justify;
         background: white;
         align-items: center;
@@ -67,7 +80,7 @@ h5, h6, p{
     <body>
     <div class="container">
     <header class="header">
-    <a href="{% url 'welcome' %}" class="btn btn-primary btn-sm" style="color:white;margin-top:x;">Voltar</a>
+    <a href="{% url 'listar-cards' %}"  style="color:white;  ">Voltar</a>
     <div class="sidebar">
     <ul class="menu">
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
@@ -84,20 +97,19 @@ h5, h6, p{
     <div class= "col-md-4 mx-auto">
     <div class="shadow p-5 mb-7 bg-white rounded">
     
-    {% block criar_cards %}
-    <h2>{{criar_card}}</h2> <h2>{{editar_card}}</h2>
+    {% block listas %}
+    <h2>{{criar_lista}}</h2> <h2>{{editar_lista}}</h2>
     <br>
     <form action="" method="POST">
     {% csrf_token %}
 
     {{ form|crispy }}
-    <div class="input-group">
-  
+    
     <br>
     <button type="submit" class="btn btn-primary ">Salvar</button>
     </form>
     </div>
   
-    {% endblock criar_cards %}
+    {% endblock listas %}
     </body>
 </html>

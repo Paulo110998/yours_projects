@@ -12,6 +12,18 @@
         <title>Yours Projects</title>
         {% endblock title %}
     <style>
+    header{
+    margin-top: 1px; /* Margem do topo*/
+    padding: 1.5rem 10%; /* Altura da borda*/
+    position: fixed; /* Fixar */
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    display:inline-flex;
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+    justify-content:left; /* Espaço entre os itens*/
+    background: transparent;
+    align-items: center;
+}
+  
     img{
       margin-right: 60px;
     }
@@ -23,7 +35,9 @@
 .navbar{
   margin-top: 10px;
 }
-
+li, a{
+  color:white;
+}
     </style>
     </head>
     <body>

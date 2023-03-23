@@ -52,11 +52,10 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['criar_card'] = 'Criar Cards'
+        context['criar_lista'] = 'Criar Lista'
         return context
         
 ###################### UPDATEVIEW ################################
-
 # PROJETOS
 class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     login_url = '/login/'
@@ -85,7 +84,7 @@ class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['editar_card'] = 'Editar Card'
+        context['editar_lista'] = 'Editar Lista'
         return context
 
 ################## DELETEVIEW ###########################

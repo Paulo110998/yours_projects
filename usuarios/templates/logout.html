@@ -11,12 +11,38 @@
         {% block title %}
         <title>Yours Projects</title>
         {% endblock title %}
-        
-    
+    <style>
+    header{
+    margin-top: 1px; /* Margem do topo*/
+    padding: 1.5rem 10%; /* Altura da borda*/
+    position: fixed; /* Fixar */
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    display:inline-flex;
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+    justify-content:left; /* Espaço entre os itens*/
+    background: transparent;
+    align-items: center;
+}
+  
+    img{
+      margin-right: 60px;
+    }
+   .container{
+    margin: auto;
+    border: solid 50px transparent;
+    margin-top: 50px;
+}
+.navbar{
+  margin-top: 10px;
+}
+li, a{
+  color:white;
+}
+    </style>
     </head>
     <body>
-    <header>
-    <nav>
+    <header class="header">
+    <nav class="navbar">
     <div class="hamburger-menu">
       <div class="line"></div>
       <div class="line"></div>
@@ -26,31 +52,36 @@
       <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
       <li><a href="#">Público Alvo</a></li>
       <li><a href="#">Planos</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
-    </ul>
+      <li ><a href="{% url 'login' %}">Login</a></li>
+      </ul>
+      
+    </nav>
+    
     </nav>
     </header>
-    <br>
-    <br>
-    <br>
-    <br>
      <div class="container" >
      <h1>Yours Projects</h1>
      <br>
-     <h3 style="text-align:center">Pensando em dar um up nos seus projetos? Nós da Yours Projects temos
+     <h3 style="text-align:justify">Pensando em dar um up nos seus projetos? Nós da Yours Projects temos
             ferramentas que te auxiliam a alavancar o seu negócio por meio de gerenciamento de processos, com ferramentas
             práticas e acessíveis a qualquer empresa. Vem com a gente!</h3>
-     </div>
-        <br>
-        <br>
-        
-        
+    <br>
+      <li><div style="text-align:center;">
+      <h3 style="margin-right:30px;">Gestão de Projetos</h3>
+      <img src="{% static 'imgs/pexels-fauxels-3183183.jpg' %}" alt="" width=300 height="200">
+      </div></li>
+      <li><div style="text-align:center;">
+      <h3 style="margin-right:30px;">Controle de Demandas</h3>
+      <img src="{% static 'imgs/pexels-andrea-piacquadio-840996.jpg' %}" alt="" width=300 height="200">
+      </div></li>
+      <li><div style="text-align:center;">
+      <h3 style="margin-right:30px;">Liberdade Geografica</h3>
+      <img src="{% static 'imgs/grupodetrabalho.jpg' %}" alt=""  width=300 height="200">
+      </div></li>
     
-    </div>  
-
-
-
-    </body>
+    </div>
+    
+</body>
     
 <script>
     const hamburgerMenu = document.querySelector('.hamburger-menu');
