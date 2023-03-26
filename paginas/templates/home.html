@@ -32,6 +32,11 @@
     border: solid 50px transparent;
     margin-top: 50px;
 }
+.card{
+      justify-content:left; /* Espaço entre os itens*/
+      
+      
+}
 .navbar{
   margin-top: 10px;
 }
@@ -66,21 +71,33 @@ li, a{
             ferramentas que te auxiliam a alavancar o seu negócio por meio de gerenciamento de processos, com ferramentas
             práticas e acessíveis a qualquer empresa. Vem com a gente!</h3>
     <br>
-      <li><div style="text-align:center;">
-      <h3 style="margin-right:30px;">Gestão de Projetos</h3>
-      <img src="{% static 'imgs/pexels-fauxels-3183183.jpg' %}" alt="" width=300 height="200">
-      </div></li>
-      <li><div style="text-align:center;">
-      <h3 style="margin-right:30px;">Controle de Demandas</h3>
-      <img src="{% static 'imgs/pexels-andrea-piacquadio-840996.jpg' %}" alt="" width=300 height="200">
-      </div></li>
-      <li><div style="text-align:center;">
-      <h3 style="margin-right:30px;">Liberdade Geografica</h3>
-      <img src="{% static 'imgs/grupodetrabalho.jpg' %}" alt=""  width=300 height="200">
-      </div></li>
+     <li>
+    <div class="card" style="width: 25rem; margin-right:10px;">
+  <img class="card-img-top" src="{% static 'imgs/pexels-fauxels-3183183.jpg' %}" width=300 height="200" alt="Card image cap">
+  <div class="card-body">
+    <h3 class="card-title">Gestão de Projetos</h3>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div></li>
+  
+  </li>
+  <li><div class="card" style="width: 25rem;">
+  <img class="card-img-top" src="{% static 'imgs/pexels-andrea-piacquadio-840996.jpg' %}" alt="" width=300 height="200" alt="Card image cap">
+  <div class="card-body">
+    <h3 class="card-title">Controle de Demandas</h3>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div></li>
+
+  <li>
+    <div class="card" style="width: 22rem;">
+  <img class="card-img-top" src="{% static 'imgs/grupodetrabalho.jpg' %}" alt=""  width=300 height="200" alt="" width=300 height="200" alt="Card image cap">
+  <div class="card-body">
+    <h3 class="card-title">Liberdade Geográfica</h3>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div></li>
+  </div>
     
-    </div>
-    
+ 
+</div>
 </body>
     
 <script>

@@ -13,16 +13,19 @@
      .col-md-4{
         border: 5px solid black;
         border-radius: 10px 10px 10px 10px;
-        margin-top: 40px;
+        margin-top: 200px;
         background: white;
+        height: 220px;
+        width: 350px;
         
 }
+
     </style>
     </head>
     <body>
     <div class= "col-md-4 mx-auto">
     <br>
-    
+   
     
     <form action="" method="POST">
 
@@ -36,9 +39,11 @@
 
     {{form.as_p}}
 
-    <h4><button type="submit" class="btn btn-danger" style="margin-left:10px;">Excluir</button></h4>
-
+    <h6><button type="submit" class="btn btn-danger" style="margin-left:10px;">Excluir</button></h6>
+    <a href="{% url 'welcome' %}" style="margin-left:10px;" class="btn btn-primary">Cancelar</a>
+    
 </form>
+<br>
  </div>
     </body>
 </html>

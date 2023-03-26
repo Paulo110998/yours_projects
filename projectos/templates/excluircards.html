@@ -13,17 +13,20 @@
      .col-md-4{
         border: 5px solid black;
         border-radius: 10px 10px 10px 10px;
-        margin-top: 40px;
+        margin-top: 200px;
         background: white;
+        height: 220px;
+        width: 350px;
         
+}
+form{
+    
 }
     </style>
     </head>
     <body>
     <div class= "col-md-4 mx-auto">
     <br>
-    <h3 style="text-align: center">{{ excluir_projeto }}</h3>
-    
     <form action="" method="POST">
 
     <p style="margin-left:10px;">
@@ -36,9 +39,11 @@
 
     {{form.as_p}}
 
-    <h4><button type="submit" class="btn btn-danger" style="margin-left:10px;">Excluir</button></h4>
-
+    <h6><button type="submit" class="btn btn-danger" style="margin-left:10px;">Excluir</button></h6>
+    <a href="{% url 'listar-cards' %}" style="margin-left:10px;" class="btn btn-primary">Cancelar</a>
+    
 </form>
+<br>
  </div>
     </body>
 </html>
