@@ -65,8 +65,15 @@
     </header>
     <div class= "col-md-4 mx-auto">
     <div class="shadow p-5 mb-6 bg-white rounded">
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'welcome' %}"  class="btn btn-primary btn-sm " style="margin-top: -30px;">Voltar</a>
     <br>
-    {% block login %}
+    <br>
+    <h3>Ação não permitida.</h3>
+    <br>
+    <b><p class="lead">Sua conta não tem permissão para esta ação!</p></b>
+    {% else %}
+  
     <h2>Login</h2>
     <br>
     <form action="" method="POST">
@@ -82,7 +89,8 @@
     </form>
     </div>
   
-    {% endblock login %}
+  
+    {% endif %}
     
     </body>
 </html>
