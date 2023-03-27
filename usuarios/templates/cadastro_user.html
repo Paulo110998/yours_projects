@@ -10,11 +10,22 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
        
     <style>
+      header{
+    margin-top: 1px; /* Margem do topo*/
+    padding: 1.5rem 10%; /* Altura da borda*/
+    position: fixed; /* Fixar */
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    display:inline-flex;
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+    justify-content:left; /* Espaço entre os itens*/
+    background: transparent;
+    align-items: center;
+}
    .col-md-4{
         border: 5px solid black;
         border-radius: 15px 15px 15px 15px;
         margin: auto 0;
-        margin-top: 40px;
+        margin-top: 130px;
         text-align: justify;
         background: white;
         display: flex;
@@ -33,7 +44,7 @@
         margin-top: px;
     }
     a{  
-        color: black;
+        color: white;
         
     }
     

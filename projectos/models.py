@@ -30,11 +30,12 @@ class Cards(models.Model):
     titulo = models.CharField(max_length=50, null=True, verbose_name="Título")
     descriçao = models.CharField(max_length=100, null=True, verbose_name="Descrição")
     prioridade = models.CharField(max_length=5, choices=PRIORIDADE_CARDS , verbose_name = 'Prioridade')
-    membros = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Membros")
+    criador = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Criador")
+    data_registro = models.DateTimeField(auto_now_add=True)
     projetos = models.ForeignKey(Projetos, on_delete=models.CASCADE, verbose_name="Adicionar Projeto")
 
     def __str__(self):
-        return f'{self.titulo} - {self.descriçao} - {self.prioridade} - {self.membros}'
+        return f'{self.titulo} - {self.descriçao} - {self.prioridade} - {self.projetos}'
     
     
 

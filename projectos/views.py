@@ -41,7 +41,7 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Cards
-    fields = ['titulo', 'descriçao', 'prioridade', 'membros', 'projetos']
+    fields = ['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-cards') 
 
@@ -77,7 +77,7 @@ class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Cards
-    fields = ['titulo', 'descriçao', 'prioridade', 'membros']
+    fields = ['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']
     template_name = 'criarcards.html'
     success_url = reverse_lazy('listar-cards')
 
@@ -151,7 +151,7 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Cards
     template_name = 'cards.html'
-    paginate_by = 7
+    paginate_by = 6
 
 
     def get_queryset(self):

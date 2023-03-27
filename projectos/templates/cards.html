@@ -20,9 +20,7 @@
     background: transparent;
     align-items: center;
 }
-  
-    
-    .menu {
+.menu {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -94,28 +92,33 @@ h5, h6, p{
     <header class="header">
     <a href="{% url 'welcome' %}"  style="color:white;margin-top:x;" >Início</a>
   <div class="sidebar">
-  <ul class="menu" >
+    <ul class="menu" >
+    {% if user.perfil.foto_perfil %}
     <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
-      <ul>
-        <li><a href="#">Alterar Senha</a></li>
-        <li><a href="{% url 'perfil-update' %}">Perfil</a></li>
-        <li><a href="{% url 'logout' %}">Sair</a></li>
-      </ul>
-  </ul>
-  </div>
+    {% else %}
+    <li><a href="" style="color:white;" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg></a>
+    {% endif %}
+    <ul>
+      <li><a href="#">Alterar Senha</a></li>
+      <li><a href="{% url 'perfil-update' %}">Perfil</a></li>
+      <li><a href="{% url 'logout' %}">Sair</a></li>
+    </ul>
+ </ul>
   </header>
   </div>
   <br>
   <br>
   <br>
-  
-  
 </div class="container">
    <ul style="margin-top: 100px; ">
     <div class="btn-group" role="group" aria-label="Basic example">
     <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Listas</a>
     <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
 </div>
+<br>
 <br>
 
 
@@ -138,8 +141,8 @@ h5, h6, p{
       <th>Descrição</th>
       <th>Prioridade</th>
       <th>Criador</th>
-      <th>Membros</th>
       <th>Projeto</th>
+      <th>Data e Hora</th>
       <th>Editar|Deletar</th>
     </tr>
   </thead>
@@ -149,9 +152,9 @@ h5, h6, p{
       <td>{{projectos.titulo}}</td>
       <td>{{projectos.descriçao}}</td>
       <td>{{projectos.prioridade}}</td>
-      <td>{{projectos.membros}}</td>
-      <td>Membros</td>
+      <td>{{projectos.criador}}</td>
       <td>{{projectos.projetos}}</td>
+      <td>{{projectos.data_registro}}</td>
       <td>
       <a href="{% url 'editar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
       <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -163,7 +166,7 @@ h5, h6, p{
     </tr>
     {% empty %}
     <tr>
-        <td>Nenhuma lista registrada..</td>
+        <td>Nenhum registro..</td>
     </tr>
     {% endfor %}
     
