@@ -122,12 +122,15 @@ h5, h6, p{
 <br>
 
 
-<form action="?" method="GET">
+<form action="?" method="GET" enctype="multipart/form-data">
+{% csrf_token %}
     <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" class="p-1 border", placeholder="Pesquisar">
 
     <button type="submit" class=" btn btn-primary btn-sm-lg">Buscar</button>
-
     <a href="{% url 'listar-cards' %}"  class="btn btn-light">Limpar</a>
+    <input name="myfile"  type="file" value="">
+    <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>
+
 </form>
 
 

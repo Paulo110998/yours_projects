@@ -107,7 +107,7 @@ h5, h6, p{
     {% block listas %}
     <h2>{{criar_lista}}</h2> <h2>{{editar_lista}}</h2>
     <br>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     {{ form|crispy }}

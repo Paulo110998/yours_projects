@@ -11,6 +11,9 @@ from django.shortcuts import get_object_or_404
 # Importando models dos projectos
 from .models import Projetos, Cards
 from django.urls import reverse_lazy
+# Importando módulo para gerar csv
+import csv
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -35,6 +38,8 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         context['criar_pj'] = 'Criar projeto'
         return context
     
+    
+
 # CARDS
 class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     login_url = '/login/'
@@ -54,6 +59,9 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         context = super().get_context_data(*args, **kwargs)
         context['criar_lista'] = 'Criar Lista'
         return context
+    
+    
+        
         
 ###################### UPDATEVIEW ################################
 # PROJETOS
@@ -126,7 +134,7 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     models = Projetos
     template_name = 'welcome.html'
-    paginate_by = 4
+    paginate_by = 5
     
 
     def get_queryset(self):
@@ -167,6 +175,19 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
             cards = Cards.objects.all()
         
         return cards
+    
+    # Exportando dados em csv
+    def export_csv(request, self):
+        
+        response = HttpResponse(
+            content_type = 'text/csv',
+            headers={'Content-Disposition': 'attachment; filename="mylists.csv"'},
+        )
+
+        writer = csv.writer(response)
+        writer.writerow(Cards.objects.all(['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']))
+        writer.save()
+        return response
     
     
     

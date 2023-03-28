@@ -20,10 +20,11 @@ urlpatterns = [
     # Delete Projeto
     path('deletar_projeto/<int:pk>/', ProjetosDelete.as_view(queryset=Projetos.objects.all()), name='deletar-projeto'),
     # List Projeto
-    path('projetos', ProjetosList.as_view(queryset=Projetos.objects.all()), name='listar-projetos'),
+    path('welcome/', ProjetosList.as_view(queryset=Projetos.objects.all()), name='welcome'),
 
     # Create Cards
     path('criar_cards', CardsCreate.as_view(), name='criar-cards'),
+    path('import/csv', CardsCreate.as_view(), name='importar-cards'),
     # Update Cards
     path('editar_card/<int:pk>/', CardsUpdate.as_view(queryset=Cards.objects.all()), name='editar-card'),
     # Delete Cards

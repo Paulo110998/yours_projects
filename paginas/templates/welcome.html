@@ -20,7 +20,17 @@
     background: transparent;
     align-items: center;
 }
-  
+ .col-md-4{
+        border: 5px solid black;
+        border-radius: 15px 15px 15px 15px;
+        margin: auto 0;
+        margin-top: 130px;
+        text-align: justify;
+        background: white;
+        align-items: center;
+        justify-content: center; /* opcional - para centralizar horizontalmente também */
+       /* definir a altura da div pai */
+    }
 .menu {
   list-style: none;
   margin: 0;
@@ -134,7 +144,7 @@ h5, h6, p{
 
     <button type="submit" class=" btn btn-primary btn-sm-lg">Buscar</button>
 
-    <a href="{% url 'listar-projetos' %}"  class="btn btn-light">Limpar</a>
+    <a href="{% url 'welcome' %}"  class="btn btn-light">Limpar</a>
   
 </form>-->
 </ul>
@@ -142,7 +152,6 @@ h5, h6, p{
 <br>
 {% csrf_token %}
 {% for projectos in object_list %}
-
 <a href="{% url 'editar-projeto' projectos.pk %}">
 <div class="card-container">
     <div class="card" >
@@ -156,11 +165,9 @@ h5, h6, p{
       </div></a>
     
 <br>
-
 {% empty %}
 {% endfor %}
- 
-{% endif %}
+
 <!--Se eu tiver uma página anterior -->
 <nav aria-label="Page navigation example" style=" margin-left:10px;">
     <ul class="pagination">
@@ -168,24 +175,21 @@ h5, h6, p{
       <li class="page-item"><a class="btn btn-light" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
       <span aria-hidden="true">&laquo;</span>
       </a></li>
-
       <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
       <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
-    
     {% endif %}
 
     {% if page_obj.has_next %}
-    
       <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}"> Next
       <span aria-hidden="true">&raquo;</span>
       </a></li>
-      
-      
-    
-    
-    </ul>
+      </ul>
 </nav>
+    {% endif %}
+ 
 {% endif %}
+
+
 </body>
 
 <script>
