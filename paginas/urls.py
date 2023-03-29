@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import Homepaginas, Sobre, Welcome
-from django.contrib.auth import views as auth_views
+from .views import Homepaginas, Sobre
+
 
 urlpatterns =[
     path('', Homepaginas.as_view(), name="homepaginas"),

@@ -20,19 +20,28 @@ from django.http import HttpResponse
 ########## CREATE ##############
 # PROJETOS
 class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
-    login_url = '/login/'
-    redirect_field_name = 'login'
-    group_required = [u'Managers', u'Assistants']
-    model = Projetos
-    fields = ['titulo', 'descriçao', 'criador']
-    template_name = 'criarprojetos.html'
-    success_url = reverse_lazy('listar-projetos')
-
+    login_url = '/login/' # Só acessa a pagina se tiver logado
+    redirect_field_name = 'login' # Redireciona para o login
+    group_required = [u'Managers', u'Assistants'] # Acesso restrito por grupos
+    model = Projetos # Model
+    fields = ['titulo', 'descriçao', 'criador'] # Adiciono os campos de cadastros que devem aparecer
+    template_name = 'criarprojetos.html' # Template
+    success_url = reverse_lazy('welcome') # Lista os dados após o create
+    
+    
+    #Método que valida os dados do create 
     def form_valid(self, form):
+        # Antes do super não é criado o objeto nem salvo no banco
         form.instance.usuario = self.request.user
+        # form.instance -> Pegando a instância do obj no momento do cadastro
+        # usuario -> coluna do model
+        # self.request.user -> Buscando o usuário que fez a requisição da classe
+        
+        # Depois do super o objeto é criado
         url = super().form_valid(form)
         return url
-
+    
+    # Método que torna possível o envio de dados para o template, ou seja podemos usar o mesmo template para create e update, através da view
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['criar_pj'] = 'Criar projeto'
@@ -61,8 +70,6 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         return context
     
     
-        
-        
 ###################### UPDATEVIEW ################################
 # PROJETOS
 class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
@@ -72,7 +79,7 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     model = Projetos
     fields = ['titulo', 'descriçao', 'criador']
     template_name = 'criarprojetos.html'
-    success_url = reverse_lazy('listar-projetos')
+    success_url = reverse_lazy('welcome')
 
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -103,7 +110,7 @@ class ProjetosDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = [u'Managers']
     models = Projetos
     template_name = 'excluirprojeto.html'
-    success_url = reverse_lazy('listar-projetos')  
+    success_url = reverse_lazy('welcome')  
 
     
     def get_context_data(self, *args , **kwargs):
@@ -136,18 +143,18 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'welcome.html'
     paginate_by = 5
     
-
+    
     def get_queryset(self):
         self.object_list = Projetos.objects.filter(usuario=self.request.user)
         return self.object_list
     
    # Buscando os objetos(cards) no banco, veja abaixo:
     def get_queryset(self):
-        get_projetos = self.request.GET.get('titulo')
+        get_projetos = self.request.GET.get('titulo') # Buscando o título do objeto no servidor/banco de dados
         if get_projetos:
-            projetos = Projetos.objects.filter(titulo__icontains=get_projetos) 
+            projetos = Projetos.objects.filter(titulo__icontains=get_projetos) # Filtrando o título
         else:
-            projetos = Projetos.objects.all()
+            projetos = Projetos.objects.all().order_by('id') # Listando todos objetos e ordenando a lista
             
         return projetos   
 
@@ -159,11 +166,11 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Cards
     template_name = 'cards.html'
-    paginate_by = 6
+    paginate_by = 5
 
-
+    # Método que por padrão lista todos os objetos criados
     def get_queryset(self):
-        self.object_list = Cards.objects.filter(usuario=self.request.user)
+        self.object_list = Cards.objects.filter(usuario=self.request.user) # Listando apenas os objetos criados pelo o usuário logado
         return self.object_list
 
 
@@ -172,10 +179,16 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_cards:
             cards = Cards.objects.filter(titulo__icontains=get_cards)
         else:
-            cards = Cards.objects.all()
+            cards = Cards.objects.all().order_by('id')
         
         return cards
     
+
+
+
+
+
+
     # Exportando dados em csv
     def export_csv(request, self):
         

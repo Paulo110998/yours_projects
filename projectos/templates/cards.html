@@ -10,14 +10,14 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <style>
      header{
-    margin-top: 1px; /* Margem do topo*/
+    margin-top: -1px; /* Margem do topo*/
     padding: 1rem 10%; /* Altura da borda*/
     position: fixed; /* Fixar */
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
     justify-content:left; /* Espaço entre os itens*/
-    background: transparent;
+    background-image: linear-gradient(to top, #30cfd0 -300%, #330867 70%);
     align-items: center;
 }
 .menu {
@@ -72,10 +72,9 @@ h5, h6, p{
 		max-width: 70%;
 	}
 }
-.table-responsive{
-  border: 30px solid transparent;
-  border-radius: 50px 50px 70px 70px;
-  box-sizing: border-box;
+.list-group{
+  border: 15px solid transparent;
+  
   
   
 }
@@ -109,71 +108,59 @@ h5, h6, p{
  </ul>
   </header>
   </div>
+  
+  
   <br>
   <br>
-  <br>
-</div class="container">
+</div>
+<h4 style="text-align:center; color:white; margin-top:100px;" href="#" style="color:white; ">Create yours lists. <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-10px;" width="30" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></h4>
    <ul style="margin-top: 100px; ">
     <div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-light" href="{% url 'criar-cards' %}">Criar Listas</a>
+    <a class="btn btn-light" href="{% url 'criar-cards' %}">Nova Lista <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+</svg></a>
     <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
 </div>
 <br>
-<br>
-
-
 <form action="?" method="GET" enctype="multipart/form-data">
 {% csrf_token %}
-    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" class="p-1 border", placeholder="Pesquisar">
+    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
 
-    <button type="submit" class=" btn btn-primary btn-sm-lg">Buscar</button>
-    <a href="{% url 'listar-cards' %}"  class="btn btn-light">Limpar</a>
-    <input name="myfile"  type="file" value="">
-    <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>
+    <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-5px;">Buscar</button>
+    <a href="{% url 'listar-cards' %}"  class="btn btn-light btn-sm"style="margin-top:-5px;">Limpar</a>
+    <!--<input name="myfile"  type="file" value="">
+    <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>-->
 
 </form>
-
-
+<br>
 
 </ul>
-<div style="text-align: center; top:0;" class="table-responsive" >
-<table class="table table-striped table-hover table-light">
-  <thead class="thead-dark">
-    <tr style="text-align:center;" class="table-dark">
-      <th>Titulo</th>
-      <th>Descrição</th>
-      <th>Prioridade</th>
-      <th>Criador</th>
-      <th>Projeto</th>
-      <th>Data e Hora</th>
-      <th>Editar|Deletar</th>
-    </tr>
-  </thead>
-    {% csrf_token %}
-    {% for projectos in object_list %} 
-    <tr style="text-align:center;" >
-      <td>{{projectos.titulo}}</td>
-      <td>{{projectos.descriçao}}</td>
-      <td>{{projectos.prioridade}}</td>
-      <td>{{projectos.criador}}</td>
-      <td>{{projectos.projetos}}</td>
-      <td>{{projectos.data_registro}}</td>
-      <td>
-      <a href="{% url 'editar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+
+{% csrf_token %}
+{% for projectos in object_list %}
+<ul class="list-group ">
+  <li class="list-group-item disabled">{{projectos.titulo}} | {{projectos.descriçao}} | Prioridade: {{projectos.prioridade}} | Criador: {{projectos.criador}} | 
+  Projeto: {{projectos.projetos}} | <svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+      <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+      </svg>{{projectos.data_registro}} | </li>
+      <li style="text-align:right;">
+      <a href="{% url 'editar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
       <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
       <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
       </svg></a>
-     <a href="{% url 'deletar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+     <a href="{% url 'deletar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;"  width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
      </svg></a>
-    </tr>
-    {% empty %}
-    <tr>
-        <td>Nenhum registro..</td>
-    </tr>
-    {% endfor %}
-    
-</table>
+      </li>
+{% empty %}
+    <li class="list-group-item">Sem registros..</li>
+</ul>
+{% endfor %}
+
 <!--Se eu tiver uma página anterior -->
 <nav aria-label="Page navigation example" style="margin-left: 570px;">
     <ul class="pagination">
@@ -181,10 +168,8 @@ h5, h6, p{
       <li class="page-item"><a class="btn btn-light" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
       <span aria-hidden="true">&laquo;</span>
       </a></li>
-
       <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
       <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
-    
     {% endif %}
 
     {% if page_obj.has_next %}

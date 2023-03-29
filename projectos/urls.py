@@ -20,7 +20,7 @@ urlpatterns = [
     # Delete Projeto
     path('deletar_projeto/<int:pk>/', ProjetosDelete.as_view(queryset=Projetos.objects.all()), name='deletar-projeto'),
     # List Projeto
-    path('welcome/', ProjetosList.as_view(queryset=Projetos.objects.all()), name='welcome'),
+    path('welcome_user', ProjetosList.as_view(queryset=Projetos.objects.all()), name='welcome'),
 
     # Create Cards
     path('criar_cards', CardsCreate.as_view(), name='criar-cards'),

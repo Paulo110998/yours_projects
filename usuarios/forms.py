@@ -6,8 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Método que gera um erro se os dados não corresponderem
 from django.core.exceptions import ValidationError 
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit
+
 
 
 # Criando uma nova view e usando herança do UserCreationForm
