@@ -170,11 +170,6 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
     # Método que por padrão lista todos os objetos criados
     def get_queryset(self):
-        self.object_list = Cards.objects.filter(usuario=self.request.user) # Listando apenas os objetos criados pelo o usuário logado
-        return self.object_list
-
-
-    def get_queryset(self):
         get_cards = self.request.GET.get('titulo')
         if get_cards:
             cards = Cards.objects.filter(titulo__icontains=get_cards)
@@ -182,6 +177,8 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
             cards = Cards.objects.all().order_by('id')
         
         return cards
+    
+    
     
 
 

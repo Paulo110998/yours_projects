@@ -148,7 +148,7 @@ h5, h6, p{
 
 </ul>
 {% csrf_token %}
-{% for projectos in object_list %}
+{% for business in object_list %}
 <div >
 <a href="{% url 'editar-card' projectos.pk %}" ><ul class="list-group " class="border border-primary" >
   
@@ -157,24 +157,24 @@ h5, h6, p{
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
 </svg>
-  {{projectos.titulo}} |
+  {{business.cliente}} |
 
   <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
   <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
   <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
- </svg> {{projectos.descriçao}} 
-| Prioridade: {{projectos.prioridade}} | 
+ </svg> {{business.descriçao}} 
+| Prioridade: {{business.ticket}} | 
 
  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg> {{projectos.criador}} | 
-  Projeto: {{projectos.projetos}} | 
+</svg> {{business.telefone}} | 
+  Projeto: {{business.commercial_manager}} | 
   
   <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="26" height="20" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
       <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
       <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-      </svg>{{projectos.data_registro}} 
+      </svg>{{business.business_partner}} 
       
     
      
@@ -223,21 +223,3 @@ h5, h6, p{
 </div>
 
 
-
-
-    
-    
-
-    
-
-    {% endif %}
-    </body>
-</html>
-<script>
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const menu = document.querySelector('.menu');
-    hamburgerMenu.addEventListener('click', () => {
-    menu.classList.toggle('active');
-    });
-</script>
-</html>
