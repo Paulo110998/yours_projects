@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Negocio(models.Model):
-    cliente = models.CharField(max_length=10, null=True ,verbose_name='Cliente')
+    cliente = models.CharField(max_length=18, null=True ,verbose_name='Cliente')
     descriçao = models.CharField(max_length=15, null=True, verbose_name='Descrição do Negócio')
-    ticket = models.FloatField(max_length=100, null=True, verbose_name='Ticket do Negócio')
+    ticket = models.CharField(max_length=10, null=True, verbose_name='Ticket do Negócio')
     telefone = models.CharField(max_length=16, null=True, verbose_name='Telefone/Fixo') 
     commercial_manager = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Commercial Manager')
     business_partner = models.CharField(max_length=15, null=True, verbose_name='Business Partner')

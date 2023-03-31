@@ -78,6 +78,7 @@ h5, h6, p{
   justify-content: center;
   align-items: center;
   list-style: none;
+  
 }
 @media screen and (max-width: 750px) {
 	.list-group {
@@ -86,7 +87,8 @@ h5, h6, p{
 }
 .list-group-item{
   border: 3px solid black;
-  
+  border-radius: 15px 15px 15px 15px;
+ 
    
 }
 
@@ -134,6 +136,7 @@ h5, h6, p{
     <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
 </div>
 <br>
+
 <form action="?" method="GET" enctype="multipart/form-data">
 {% csrf_token %}
     <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
@@ -142,65 +145,45 @@ h5, h6, p{
     <a href="{% url 'listar-cards' %}"  class="btn btn-light btn-sm"style="margin-top:-5px;">Limpar</a>
     <!--<input name="myfile"  type="file" value="">
     <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>-->
-
 </form>
 <br>
 
 </ul>
 {% csrf_token %}
 {% for projectos in object_list %}
-<div >
-<a href="{% url 'editar-card' projectos.pk %}" ><ul class="list-group " class="border border-primary" >
+<div>
+<a href="{% url 'editar-card' projectos.pk %}" style="color:black;"><ul class="list-group " class="border border-primary"  >
   
-  <li class="list-group-item" >
+  <li class="list-group-item">
   <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
 </svg>
-  {{projectos.titulo}} |
+  {{projectos.titulo}} 
 
   <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
   <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
   <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
- </svg> {{projectos.descriçao}} 
-| Prioridade: {{projectos.prioridade}} | 
+ </svg> {{projectos.descriçao}} |Prioridade: {{projectos.prioridade}}  
 
  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg> {{projectos.criador}} | 
-  Projeto: {{projectos.projetos}} | 
-  
-  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="26" height="20" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
-      <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-      </svg>{{projectos.data_registro}} 
-      
-    
-     
-      <input type="checkbox" name="" value="">
-      
-      </li>
-      
-      <li>
-      <a href="{% url 'editar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-      </svg></a>
-     <a href="{% url 'deletar-card' projectos.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;"  width="25" height="25" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-     </svg></a>
+</svg> {{projectos.criador}}  
+  Projeto: {{projectos.projetos}}  
+<!--<input type="checkbox" name="" value="">-->
+| <a href="{% url 'deletar-card' projectos.pk %}"><svg xmlns="http://www.w3.org/2000/svg" style="color:black;"  width="25" height="25" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
+  <path d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
+</svg></a>
       </li>
 {% empty %}
     <li class="list-group-item">Sem registros..</li>
 </ul></a>
 {% endfor %}
-
-
 </div>
 
 <!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-top:10px; text-align:center;">
+<nav aria-label="Page navigation example" style="margin-top:20px; text-align:center;">
     <ul class="pagination">
     {% if page_obj.has_previous %}
       <li class="page-item"><a class="btn btn-light" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">

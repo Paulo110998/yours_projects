@@ -68,6 +68,9 @@
 h5, h6, p{
   color: black;
 }
+form{
+  margin-left: 50px;
+}
 .card{
       width: 221px;
       height: 285px;
@@ -75,18 +78,17 @@ h5, h6, p{
       background-color: white;
       border: 5px solid black;
       border-radius: 15px 15px 15px 15px;
+      margin-top:10px;
       
 }
-
 .card-container{
     display: flex;
     justify-content: center;
     align-items: justify;
     
+    
     /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
-
-
 
 .sidebar {
  margin-left: 1000px;
@@ -135,8 +137,7 @@ h5, h6, p{
   <br>
   <br>
   <br>
-
-<ul style="margin-top: 30px; margin-left:20px;">
+<ul style="margin-top: 10px; margin-left:20px;">
   <div class="btn-group" role="group" aria-label="Basic example">
   <a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projeto  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-3px;" width="20" height="20" fill="currentColor" class="bi bi-rocket" viewBox="0 0 16 16">
   <path d="M8 8c.828 0 1.5-.895 1.5-2S8.828 4 8 4s-1.5.895-1.5 2S7.172 8 8 8Z"/>
@@ -154,7 +155,19 @@ h5, h6, p{
   </div>
 </ul>
 <br>
+
+<form action="?" method="GET" enctype="multipart/form-data">
+{% csrf_token %}
+    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
+
+    <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-2px;">Buscar</button>
+    <a href="{% url 'welcome' %}"  class="btn btn-light btn-sm" style="margin-top:-2px;">Limpar</a>
+    <!--<input name="myfile"  type="file" value="">
+    <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>-->
+
+</form>
 <br>
+
 {% csrf_token %}
 {% for projectos in object_list %}
 <a href="{% url 'editar-projeto' projectos.pk %}">
@@ -177,19 +190,19 @@ h5, h6, p{
 {% endfor %}
 
 <!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-left:15px;">
+<nav aria-label="Page navigation example" style="margin-right:5px; margin-left: 6px;">
     <ul class="pagination">
     {% if page_obj.has_previous %}
-      <li class="page-item"><a class="btn btn-light" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
+      <li class="page-item"><a class="btn btn-light"  class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
       <span aria-hidden="true">&laquo;</span>
       </a></li>
-      <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
-      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
+      <li class="page-item" ><a class="btn btn-light"  class="page-link" href="?page=1">1</a></li>
+      <li class="page-item"><a class="btn btn-light"   class="page-link"  href="?page=2">2</a></li>
     {% endif %}
 
     {% if page_obj.has_next %}
-      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}"> Next
-      <span aria-hidden="true">&raquo;</span>
+      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}">Next
+      
       </a></li>
       </ul>
 </nav>

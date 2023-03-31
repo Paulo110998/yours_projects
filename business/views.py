@@ -119,13 +119,13 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Negocio
     template_name = 'business.html'
-    paginate_by = 5
+    paginate_by = 4
     
     
     def get_queryset(self):
-        get_negocio = self.request.GET.get('titulo')
+        get_negocio = self.request.GET.get('cliente')
         if get_negocio:
-            negocio = Negocio.objects.filter(titulo__icontains=get_negocio)
+            negocio = Negocio.objects.filter(cliente__icontains=get_negocio)
         else:
             negocio = Negocio.objects.all().order_by('id')
         return negocio

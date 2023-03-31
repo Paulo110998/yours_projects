@@ -96,7 +96,17 @@ h5, h6, p{
 }
 .card{
       width: 221px;
-      height: 285px;
+      height: 320px;
+      margin-left: 20px;
+      background-color: white;
+      border: 5px solid black;
+      border-radius: 15px 15px 15px 15px;
+      
+}
+
+.card{
+      width: 230px;
+      height: 370px;
       margin-left: 20px;
       background-color: white;
       border: 5px solid black;
@@ -107,9 +117,18 @@ h5, h6, p{
 .card-container{
     display: flex;
     justify-content: center;
-    align-items: justify;
+    align-items: justify; 
     
     /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
+}
+
+
+form{
+  margin-left: 50px;
+}
+.table-responsive{
+  border: 20px solid transparent;
+  border-radius: 50px 50px 50px 50px;
 }
 
 </style>
@@ -140,30 +159,27 @@ h5, h6, p{
   <br>
   <br>
 </div>
-<h3 style="text-align:center; color:white; margin-top:100px;" href="#" style="color:white; ">Business <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-10px;" width="30" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
-  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
-  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+<h3 style="text-align:center; color:white; margin-top:100px;" href="#" style="color:white; ">Business<svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-3px;" width="30" height="20" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
+  <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
 </svg></h3>
-   <ul style="margin-top: 100px; ">
+
+<ul style="margin-top: 100px; ">
     <div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-light" href="{% url 'create-business' %}">Adicionar Negócio<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+    <a class="btn btn-light" href="{% url 'create-business' %}">Criar Oportunidade <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+  <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
 </svg></a>
- <a class="btn btn-light" href="{% url 'create-business' %}">Pipeline<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+ <a class="btn btn-light" href="{% url 'create-business' %}">Pipeline <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+  <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
 </svg></a>
-<a class="btn btn-light" href="{% url 'pie-chart' %}">Gráfico<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+<a class="btn btn-light" href="{% url 'pie-chart' %}">Vendas <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-reception-3" viewBox="0 0 16 16">
+  <path d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
 </svg></a>
-
-
-
-    <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
+</ul>
 </div>
-<br>
+
 <form action="?" method="GET" enctype="multipart/form-data">
 {% csrf_token %}
-    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
+    <input style="text-align:center; margin-left:10px;" type="text" name="cliente" id ="" value="{{request.GET.cliente}}" , placeholder="Pesquisar">
 
     <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-5px;">Buscar</button>
     <a href="{% url 'your-business' %}"  class="btn btn-light btn-sm"style="margin-top:-5px;">Limpar</a>
@@ -174,58 +190,62 @@ h5, h6, p{
 <br>
 
 </ul>
-{% csrf_token %}
-{% for business in object_list %}
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-{% empty %}
-<p>Sem registros..</p>
-  
-</table>
-{% endfor %}
+       {% csrf_token %}
+        {% for business in object_list %}
+        <a href="{% url 'update-business' business.pk %}">
+    <div class="card-container" class="father">
+      <div class="card" >
+        <h5 style="text-align:center; margin-top:10px; ">{{business.cliente}}</h5>
+        <br>
+        <p style="margin-left:10px">{{business.descriçao}}</p>
+        <p style="margin-left:10px"><svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-3px;" width="20" height="20" fill="currentColor" class="bi bi-currency-exchange" viewBox="0 0 16 16">
+        <path d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z"/>
+       </svg> {{business.ticket}}</p>
 
-
-</div>
+        <p style="margin-left:10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
+       <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z"/>
+       </svg>  {{business.telefone}}</p>
+        <p style="margin-left:10px">Sales Manager: {{business.commercial_manager}}</p>
+        <p style="margin-left:10px">BP🤝:{{business.business_partner}}</p>
+        
+        <a style="margin-left:10px" href="{% url 'update-business' business.pk %}">Editar</a>
+        <a style="margin-left:10px" href="{% url 'delete-business' business.pk %}">Deletar</a>
+        <p style="margin-left:10px; margin-top:10px;"> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+      <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+      </svg> Data</p>
+      </div></a>
+          
+        
+        {% empty %}
+        <p>Nenhum cliente registrado..</p>
+        
+        {% endfor %}
+    
+    </div>
+  </div>
 
 <!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-top:10px; text-align:center;">
+<nav aria-label="Page navigation example" style="margin-right:5px; margin-left: 6px;">
     <ul class="pagination">
     {% if page_obj.has_previous %}
-      <li class="page-item"><a class="btn btn-light" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
+      <li class="page-item"><a class="btn btn-light"  class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
       <span aria-hidden="true">&laquo;</span>
       </a></li>
-      <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
-      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
+      <li class="page-item" ><a class="btn btn-light"  class="page-link" href="?page=1">1</a></li>
+      <li class="page-item"><a class="btn btn-light"   class="page-link"  href="?page=2">2</a></li>
     {% endif %}
 
     {% if page_obj.has_next %}
-    
-       <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}"> Next
-      <span aria-hidden="true">&raquo;</span>
+      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}">Next
+      
       </a></li>
-    
-    
-    </ul>
+      </ul>
 </nav>
-{% endif %}
 </div>
-
-
-
-
-    
-    
-
-    
-
     {% endif %}
+
+{% endif %}
     </body>
 </html>
 <script>
