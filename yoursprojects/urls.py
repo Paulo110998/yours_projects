@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('projectos.urls')),
     path('',include('business.urls')),
     
+    
 ]
 
 # Criando um if para vizualizar link url do arquivo de upload no template (em listas)

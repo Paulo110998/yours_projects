@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Negocio, Pipeline
 
+from django.views.generic import TemplateView
+
 
 # Create your views here.
 ############### CREATE ##################
@@ -146,3 +148,24 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
             pipeline = Pipeline.objects.all().order_by('id')
         
         return pipeline
+
+
+##### Gerando gráfico ######
+class Chart(TemplateView):
+    template_name = 'chart.html'
+
+    def pie_chart(request):
+        labels = []
+        data = []
+    
+        # Iterando sobre o queryset do model "Negocio" e construindo uma lista de labels/data
+        queryset = Negocio.objects.order_by('-ticket')[:5] #ordenando os 5 negócios com maiores tickets
+        for negocio in queryset:
+            labels.append(negocio.cliente)
+            data.append(negocio.ticket)
+    
+        return render(request, 'chart.html', {
+            'labels':labels,
+            'data': data,
+
+        })
