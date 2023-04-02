@@ -120,6 +120,7 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Negocio
     template_name = 'business.html'
     paginate_by = 4
+    ordering = ['cliente']
     
     
     def get_queryset(self):
@@ -127,7 +128,7 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_negocio:
             negocio = Negocio.objects.filter(cliente__icontains=get_negocio)
         else:
-            negocio = Negocio.objects.all().order_by('id')
+            negocio = Negocio.objects.all()
         return negocio
 
 
@@ -138,6 +139,7 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Pipeline
     template_name = 'pipeline.html'
     paginate_by = 5
+    ordering = ['titulo']
 
     
     def get_queryset(self):
@@ -145,7 +147,7 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_pipeline:
             pipeline = Pipeline.objects.filter(titulo__icontains=get_pipeline)
         else:
-            pipeline = Pipeline.objects.all().order_by('id')
+            pipeline = Pipeline.objects.all()
         
         return pipeline
 

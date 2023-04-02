@@ -13,7 +13,7 @@ class Projetos(models.Model):
     titulo = models.CharField(max_length=21, null=True, verbose_name='Título')
     descriçao = models.CharField(max_length=36, null=True, verbose_name='Descrição')
     criador = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Criador")
-    data_registro = models.DateTimeField(auto_now_add=True) # Valor padrão = now(), não editável 
+    data_registro = models.DateTimeField(auto_now_add=True) # Data adicionada automaticamente 
 
 
     def __str__(self):

@@ -141,7 +141,8 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     models = Projetos
     template_name = 'welcome.html'
-    paginate_by = 5
+    paginate_by = 4
+    ordering = ['titulo'] # Ordenando a listagem de objetos
     
     
     def get_queryset(self):
@@ -152,9 +153,9 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
         get_projetos = self.request.GET.get('titulo') # Buscando o título do objeto no servidor/banco de dados
         if get_projetos:
-            projetos = Projetos.objects.filter(titulo__icontains=get_projetos) # Filtrando o título
+            projetos = Projetos.objects.filter(titulo__icontains=get_projetos).order_by('id') # Filtrando o título e ordenando através do id
         else:
-            projetos = Projetos.objects.all().order_by('id') # Listando todos objetos e ordenando a lista
+            projetos = Projetos.objects.all() # Listando todos objetos 
             
         return projetos   
 
@@ -167,6 +168,7 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Cards
     template_name = 'cards.html'
     paginate_by = 5
+    ordering = ['titulo']
 
     # Método que por padrão lista todos os objetos criados
     def get_queryset(self):
@@ -174,7 +176,7 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_cards:
             cards = Cards.objects.filter(titulo__icontains=get_cards)
         else:
-            cards = Cards.objects.all().order_by('id')
+            cards = Cards.objects.all()
         
         return cards
     
