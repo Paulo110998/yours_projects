@@ -60,15 +60,15 @@ h5, h6, p{
   color: black;
 }
 .col-md-4{
-        border: 5px solid black;
+        border: 5px solid transparent;
         border-radius: 15px 15px 15px 15px;
         margin: auto 0;
-        width: 310px;
+        width: 470px;
         margin-top: -15px;
         text-align: justify;
-        background: white;
-        align-items: center;
-        justify-content: center; /* opcional - para centralizar horizontalmente também */
+        background: transparent;
+        align-items: justify;
+        justify-content: justify; /* opcional - para centralizar horizontalmente também */
        /* definir a altura da div pai */
 }
 .sidebar {
@@ -102,18 +102,18 @@ h5, h6, p{
 </div>
 </div>
     <div class= "col-md-4 mx-auto">
-    <div class="shadow p-5 mb-7 bg-white rounded">
+    <div class="shadow p-5 mb-8  rounded">
     
     {% block listas %}
-    <h2>{{criar_lista}}</h2> <h2>{{editar_lista}}</h2>
+    <h2>{{criar_lista}}</h2> <h2 style="color:white;">{{editar_lista}}</h2>
     <br>
-    <form action="" method="POST" id="form" enctype="multipart/form-data">
+    <form action="" method="POST" id="form" style="color:white;" enctype="multipart/form-data">
     {% csrf_token %}
 
     {{ form|crispy }}
     
     <br>
-    <button type="submit" class="btn btn-primary" data-bs-dismiss="alert" aria-label="Close">Salvar</button>
+    <button type="submit" class="btn btn-light" data-bs-dismiss="alert" aria-label="Close">Atualizar</button>
        
     </form>
     </div>

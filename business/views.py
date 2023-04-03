@@ -59,7 +59,7 @@ class UpdateNegocio(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
     group_required = [u'Managers', u'Assistants']
     model = Negocio
     fields = ['cliente', 'descriçao', 'ticket', 'telefone', 'commercial_manager', 'business_partner']
-    template_name = 'criar_negocio.html'
+    template_name = 'updatenegocio.html'
     success_url = reverse_lazy('your-business')
 
     def get_context_data(self, *args ,**kwargs):
@@ -128,7 +128,7 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_negocio:
             negocio = Negocio.objects.filter(cliente__icontains=get_negocio)
         else:
-            negocio = Negocio.objects.all()
+            negocio = Negocio.objects.all().order_by('cliente')
         return negocio
 
 
@@ -147,7 +147,7 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_pipeline:
             pipeline = Pipeline.objects.filter(titulo__icontains=get_pipeline)
         else:
-            pipeline = Pipeline.objects.all()
+            pipeline = Pipeline.objects.all().order_by('titulo')
         
         return pipeline
 

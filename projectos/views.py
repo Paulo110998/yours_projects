@@ -14,6 +14,7 @@ from django.urls import reverse_lazy
 # Importando módulo para gerar csv
 import csv
 from django.http import HttpResponse
+from django.contrib import messages
 
 
 # Create your views here.
@@ -28,11 +29,11 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     template_name = 'criarprojetos.html' # Template
     success_url = reverse_lazy('welcome') # Lista os dados após o create
     
-    
     #Método que valida os dados do create 
     def form_valid(self, form):
         # Antes do super não é criado o objeto nem salvo no banco
         form.instance.usuario = self.request.user
+       
         # form.instance -> Pegando a instância do obj no momento do cadastro
         # usuario -> coluna do model
         # self.request.user -> Buscando o usuário que fez a requisição da classe
@@ -41,7 +42,8 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         url = super().form_valid(form)
         return url
     
-    # Método que torna possível o envio de dados para o template, ou seja podemos usar o mesmo template para create e update, através da view
+   
+   # Método que torna possível o envio de dados para o template, ou seja podemos usar o mesmo template para create e update, através da view
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['criar_pj'] = 'Criar projeto'
@@ -59,9 +61,11 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-cards') 
 
+
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         url = super().form_valid(form)
+        messages.success(self.request, "Lista Salva!")
         return url
     
     def get_context_data(self, *args, **kwargs):
@@ -78,7 +82,7 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     group_required = [u'Managers']
     model = Projetos
     fields = ['titulo', 'descriçao', 'criador']
-    template_name = 'criarprojetos.html'
+    template_name = 'updateprojeto.html'
     success_url = reverse_lazy('welcome')
 
     def get_context_data(self, *args ,**kwargs):
@@ -93,7 +97,7 @@ class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     group_required = [u'Managers', u'Assistants']
     model = Cards
     fields = ['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']
-    template_name = 'criarcards.html'
+    template_name = 'updatecard.html'
     success_url = reverse_lazy('listar-cards')
 
     
@@ -155,7 +159,7 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if get_projetos:
             projetos = Projetos.objects.filter(titulo__icontains=get_projetos).order_by('id') # Filtrando o título e ordenando através do id
         else:
-            projetos = Projetos.objects.all() # Listando todos objetos 
+            projetos = Projetos.objects.all().order_by('titulo') # Listando todos objetos 
             
         return projetos   
 
@@ -170,13 +174,16 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     paginate_by = 5
     ordering = ['titulo']
 
+    
+
+
     # Método que por padrão lista todos os objetos criados
     def get_queryset(self):
         get_cards = self.request.GET.get('titulo')
         if get_cards:
             cards = Cards.objects.filter(titulo__icontains=get_cards)
         else:
-            cards = Cards.objects.all()
+            cards = Cards.objects.all().order_by('titulo')
         
         return cards
     
