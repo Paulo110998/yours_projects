@@ -25,7 +25,7 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login' # Redireciona para o login
     group_required = [u'Managers', u'Assistants'] # Acesso restrito por grupos
     model = Projetos # Model
-    fields = ['titulo', 'descriçao', 'criador'] # Adiciono os campos de cadastros que devem aparecer
+    fields = ['titulo', 'descriçao'] # Adiciono os campos de cadastros que devem aparecer
     template_name = 'criarprojetos.html' # Template
     success_url = reverse_lazy('welcome') # Lista os dados após o create
     
@@ -57,7 +57,7 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Cards
-    fields = ['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']
+    fields = ['titulo', 'descriçao', 'prioridade', 'projetos']
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-cards') 
 
@@ -81,7 +81,7 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     redirect_field_name = 'login'
     group_required = [u'Managers']
     model = Projetos
-    fields = ['titulo', 'descriçao', 'criador']
+    fields = ['titulo', 'descriçao']
     template_name = 'updateprojeto.html'
     success_url = reverse_lazy('welcome')
 
@@ -96,7 +96,7 @@ class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Cards
-    fields = ['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']
+    fields = ['titulo', 'descriçao', 'prioridade', 'projetos']
     template_name = 'updatecard.html'
     success_url = reverse_lazy('listar-cards')
 
@@ -172,18 +172,16 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Cards
     template_name = 'cards.html'
     paginate_by = 5
-    ordering = ['titulo']
+    ordering = ['titulo'] # Ordenando a listagem por 'titulo'
 
     
-
-
     # Método que por padrão lista todos os objetos criados
     def get_queryset(self):
         get_cards = self.request.GET.get('titulo')
         if get_cards:
             cards = Cards.objects.filter(titulo__icontains=get_cards)
         else:
-            cards = Cards.objects.all().order_by('titulo')
+            cards = Cards.objects.all().order_by('titulo') # Ordenando a listagem dos objetos
         
         return cards
     
