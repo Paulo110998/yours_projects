@@ -154,3 +154,25 @@ LOGIN_REDIRECT_URL = 'welcome' # Após o login, redireciona para o 'welcome'
 LOGIN_URL = "login" # Redireciona para a url de login
 
 LOGOUT_REDIRECT = "login"
+
+
+# REDEFINIÇÃO DE SENHA (Configurações para envio de e-mail)
+
+# S M T P -> Simple Mail Transfer Protocol (Protocolo de envio de e-mail simples).
+#Mime -> É uma norma de envio de mensagens pela internet, padrão de envio de mensagem códificado.
+
+import smtplib
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText 
+
+# Conexão com o servidor do gmail
+DEFAULT_FROM_EMAIL = 'Yours Projects'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = "587"
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'testes.djangoframe@gmail.com'
+EMAIL_HOST_PASSWORD = "yhxkbvfujatnenaz"
+
+server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)

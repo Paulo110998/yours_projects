@@ -17,4 +17,10 @@ urlpatterns = [
     path('cadastro_concluido/', UsuarioCreate.as_view(template_name="cadastro_concluido.html"), name="cadastro-concluido" ),
     path("update/perfil", PerfilUpdate.as_view(), name="perfil-update"),
 
+   # REDEFINIÇÃO DE SENHA DE USER
+    path('reset_password', auth_views.PasswordResetView.as_view(template_name='resetnewpassword1.html'),name='resetnewpassword'),
+    path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(template_name='resetnewpassword2.html'),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='resetnewpassword3.html'),name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='resetnewpassword4.html'),name="password_reset_complete"), 
+
 ]

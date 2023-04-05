@@ -25,7 +25,7 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login' # Redireciona para o login
     group_required = [u'Managers', u'Assistants'] # Acesso restrito por grupos
     model = Projetos # Model
-    fields = ['titulo', 'descriçao'] # Adiciono os campos de cadastros que devem aparecer
+    fields = ['titulo', 'descriçao', 'criador'] # Adiciono os campos de cadastros que devem aparecer
     template_name = 'criarprojetos.html' # Template
     success_url = reverse_lazy('welcome') # Lista os dados após o create
     
@@ -57,7 +57,7 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Cards
-    fields = ['titulo', 'descriçao', 'prioridade', 'projetos']
+    fields = ['titulo', 'descriçao', 'prioridade', 'projetos', 'criador']
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-cards') 
 
@@ -81,7 +81,7 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     redirect_field_name = 'login'
     group_required = [u'Managers']
     model = Projetos
-    fields = ['titulo', 'descriçao']
+    fields = ['titulo', 'descriçao', 'criador']
     template_name = 'updateprojeto.html'
     success_url = reverse_lazy('welcome')
 
