@@ -19,7 +19,7 @@
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
     justify-content:left; /* Espaço entre os itens*/
-    background-image: linear-gradient(to top, #30cfd0 -300%, #330867 70%);
+    background-image: linear-gradient(to top, #30cfd0 -240%, #330867 80%);
     align-items: center;
 }
 .menu {
@@ -152,15 +152,6 @@ h5, h6, p{
     <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
 </div>
 <br>
-{% if messages %}
-    <div class= "col-md-4 mx-auto" id="alertDiv">
-    {% for message in messages %}
-    <a href="{% url 'listar-cards' %}" style="margin-left:270px;" id="closeBtn">X</a>
-    <h5 style="text-align:center; margin-top:-15px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </h5>
-    
-    {% endfor %}
-    </div>
-{% endif %}
 <br>
 <form action="?" method="GET" enctype="multipart/form-data">
 {% csrf_token %}
@@ -172,8 +163,6 @@ h5, h6, p{
 </form>
 
 </ul>
-
-
 
 {% csrf_token %}
 {% for projectos in object_list %}
@@ -235,12 +224,20 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
     menu.classList.toggle('active');
     });
 
-function listaSalva()
-{
-  alert("Lista Salva!");
-}
 
 </script>
 
-
+<!-- Alerta java script ao salvar os dados -->
+{% if messages %}
+    {% for message in messages %}
+        <script>
+        setTimeout(function() {
+          alert("{{ message }}");
+        
+        }, 500); // Tempo em milissegundos (5 milésimos)
+        
+           
+        </script>
+    {% endfor %}
+{% endif %}
 </html>

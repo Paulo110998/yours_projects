@@ -29,6 +29,7 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     template_name = 'criarprojetos.html' # Template
     success_url = reverse_lazy('welcome') # Lista os dados após o create
     
+    
     #Método que valida os dados do create 
     def form_valid(self, form):
         # Antes do super não é criado o objeto nem salvo no banco
@@ -40,6 +41,7 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         
         # Depois do super o objeto é criado
         url = super().form_valid(form)
+        messages.success(self.request,"Projeto criado com sucesso!")
         return url
     
    
@@ -65,9 +67,9 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         url = super().form_valid(form)
-        messages.success(self.request, "Lista Salva!")
+        messages.success(self.request, "Lista criada com sucesso!") # Mensagem que deve aparecer no template
         return url
-    
+  
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['criar_lista'] = 'Criar Lista'
