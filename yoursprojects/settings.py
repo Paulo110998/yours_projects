@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] # Ao fazer deploy, temos que especificar o domínio dentro do ALLOWED_HOSTS
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     
 ]
 
+# MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,6 +77,7 @@ TEMPLATES = [
     },
 ]
 
+# WSGI = Padrão de aplicação web python, o django segue esse padrão.
 WSGI_APPLICATION = 'yoursprojects.wsgi.application'
 
 
@@ -131,7 +133,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = ((os.path.join(BASE_DIR, 'static')), )
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
