@@ -1,3 +1,4 @@
 Estrutura.png
-
 requeriments.txt
+__pycache__
+*.pyc
