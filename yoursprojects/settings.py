@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from telnetlib import LOGOUT
 import os
-import django_on_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,14 +46,14 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'projectos.apps.ProjectosConfig',
     'business.apps.BusinessConfig',
-    'django_on_heroku.apps.DjangoOnHeroku',
+    
     
 ]
 
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoise.Middleware', # White Noise -> Serve para arquivos estáticos
+    'whitenoise.middleware.WhiteNoiseMiddleware', # White Noise -> Serve para arquivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -186,4 +186,3 @@ EMAIL_HOST_PASSWORD = "yhxkbvfujatnenaz"
 
 server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
 
-django_on_heroku.settings(locals())
