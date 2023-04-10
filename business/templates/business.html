@@ -233,6 +233,19 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
     menu.classList.toggle('active');
     });
 </script>
+<!-- Alerta java script ao salvar os dados -->
+{% if messages %}
+    {% for message in messages %}
+        <script>
+        setTimeout(function() {
+          alert("{{ message }}");
+        
+        }, 500); // Tempo em milissegundos (5 milésimos), se fosse converter para segundos seria "5000"
+        
+           
+        </script>
+    {% endfor %}
+{% endif %}
 </html>
 
     

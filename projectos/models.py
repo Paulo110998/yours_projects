@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 
 
-
 # Create your models here.
 class Projetos(models.Model):
     titulo = models.CharField(max_length=21, null=True, verbose_name='Título')

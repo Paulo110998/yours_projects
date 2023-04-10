@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from .models import Negocio, Pipeline
 
 from django.views.generic import TemplateView
+from django.contrib import messages
 
 
 # Create your views here.
@@ -24,6 +25,7 @@ class CreateNegocio(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         url = super().form_valid(form)
+        messages.success(self.request, "Negócio criado!")
         return url
     
     def get_context_data(self, *args ,**kwargs):
@@ -44,6 +46,7 @@ class CreatePipeline(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         url = super().form_valid(form)
+        messages.success(self.request, "Pipeline Criado!")
         return url
     
     def get_context_data(self, *args ,**kwargs):
