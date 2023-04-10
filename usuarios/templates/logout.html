@@ -1,102 +1,190 @@
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>Login</title>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'css/homepage.css' %}" rel="stylesheet">
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-       
+        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+        <!--<link rel="icon" type="image/x-icon" href="imgs/retrato.jpg">-->
+        {% block title %}
+        <title>Your Projects</title>
+        {% endblock title %}
     <style>
-      header{
+    header{
     margin-top: 1px; /* Margem do topo*/
-    padding: 1rem 10%; /* Altura da borda*/
+    padding: 1.5rem 10%; /* Altura da borda*/
     position: fixed; /* Fixar */
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
     justify-content:left; /* Espaço entre os itens*/
-   background-image: linear-gradient(to top, #30cfd0 -240%, #330867 80%);
+    background-image: linear-gradient(to top, #30cfd0 -240%, #330867 80%);
     align-items: center;
 }
-
-   .col-md-4{
-        border: 5px solid transparent;
-        border-radius: 15px 15px 15px 15px;
-        margin: auto 0;
-        margin-top: 130px;
-        text-align: justify;
-        background: white;
-        align-items: center;
-        justify-content: center; /* opcional - para centralizar horizontalmente também */
-       /* definir a altura da div pai */
-    }
-    form{
-        color: black;
-        text-align: justify;
-    }
-    h2{
-        color: black;
-        text-align: justify;
-       
-    }
-    a{  
-        color: black;
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+  
+.line {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px;
+}
+  
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+  
+.menu li {
+  margin-right: 20px;
     
+}
+  
+.menu li:last-child {
+  margin-right: 0;
+}
+  
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: flex;
     }
-    .navbar{
-        margin-top: 7px;
-        
+    
+    .menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+      padding: 20px;
     }
-   
+    
+    .menu li {
+      margin-right: 0;
+      margin-bottom: 10px;
+      
+      
+    }
+    
+    .menu li:last-child {
+      margin-bottom: 0;
+      
+    }
+    
+    .menu li a:link {
+      color: #0c0c0c;
+      font-size: 18px;
+      
+    }
+    
+    .menu.active {
+      display: flex;
+      
+    }
+  }
+  
+    img{
+      margin-right: 60px;
+    }
+   .container{
+    margin: auto;
+    border: solid 50px transparent;
+    margin-top: 70px;
+}
+.card{
+      justify-content:left; /* Espaço entre os itens*/
+      
+}
+.navbar{
+  margin-top: 10px;
+}
+li, a{
+  color:white;
+}
     </style>
     </head>
     <body>
-
-    <div class="container">
     <header class="header">
-    <nav class="navbar" >
-        <ul>
-        <li><a href="{% url 'homepaginas' %}" style="color:white;">Home</a></li>
-        </ul> 
+    <nav class="navbar">
+    <div class="hamburger-menu">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="menu">
+      <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
+      <li><a href="#">Público Alvo</a></li>
+      <li><a href="#">Planos</a></li>
+      <li ><a href="{% url 'login' %}">Login</a></li>
+      </ul>
+      
+    </nav>
     </nav>
     </header>
-    <div class= "col-md-4 mx-auto">
-    <div class="shadow p-5 mb-6 bg-white rounded">
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'welcome' %}"  class="btn btn-primary btn-sm " style="margin-top: -30px;">Voltar</a>
+     <div class="container" >
+     <h1>Your Projects</h1>
+     <br>
+     <h3 style="text-align:justify">Pensando em dar um up nos seus projetos? Nós da Yours Projects temos
+            ferramentas que te auxiliam a alavancar o seu negócio por meio de gerenciamento de processos, com ferramentas
+            práticas e acessíveis a qualquer empresa. Vem com a gente!</h3>
     <br>
-    <br>
-    <h3>Ação não permitida.</h3>
-    <br>
-    <b><p class="lead">Sua conta não tem permissão para esta ação!</p></b>
-    {% else %}
+     <li>
+    <div class="card" style="width: 18rem;">
+  <img src="{% static 'imgs/pexels-andrea-piacquadio-840996.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h3 class="card-title">Your Projects</h3>
+    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">Upgrade your projects and increase your productivity.</p>
     
-    
-    <h2>Login</h2>
-    <br>
-    <form action="" method="POST">
-    {% csrf_token %}
-
-    {{ form|crispy }}
-    <br>
-    <button type="submit" class="btn btn-primary btn-sm">Entrar</button>
-    <br>
-    
-    <a href="{% url 'cadastro-usuario' %}" class="btn btn-primary btn-sm" style="margin-top:10px;">Cadastre-se</a>
-    <br>
-    <br>
-    <a href="{% url 'resetnewpassword' %}">Esqueci a senha</a>
-   
-    </form>
+  </div>
+</div></li>
+  
+  </li>
+  <li><div class="card" style="width: 18rem;">
+  <img src="{% static 'imgs/pexels-fauxels-3183183.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h3 class="card-title">Your Lists</h3>
+    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">List your demands, the big upgrade in work.</p>
     </div>
+</div></li>
+
+  <li>
+    <div class="card" style="width: 18rem;">
+  <img src="{% static 'imgs/grupodetrabalho.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h3 class="card-title">Business</h3>
+    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">The business needs to view new opportunities. </p>
     
-    {% endif %}
-  
-  
-   
+  </div>
+</div></li>
+
+ <li>
+    <div class="card" style="width: 18rem;">
+  <img src="{% static 'imgs/chart.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h3 class="card-title">Chart of Sales</h3>
+    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     
-    </body>
-</html>
+  </div>
+</div>
+<p style="color:transparent;">..</p></li>
+  </div>
+    
+ 
+</div>
+</body>
+    
+<script>
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.menu');
+    hamburgerMenu.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    });
+</script> 
