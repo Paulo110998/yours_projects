@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    
+        <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script> 
     <style>
      header{
     margin-top: -1px; /* Margem do topo*/
@@ -79,21 +79,29 @@ form{
       border: 5px solid transparent;
       border-radius: 15px 15px 15px 15px;
       margin-top:10px;
-      
 }
 .card-container{
     display: flex;
     justify-content: center;
     align-items: justify;
-    
-    
     /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
-
 .sidebar {
  margin-left: 1000px;
  padding: -0.2rem 10%;
 }
+.swal-modal {
+  background-color: white;
+  margin-top: -200px;
+  border: 10px solid white;
+  margin-left: 900px;
+  width: 300px;
+  height: 120px;
+}
+.swal-text{
+  color: black;
+}
+
 </style>
     </head>
     <body>
@@ -226,14 +234,14 @@ form{
 <!-- Alerta java script ao salvar os dados -->
 {% if messages %}
     {% for message in messages %}
-        <script>
-        setTimeout(function() {
-          alert("{{ message }}");
-        
-        }, 500); // Tempo em milissegundos (5 milésimos), se fosse converter para segundos seria "5000"
-        
-           
+        <script type="text/javascript">
+          setTimeout(function() {
+          swal("{{ message }}",{
+          buttons: false,}); //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          
+          }, 500); // Tempo em milissegundos (5 milésimos)
         </script>
     {% endfor %}
 {% endif %}
+
 </html>

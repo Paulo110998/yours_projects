@@ -65,6 +65,12 @@ class UpdateNegocio(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
     template_name = 'updatenegocio.html'
     success_url = reverse_lazy('your-business')
 
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        messages.success(self.request, "Negócio atualizado!")
+        return url
+
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['editar_negocio'] = 'Editar Negócio'
@@ -94,7 +100,13 @@ class DeleteNegocio(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Negocio
     template_name = 'deletar_negocio.html'
     success_url = reverse_lazy('your-business')
-
+    
+    def form_valid(self, form):
+        url = super().form_valid(form)
+        messages.success(self.request, "Negócio excluido!")
+        return url
+    
+    
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['deletar_negocio'] = 'Excluir Negócio'

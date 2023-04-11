@@ -62,6 +62,7 @@ class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     fields = ['titulo', 'descriçao', 'prioridade', 'projetos', 'criador']
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-cards') 
+    
 
 
     def form_valid(self, form):
@@ -91,6 +92,12 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
         context = super().get_context_data(*args, **kwargs)
         context['editar_projeto'] = 'Editar Projeto'
         return context
+    
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        messages.success(self.request, "Projeto atualizado!") # Mensagem que deve aparecer no template
+        return url
 
 # CARDS
 class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
@@ -107,6 +114,12 @@ class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
         context = super().get_context_data(*args, **kwargs)
         context['editar_lista'] = 'Editar Lista'
         return context
+    
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        messages.success(self.request, "Lista atualizada!") # Mensagem que deve aparecer no template
+        return url
 
 ################## DELETEVIEW ###########################
 # PROJETOS
@@ -124,6 +137,11 @@ class ProjetosDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
         context['excluir_projeto'] = 'Excluír Projeto'
         return context
     
+    def form_valid(self, form):
+        url = super().form_valid(form)
+        messages.success(self.request,"Projeto Excluído!")
+        return url
+
 # CARDS
 class CardsDelete(DeleteView, LoginRequiredMixin, GroupRequiredMixin):
     login_url = '/login/'
@@ -137,6 +155,11 @@ class CardsDelete(DeleteView, LoginRequiredMixin, GroupRequiredMixin):
         context = super().get_context_data(*args, **kwargs)
         context['excluir_cards'] = 'Excluír Card'
         return context
+    
+    def form_valid(self, form):
+        url = super().form_valid(form)
+        messages.success(self.request,"Lista Excluída!")
+        return url
 
 
 #################### LISTVIEW #############################

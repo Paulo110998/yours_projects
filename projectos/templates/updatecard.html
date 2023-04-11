@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    
+        <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
     <style>
      header{
     margin-top: 1px; /* Margem do topo*/
@@ -122,30 +122,5 @@ h5, h6, p{
     {% endblock listas %}
     </body>
 </html>
-<script>
-  function salvardados() {
-    // Obtenha os valores dos campos de entrada
-    var form = document.getElementById("form").value;
-    
-    // Simule o salvamento dos dados
-		// Aqui, o salvamento é simulado com um atraso de 2 segundos
-		// para simular uma operação assíncrona
-    setTimeout(function() {
-      // Verifique se os dados foram salvos com sucesso
-			// Aqui, os dados são simulados como tendo sido salvos com sucesso
-      var dadoSalvo = true;
-
-      if (dadoSalvo) {
-        // Se os dados foram salvos com sucesso, exiba uma mensagem de alerta
-        alert("Lista salva com sucesso!")
-      } else{
-        // Se houver um erro ao salvar os dados, exiba uma mensagem de erro
-        alert("Erro ao salvar a lista..")
-      }
-    
-    }, 2000); // 2 segundos de atraso para simular uma operação assíncrona
 
 
-  }
-  
-  </script>
