@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware', # White Noise -> Serve para arquivos estáticos
+    #"whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'yoursprojects.urls'
 
@@ -141,6 +142,13 @@ STATICFILES_DIRS = [
 ]
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
+
+#STORAGES = {
+    # ...
+ #   "staticfiles": {
+  #      "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+   # },
+#}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
