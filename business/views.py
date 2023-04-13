@@ -134,7 +134,7 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Negocio
     template_name = 'business.html'
-    paginate_by = 4
+    paginate_by = 8
     ordering = ['cliente']
     
     

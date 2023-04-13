@@ -51,42 +51,26 @@
   background-color: white;
   color: blue;
 }
-.btn-group{
-  margin-left: 10px;
-  margin-top: -40px;
-  
-}
+
 h5, h6, p{
   color: black;
 }
 
-.container {
-    /* container responsivo abaixo*/
-    display: flex;
-    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
-    display:inline-flex;
-    border: solid 3px transparent;
-    
-}
+
 @media screen and (max-width: 750px) {
 	.container {
 		max-width: 70%;
 	}
 }
-
-
 .sidebar {
  margin-left: 900px;
  padding: 0.1rem 10%;
 }
-.card{
-      
-      margin-left: 20px;
-      background-color: white;
-      border: 5px solid black;
-      border-radius: 15px 15px 15px 15px;
+.container {
+    margin: auto;
+    border: solid 75px transparent;
+    margin-top:-40px;
 }
-
 .card{
       width: 260px;
       height: 340px;
@@ -98,26 +82,25 @@ h5, h6, p{
 }
 .card-container{
     display: flex;
-    justify-content: center;
-    align-items: justify; 
+    margin-left: 20px;
+    
     /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
 form{
   margin-left: 50px;
+  margin-top:-50px;
 }
 .swal-modal {
   background-color: white;
-  margin-top: -200px;
+  margin-top: -220px;
+  margin-right:-930px;
   border: 10px solid white;
-  margin-left: 900px;
-  width: 300px;
+  width: 270px;
   height: 120px;
 }
 .swal-text{
   color: black;
 }
-
-
 </style>
     </head>
     <body>
@@ -143,21 +126,21 @@ form{
  </ul>
   </header>
   </div>
-  <br>
-  <br>
 </div>
-<h3 style="text-align:center; color:white; margin-top:100px;" href="#" style="color:white; ">Business <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -12px;" width="30" height="25" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+<div class="container">
+<h3 style="text-align:center; color:white; margin-top:px;" href="#" style="color:white; ">Business <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -12px;" width="30" height="25" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
 </svg></h3>
 
-<ul style="margin-top: 100px; ">
-    <div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-light" href="{% url 'create-business' %}">Criar Oportunidade <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+<ul style="margin-top: 40px; ">
+    <div role="group" aria-label="Basic example" style="margin-left:-150px;">
+    <a class="btn btn-light" href="{% url 'create-business' %}">Criar Negócio <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px; " width="20" height="20" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
   <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
 </svg></a>
- <a class="btn btn-light" href="">Pipeline <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+ <!--<a class="btn btn-light" href="">Pipeline<svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
   <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-</svg></a>
+</svg></a>-->
 <a class="btn btn-light" href="{% url 'pie-chart' %}">Vendas <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-reception-3" viewBox="0 0 16 16">
   <path d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
 </svg></a>
@@ -176,8 +159,9 @@ form{
 </ul>
     {% csrf_token %}
     {% for business in object_list %}
+  <li>
     <a href="{% url 'update-business' business.pk %}">
-    <div class="card-container" class="father">
+    <div class="card-container" >
       <div class="card" >
         <h5 style="text-align:center; margin-top:10px; ">{{business.cliente}}</h5>
         <br>
@@ -200,33 +184,36 @@ form{
       </div></a>
         {% empty %}
         <p style="margin-left:70px; color:white;">Nenhum negócio registrado..</p>
-        
+        </li>
         {% endfor %}
     
     </div>
   </div>
+  
 
 <!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-right:5px; margin-left: 6px;">
+<nav aria-label="Page navigation example">
     <ul class="pagination">
     {% if page_obj.has_previous %}
-      <li class="page-item"><a class="btn btn-light"  class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
+      <li class="page-item"><a class="btn btn-light" style="margin-left:300px; margin-top:-350px;" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
       <span aria-hidden="true">&laquo;</span>
       </a></li>
-      <li class="page-item" ><a class="btn btn-light"  class="page-link" href="?page=1">1</a></li>
-      <li class="page-item"><a class="btn btn-light"   class="page-link"  href="?page=2">2</a></li>
+      <li class="page-item" ><a class="btn btn-light" style="margin-top:-350px; margin-left:-10px;"  class="page-link" href="?page=1">1</a></li>
+      <li class="page-item"><a class="btn btn-light"  style="margin-top:-350px;margin-left:-10px;"  class="page-link"  href="?page=2">2</a></li>
     {% endif %}
 
     {% if page_obj.has_next %}
-      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}">Next
+      <li class="page-item"><a class="btn btn-light" class="page-link" style="margin-left: 300px; margin-top: -370px;" href="?page={{page_obj.next_page_number}}">Next
       
       </a></li>
       </ul>
 </nav>
 </div>
+</div>
     {% endif %}
 
 {% endif %}
+
     </body>
 </html>
 <script>
@@ -240,13 +227,18 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
 <!-- Alerta java script ao salvar os dados -->
 {% if messages %}
     {% for message in messages %}
+        <!--O SweetAlert torna as mensagens pop-up fáceis e bonitas.-->
         <script type="text/javascript">
-        setTimeout(function() {
           swal("{{ message }}",{
           buttons: false,});
-           //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          
+          setTimeout(function() {
+          swal.close(); 
+          
+        }, 1000); // Tempo em milissegundos (1000 = 1 segundo)
         
-        }, 500); // Tempo em milissegundos (5 milésimos)
+        //No exemplo acima, um diálogo modal com a mensagem "Hello world!" é exibido usando 
+        //o swal()método. Após três segundos, o swal.close()método é chamado para fechar a caixa de diálogo.
         </script>
     {% endfor %}
 {% endif %}

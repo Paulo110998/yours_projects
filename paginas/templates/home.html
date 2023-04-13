@@ -12,7 +12,7 @@
         {% endblock title %}
     <style>
     header{
-    margin-top: 1px; /* Margem do topo*/
+    margin-top: -1px; /* Margem do topo*/
     padding: 1.5rem 10%; /* Altura da borda*/
     position: fixed; /* Fixar */
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
@@ -27,35 +27,28 @@
   flex-direction: column;
   cursor: pointer;
 }
-  
 .line {
   width: 25px;
   height: 3px;
   background-color: white;
   margin: 5px;
 }
-  
 .menu {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-  
 .menu li {
   margin-right: 20px;
-    
 }
-  
 .menu li:last-child {
   margin-right: 0;
 }
-  
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .hamburger-menu {
       display: flex;
     }
-    
     .menu {
       display: none;
       flex-direction: column;
@@ -66,32 +59,22 @@
       background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
       padding: 20px;
     }
-    
     .menu li {
       margin-right: 0;
       margin-bottom: 10px;
-      
-      
-    }
-    
+      }
     .menu li:last-child {
       margin-bottom: 0;
-      
     }
-    
     .menu li a:link {
       color: #0c0c0c;
       font-size: 18px;
-      
     }
-    
     .menu.active {
       display: flex;
-      
     }
   }
-  
-    img{
+  img{
       margin-right: 60px;
     }
    .container{
@@ -138,7 +121,7 @@ li, a{
     <br>
      <li>
     <div class="card" style="width: 18rem;">
-  <img src="{% static 'imgs/pexels-andrea-piacquadio-840996.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <img src="{% static 'imgs/pexels-andrea-piacquadio-840996.jpg' %}"  width=220 height="150" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">Your Projects</h3>
     <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">Upgrade your projects and increase your productivity.</p>
@@ -148,7 +131,7 @@ li, a{
   
   </li>
   <li><div class="card" style="width: 18rem;">
-  <img src="{% static 'imgs/pexels-fauxels-3183183.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <img src="{% static 'imgs/pexels-fauxels-3183183.jpg' %}"  width=220 height="150" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">Your Lists</h3>
     <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">List your demands, the big upgrade in work.</p>
@@ -157,20 +140,20 @@ li, a{
 
   <li>
     <div class="card" style="width: 18rem;">
-  <img src="{% static 'imgs/grupodetrabalho.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <img src="{% static 'imgs/grupodetrabalho.jpg' %}"  width=220 height="150" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">Business</h3>
-    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">The business needs to view new opportunities. </p>
+    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">Your business needs to view new opportunities of business.</p>
     
   </div>
 </div></li>
 
  <li>
     <div class="card" style="width: 18rem;">
-  <img src="{% static 'imgs/chart.jpg' %}"  width=200 height="140" class="card-img-top" alt="...">
+  <img src="{% static 'imgs/chart.jpg' %}"  width=220 height="150" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">Chart of Sales</h3>
-    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="border: solid 50px transparent; margin-left:-50px; margin-top:-50px;">The business intelligence for data analytics in sales.</p>
     
   </div>
 </div>

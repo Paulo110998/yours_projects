@@ -103,10 +103,10 @@ h5, h6, p{
 }
 .swal-modal {
   background-color: white;
-  margin-top: -200px;
+  margin-top: -220px;
+  margin-right:-930px;
   border: 10px solid white;
-  margin-left: 900px;
-  width: 300px;
+  width: 270px;
   height: 120px;
 }
 .swal-text{
@@ -145,15 +145,15 @@ h5, h6, p{
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
 </svg></h3>
-   <ul style="margin-top: 80px; ">
-    <div class="btn-group" role="group" aria-label="Basic example">
+   <ul style="margin-top: 80px;">
+    <div role="group" aria-label="Basic example" style=" margin-left:10px;">
     <a class="btn btn-light " href="{% url 'criar-cards' %}">Nova Lista <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
   <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
 </svg></a>
     <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
 </div>
 <br>
-<br>
+
 <form action="?" method="GET" enctype="multipart/form-data">
 {% csrf_token %}
     <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
@@ -232,12 +232,15 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
 {% if messages %}
     {% for message in messages %}
         <script type="text/javascript">
-        setTimeout(function() {
           swal("{{ message }}",{
           buttons: false,});
-           //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          
+          setTimeout(function() {
+          swal.close(); //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          
+        }, 1000); // Tempo em milissegundos (1000 = 1 segundo)
         
-        }, 500); // Tempo em milissegundos (5 milésimos)
+       
         </script>
     {% endfor %}
 {% endif %}

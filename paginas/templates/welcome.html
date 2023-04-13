@@ -62,14 +62,14 @@
 .btn-group{
   margin-left: 10px;
   margin-top: -40px;
-  position: fixed; /* Fixar */
+   /* Fixar */
 }
 
 h5, h6, p{
   color: black;
 }
 form{
-  margin-left: 50px;
+  margin-left: 20px;
 }
 .card{
       width: 225px;
@@ -82,20 +82,23 @@ form{
 }
 .card-container{
     display: flex;
-    justify-content: center;
-    align-items: justify;
     /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
 .sidebar {
  margin-left: 1000px;
  padding: -0.2rem 10%;
 }
+.container{
+    margin: auto;
+    border: solid 10px transparent;
+    margin-top: 60px;
+   }
 .swal-modal {
   background-color: white;
-  margin-top: -200px;
+  margin-top: -220px;
+  margin-right:-930px;
   border: 10px solid white;
-  margin-left: 900px;
-  width: 300px;
+  width: 270px;
   height: 120px;
 }
 .swal-text{
@@ -138,6 +141,8 @@ form{
  </div>
   </header>
   </div>
+  
+  <div class="container">
   <h4 style="text-align:center; color:white;" href="#" style="color:white; ">Hey {{request.user}}! Good job <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-15px;"width="30" height="30" fill="currentColor" class="bi bi-cup-hot" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5ZM2.64 13.825 1.123 7h11.754l-1.517 6.825A1.5 1.5 0 0 1 9.896 15H4.104a1.5 1.5 0 0 1-1.464-1.175Z"/>
   <path d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"/>
@@ -145,8 +150,8 @@ form{
   <br>
   <br>
   
-<ul style="margin-top: 10px; margin-left:20px;">
-  <div class="btn-group" role="group" aria-label="Basic example">
+<ul style="margin-top: 10px; margin-left:0px;">
+  <div role="group" aria-label="Basic example">
   <a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projeto  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-3px;" width="20" height="20" fill="currentColor" class="bi bi-rocket" viewBox="0 0 16 16">
   <path d="M8 8c.828 0 1.5-.895 1.5-2S8.828 4 8 4s-1.5.895-1.5 2S7.172 8 8 8Z"/>
   <path d="M11.953 8.81c-.195-3.388-.968-5.507-1.777-6.819C9.707 1.233 9.23.751 8.857.454a3.495 3.495 0 0 0-.463-.315A2.19 2.19 0 0 0 8.25.064.546.546 0 0 0 8 0a.549.549 0 0 0-.266.073 2.312 2.312 0 0 0-.142.08 3.67 3.67 0 0 0-.459.33c-.37.308-.844.803-1.31 1.57-.805 1.322-1.577 3.433-1.774 6.756l-1.497 1.826-.004.005A2.5 2.5 0 0 0 2 12.202V15.5a.5.5 0 0 0 .9.3l1.125-1.5c.166-.222.42-.4.752-.57.214-.108.414-.192.625-.281l.198-.084c.7.428 1.55.635 2.4.635.85 0 1.7-.207 2.4-.635.067.03.132.056.196.083.213.09.413.174.627.282.332.17.586.348.752.57l1.125 1.5a.5.5 0 0 0 .9-.3v-3.298a2.5 2.5 0 0 0-.548-1.562l-1.499-1.83ZM12 10.445v.055c0 .866-.284 1.585-.75 2.14.146.064.292.13.425.199.39.197.8.46 1.1.86L13 14v-1.798a1.5 1.5 0 0 0-.327-.935L12 10.445ZM4.75 12.64C4.284 12.085 4 11.366 4 10.5v-.054l-.673.82a1.5 1.5 0 0 0-.327.936V14l.225-.3c.3-.4.71-.664 1.1-.861.133-.068.279-.135.425-.199ZM8.009 1.073c.063.04.14.094.226.163.284.226.683.621 1.09 1.28C10.137 3.836 11 6.237 11 10.5c0 .858-.374 1.48-.943 1.893C9.517 12.786 8.781 13 8 13c-.781 0-1.517-.214-2.057-.607C5.373 11.979 5 11.358 5 10.5c0-4.182.86-6.586 1.677-7.928.409-.67.81-1.082 1.096-1.32.09-.076.17-.135.236-.18Z"/>
@@ -168,8 +173,8 @@ form{
 {% csrf_token %}
     <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
 
-    <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-2px;">Buscar</button>
-    <a href="{% url 'welcome' %}"  class="btn btn-light btn-sm" style="margin-top:-2px;">Limpar</a>
+    <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-5px;">Buscar</button>
+    <a href="{% url 'welcome' %}"  class="btn btn-light btn-sm" style="margin-top:-4px;margin-left:6px;">Limpar</a>
     <!--<input name="myfile"  type="file" value="">
     <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>-->
 
@@ -178,8 +183,9 @@ form{
 
 {% csrf_token %}
 {% for projectos in object_list %}
+<li>
 <a href="{% url 'editar-projeto' projectos.pk %}">
-<div class="card-container" class="father">
+<div class="card-container" >
     <div class="card" >
         <h5 style="text-align:center; margin-top:10px; ">{{projectos.titulo}}</h5>
         <br>
@@ -196,6 +202,7 @@ form{
       </div></a>
 {% empty %}
 <p style="color:white; margin-left:60px;">Nenhum projeto resgistrado..</p>
+</li>
 {% endfor %}
 
 <!--Se eu tiver uma página anterior -->
@@ -220,7 +227,7 @@ form{
  
 {% endif %}
 
-
+</div>
 </body>
 
 <script>
@@ -235,13 +242,14 @@ form{
 {% if messages %}
     {% for message in messages %}
         <script type="text/javascript">
-          setTimeout(function() {
           swal("{{ message }}",{
-          buttons: false,}); //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          buttons: false,});
           
-          }, 500); // Tempo em milissegundos (5 milésimos)
+          setTimeout(function() {
+          swal.close(); //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          
+        }, 1000); // Tempo em milissegundos (1000 = 1 segundo)
         </script>
     {% endfor %}
 {% endif %}
-
 </html>

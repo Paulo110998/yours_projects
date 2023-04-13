@@ -170,7 +170,7 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     models = Projetos
     template_name = 'welcome.html'
-    paginate_by = 4
+    paginate_by = 8
     ordering = ['titulo'] # Ordenando a listagem de objetos
     
     

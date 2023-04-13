@@ -145,7 +145,7 @@ a:hover, img {text-decoration: underline;
 
 li{ 
   float: left;
-  display: block;
+  display: flex;
   background-color: transparent;
   
   }
