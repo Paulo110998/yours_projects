@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 
 # Create your models here.
@@ -15,7 +16,6 @@ class Negocio(models.Model):
     def __str__(self):
         return f'{self.cliente} - {self.descriçao} - {self.ticket} - {self.business_partner}'
     
-
 
 CONTATO = (
     ('Feito', 'Contato Feito'),
@@ -33,7 +33,6 @@ STATUS = (
 )
 
 
-
 class Pipeline(models.Model):
     contato = models.CharField(max_length=8, choices=CONTATO, verbose_name='Contato')
     data_contato = models.DateField(auto_now_add=True)
@@ -47,6 +46,8 @@ class Pipeline(models.Model):
         return f'{self.contato} - {self.apresentaçao} - {self.status_negociaçao}'
 
 
-    
 
+
+    
+    
 

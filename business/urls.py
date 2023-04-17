@@ -1,7 +1,7 @@
 from django.urls import path
 from business.models import Negocio, Pipeline
 from . views import CreateNegocio, CreatePipeline, UpdateNegocio, UpdatePipeline, DeleteNegocio, DeletePipeline, NegocioList, PipelineList
-from . views import Chart
+from . import views 
 
 urlpatterns = [
     path('create_business', CreateNegocio.as_view(), name='create-business'),
@@ -9,7 +9,7 @@ urlpatterns = [
     path('delete_business/<int:pk>/', DeleteNegocio.as_view(queryset=Negocio.objects.all()), name='delete-business'),
     path('yours_business', NegocioList.as_view(queryset=Negocio.objects.all()), name='your-business'),
 
-    path('pie-chart/', Chart.as_view(), name='pie-chart'),
+    path('sales/', views.retorna_total_vendido, name='sales'),
     
     path('create_pipeline', CreatePipeline.as_view(), name='create-pipeline'),
     path('update_pipeline/<int:pk>/', UpdatePipeline.as_view(queryset=Pipeline.objects.all()), name='update-pipeline'),

@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http.response import HttpResponse, JsonResponse
+from datetime import datetime
+from django.db.models import Sum
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -53,6 +57,7 @@ class CreatePipeline(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         context = super().get_context_data(*args, **kwargs)
         context['criar_pipeline'] = 'Criar Pipeline'
         return context
+
 
 
 ################ UPDATE #####################
@@ -168,21 +173,32 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 
 ##### Gerando gráfico ######
-class Chart(TemplateView):
-    template_name = 'chart.html'
+def retorna_total_vendido(request):
+    total = Negocio.objects.all().aggregate(Sum('total'))['total__sum'] #Busca os objetos, soma e transforma em dict
+    if request.method == "GET":
+        return JsonResponse({'total': total})
 
-    def pie_chart(request):
-        labels = []
-        data = []
+def relatorio_faturamento(request):
+    x = Negocio.objects.all()
     
-        # Iterando sobre o queryset do model "Negocio" e construindo uma lista de labels/data
-        queryset = Negocio.objects.order_by('-ticket')[:5] #ordenando os 5 negócios com maiores tickets
-        for negocio in queryset:
-            labels.append(negocio.cliente)
-            data.append(negocio.ticket)
+    meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+    data = []
+    labels = []
+    cont = 0
+    mes = datetime.now().month + 1
+    ano = datetime.now().year
     
-        return render(request, 'chart.html', {
-            'labels':labels,
-            'data': data,
+    for i in range(12): 
+        mes -= 1
+        if mes == 0:
+            mes = 12
+            ano -= 1
+        
+        y = sum([i.ticket for i in x if i.data.month == mes and i.data.year == ano])
+        labels.append(meses[mes-1])
+        data.append(y)
+        cont += 1
 
-        })
+    data_json = {'data': data[::-1], 'labels': labels[::-1]}
+     
+    return JsonResponse(data_json)
