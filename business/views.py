@@ -11,9 +11,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Negocio, Pipeline
 
-from django.views.generic import TemplateView
-from django.contrib import messages
 
+from django.contrib import messages
+#wfrom django.db.models import RawSQL
 
 # Create your views here.
 ############### CREATE ##################
@@ -139,7 +139,7 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Negocio
     template_name = 'business.html'
-    paginate_by = 8
+    paginate_by = 4
     ordering = ['cliente']
     
     
@@ -172,33 +172,7 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         return pipeline
 
 
-##### Gerando gráfico ######
-def retorna_total_vendido(request):
-    total = Negocio.objects.all().aggregate(Sum('total'))['total__sum'] #Busca os objetos, soma e transforma em dict
-    if request.method == "GET":
-        return JsonResponse({'total': total})
 
-def relatorio_faturamento(request):
-    x = Negocio.objects.all()
-    
-    meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
-    data = []
-    labels = []
-    cont = 0
-    mes = datetime.now().month + 1
-    ano = datetime.now().year
-    
-    for i in range(12): 
-        mes -= 1
-        if mes == 0:
-            mes = 12
-            ano -= 1
-        
-        y = sum([i.ticket for i in x if i.data.month == mes and i.data.year == ano])
-        labels.append(meses[mes-1])
-        data.append(y)
-        cont += 1
-
-    data_json = {'data': data[::-1], 'labels': labels[::-1]}
-     
-    return JsonResponse(data_json)
+def grafico(request):
+    for i in Negocio.objects.raw("SELECT id, cliente, ticket, FROM business_negocio"):
+        return render(request, 'chart.html', {'i': i})

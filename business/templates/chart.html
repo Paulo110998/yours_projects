@@ -135,15 +135,40 @@ form{
 </ul>
 
 <div class="container" style="text-align:center;">
-<br>
- <li style="margin-top:20px;">
-  <h5 style="color:white;">Vendas em Andamento</h5>
-  <span id="vendas_em_andamento"></span>
-  </li>
 
-  <li style="margin-top:20px;">
-  <h5 style="color:white;">Vendas Concluídas</h5>
-  </li>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        {% for grafico in i %}
+         ['{{business.id}}', {{business.ticket}}, "{{business.cor}}"]
+        {% endfor %}
+        
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Chart Of Sales",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "75%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
   
 </div>
 
@@ -201,14 +226,5 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
     {% endfor %}
 {% endif %}
 
-
-<script src="{% static 'js/grafico.js' %}">
-  
-</script>
-
-<script>
-    window.onload function(event){
-      renderiza_total_vendido('{% url "sales" %}')
-    }
-</script>
+ 
 </html>
