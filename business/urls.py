@@ -1,6 +1,6 @@
 from django.urls import path
 from business.models import Negocio, Pipeline
-from . views import CreateNegocio, CreatePipeline, UpdateNegocio, UpdatePipeline, DeleteNegocio, DeletePipeline, NegocioList, PipelineList
+from . views import CreateNegocio, CreatePipeline, UpdateNegocio, UpdatePipeline, DeleteNegocio, DeletePipeline, NegocioList, PipelineList, Negociochart
 from . import views 
 
 urlpatterns = [
@@ -9,7 +9,7 @@ urlpatterns = [
     path('delete_business/<int:pk>/', DeleteNegocio.as_view(queryset=Negocio.objects.all()), name='delete-business'),
     path('yours_business', NegocioList.as_view(queryset=Negocio.objects.all()), name='your-business'),
 
-    path('sales/', views.grafico, name='sales'),
+    path('sales/', Negociochart.as_view(), name='sales'),
     
     path('create_pipeline', CreatePipeline.as_view(), name='create-pipeline'),
     path('update_pipeline/<int:pk>/', UpdatePipeline.as_view(queryset=Pipeline.objects.all()), name='update-pipeline'),

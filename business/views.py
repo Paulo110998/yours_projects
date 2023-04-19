@@ -13,6 +13,7 @@ from .models import Negocio, Pipeline
 
 
 from django.contrib import messages
+from django.db.models import Sum
 #wfrom django.db.models import RawSQL
 
 # Create your views here.
@@ -151,6 +152,14 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
             negocio = Negocio.objects.all().order_by('cliente')
         return negocio
 
+class Negociochart(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'login'
+    group_required = [u'Managers', u'Assistants']
+    model = Negocio
+    template_name = 'chart.html'
+  
+
 
 class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -173,6 +182,3 @@ class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 
 
-def grafico(request):
-    for i in Negocio.objects.raw("SELECT id, cliente, ticket, FROM business_negocio"):
-        return render(request, 'chart.html', {'i': i})
