@@ -12,11 +12,18 @@ class Negocio(models.Model):
     commercial_manager = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Commercial Manager')
     business_partner = models.CharField(max_length=15, null=True, verbose_name='Business Partner')
     data_registro = models.DateField(auto_now_add=True) # Data adicionada automaticamente
-    
 
-   
+    
     def __str__(self):
         return f'{self.cliente} - {self.descriçao} - {self.ticket} - {self.business_partner}'
+
+
+class QtdClientes(models.Model):
+    quantidade = models.ForeignKey(Negocio, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f'{self.quantidade}'
+    
 
 
 

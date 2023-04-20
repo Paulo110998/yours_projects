@@ -152,16 +152,18 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
             negocio = Negocio.objects.all().order_by('cliente')
         return negocio
 
+
 class Negociochart(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = Negocio
     template_name = 'chart.html'
-    ordering = ['cliente']
 
-   
-   
+    
+
+
+
 class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
     redirect_field_name = 'login'

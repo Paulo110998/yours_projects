@@ -101,42 +101,54 @@ form{
 .swal-text{
   color: black;
 }
+
+
+
+  
+
+
 </style>
-{% csrf_token %}
-{% for business in object_list %}
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+ {% for business in object_list %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Valor Máximo", { role: "style" } ],
+        ["Ticket", {{business.ticket}}, "#0000ff"],
+        ["Total Sales", 5000, "silver"],
+        ["Churn", 3000, "red"]
+        
+      ]);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Ticket', 'Business', 'Sales'],
-          ['TICKETS', {{business.ticket}}, 0, 0],
-          ['BUSINESS', 0, 0, 0],
-          ['SALES', 0, 0, 0]
-          ]);
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
 
-        var options = {
-          chart: {
-            title: 'Ticket Máximo no Ano',
-            subtitle: 'Sales, Expenses, and Profit: 2013',
-          }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script>
-
+      var options = {
+        title: "Business Intelligence",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
 {% endfor %}
+
     </head>
     <body>
     {% if request.user.is_authenticated %}
     <div class="container">
     <header class="header">
-    <a href="{% url 'welcome' %}"  style="color:white;margin-top:x;" >Início</a>
+    <a href="{% url 'your-business' %}"  style="color:white;margin-top:x;" >Voltar</a>
   <div class="sidebar">
     <ul class="menu" >
     {% if user.perfil.foto_perfil %}
@@ -161,13 +173,21 @@ form{
 <h3 style="text-align:center; color:white; margin-top:px;" href="#" style="color:white; ">Chart of Sales <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -12px;" width="30" height="25" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
 </svg></h3>
-<p>{{count}}</p>
+
 </ul>
 <br>
-
-
-<div id="columnchart_material" style="width: 700px; height: 400px; margin-left:140px;"></div>
  
+<div id="columnchart_values" style="width: 700px; height: 200px;
+margin: 0 auto;
+width: 65%;
+
+@media screen and (max-width: 750px) {
+	 {
+		max-width: 70%;
+	}
+}
+"></div>
+    
 
   
 <!--Se eu tiver uma página anterior -->

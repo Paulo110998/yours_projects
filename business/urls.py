@@ -10,6 +10,7 @@ urlpatterns = [
     path('yours_business', NegocioList.as_view(queryset=Negocio.objects.all()), name='your-business'),
 
     path('sales/', Negociochart.as_view(), name='sales'),
+
    
     
     
