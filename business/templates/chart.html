@@ -102,11 +102,6 @@ form{
   color: black;
 }
 
-
-
-  
-
-
 </style>
  {% for business in object_list %}
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -117,8 +112,11 @@ form{
       var data = google.visualization.arrayToDataTable([
         ["Element", "Valor Máximo", { role: "style" } ],
         ["Ticket", {{business.ticket}}, "#0000ff"],
-        ["Total Sales", 5000, "silver"],
-        ["Churn", 3000, "red"]
+        {% endfor %}
+        
+        ["Total Business", 5000, "silver"],
+        
+        ["Churn", 4000, "red"]
         
       ]);
 
@@ -141,7 +139,7 @@ form{
       chart.draw(view, options);
   }
   </script>
-{% endfor %}
+
 
     </head>
     <body>

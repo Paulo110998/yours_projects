@@ -18,15 +18,6 @@ class Negocio(models.Model):
         return f'{self.cliente} - {self.descriçao} - {self.ticket} - {self.business_partner}'
 
 
-class QtdClientes(models.Model):
-    quantidade = models.ForeignKey(Negocio, on_delete=models.PROTECT)
-
-    def __str__(self):
-        return f'{self.quantidade}'
-    
-
-
-
 
 CONTATO = (
     ('Feito', 'Contato Feito'),

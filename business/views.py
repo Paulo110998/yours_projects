@@ -156,13 +156,11 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 class Negociochart(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
     redirect_field_name = 'login'
-    group_required = [u'Managers', u'Assistants']
+    group_required = [u'CEO',u'Managers', u'Assistants']
     model = Negocio
     template_name = 'chart.html'
 
-    
-
-
+  
 
 class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
