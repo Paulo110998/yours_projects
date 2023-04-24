@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
-ALLOWED_HOSTS = ['https://git.heroku.com/yoursprojects-pa.git'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
+ALLOWED_HOSTS = ['https://dashboard.heroku.com/apps/yoursprojects-pa'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
 
 
 # Application definition
