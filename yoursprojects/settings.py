@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from telnetlib import LOGOUT
 import os 
-import dj_database_url
+from django import dj_database_url
 
 # Usando PostgreeSQL com Heroku
 DATABASES = {
