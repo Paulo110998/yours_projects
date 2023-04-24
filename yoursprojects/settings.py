@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from telnetlib import LOGOUT
 import os 
-from django import dj_database_url
+import dj_database_url
 
 # Usando PostgreeSQL com Heroku
 DATABASES = {
@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
-ALLOWED_HOSTS = [] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
+ALLOWED_HOSTS = ['https://git.heroku.com/yoursprojects-pa.git'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
 
 
 # Application definition
@@ -105,6 +105,7 @@ DATABASES = {
     }
 }
 """
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
