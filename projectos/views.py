@@ -1,4 +1,4 @@
-from django.shortcuts import render
+
 # Views de Crud e Lis
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView

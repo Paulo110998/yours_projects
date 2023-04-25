@@ -1,7 +1,4 @@
-from django.shortcuts import render
-from django.http.response import HttpResponse, JsonResponse
-from datetime import datetime
-from django.db.models import Sum
+
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -13,8 +10,7 @@ from .models import Negocio, Pipeline
 
 
 from django.contrib import messages
-from django.db.models import Sum
-#wfrom django.db.models import RawSQL
+
 
 # Create your views here.
 ############### CREATE ##################

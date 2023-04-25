@@ -19,8 +19,8 @@ import dj_database_url
 DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -145,7 +145,12 @@ USE_TZ = True
  #   BASE_DIR / "static",
 #]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
+
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 STORAGES = {
      
