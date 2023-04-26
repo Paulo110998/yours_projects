@@ -90,7 +90,7 @@ form{
 }
 .container{
     margin: auto;
-    border: solid 10px transparent;
+    border: solid 7px transparent;
     margin-top: 60px;
    }
 .swal-modal {
@@ -212,8 +212,6 @@ form{
       <li class="page-item"><a class="btn btn-light"  class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
       <span aria-hidden="true">&laquo;</span>
       </a></li>
-      <li class="page-item" ><a class="btn btn-light"  class="page-link" href="?page=1">1</a></li>
-      <li class="page-item"><a class="btn btn-light"   class="page-link"  href="?page=2">2</a></li>
     {% endif %}
 
     {% if page_obj.has_next %}
