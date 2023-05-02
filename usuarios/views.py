@@ -16,7 +16,8 @@ from .models import Perfil
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from braces.views import GroupRequiredMixin
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -39,9 +40,18 @@ class UsuarioCreate(CreateView):
         
         # Criando um perfil para o usuário que acabou de se cadastrar
         Perfil.objects.create(usuario=self.object)
-
         return url
-    
+
+
+def user_list(request):
+    users = User.objects.all()
+    return render(request,'users_list.html', {'users': users})
+
+#@login_required
+#def grupo_users(request):
+ #   grupo = request.user.groups.all()[0] # Obtém o primeiro grupo do usuário
+  #  contexto = {'grupo': grupo}
+   # return render(request, 'users_list.html', contexto)
   
 
 # UPDATE 

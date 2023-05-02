@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm 
 # Método que gera um erro se os dados não corresponderem
 from django.core.exceptions import ValidationError 
-
-
+from braces.views import GroupRequiredMixin
 
 
 # Criando uma nova view e usando herança do UserCreationForm
@@ -18,6 +17,8 @@ class Usuarioform(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+        
+        
     
     #Método que evita um usuário com o mesmo email (Faz uma limpeza ou vistoria, antes do cadastro ser criado)
     def clean_email(self):

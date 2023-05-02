@@ -26,7 +26,7 @@ urlpatterns = [
     # Delete Cards
     path('delete_list/<int:pk>/', CardsDelete.as_view(queryset=Cards.objects.all()), name='deletar-card'),
     # List Card
-    path('yours_lists', CardsList.as_view(queryset=Cards.objects.all()), name='listar-cards'),
+    path('your_lists', CardsList.as_view(queryset=Cards.objects.all()), name='listar-cards'),
     
 
 

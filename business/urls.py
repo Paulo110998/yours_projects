@@ -7,7 +7,7 @@ urlpatterns = [
     path('create_business', CreateNegocio.as_view(), name='create-business'),
     path('update_business/<int:pk>/', UpdateNegocio.as_view(queryset=Negocio.objects.all()), name='update-business'),
     path('delete_business/<int:pk>/', DeleteNegocio.as_view(queryset=Negocio.objects.all()), name='delete-business'),
-    path('yours_business', NegocioList.as_view(queryset=Negocio.objects.all()), name='your-business'),
+    path('your_business', NegocioList.as_view(queryset=Negocio.objects.all()), name='your-business'),
     
     path('sales/', Negociochart.as_view(), name='sales'),
     

@@ -12,3 +12,5 @@ class Sobre(TemplateView):
 
 class Welcome(TemplateView):
     template_name = "welcome.html"
+
+

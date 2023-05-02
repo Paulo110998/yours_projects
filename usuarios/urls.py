@@ -5,7 +5,7 @@ from re import template
 from django.conf.urls import include
 from django.urls import path
 from django.contrib.auth import views as auth_views 
-from .views import  UsuarioCreate, PerfilUpdate
+from .views import  UsuarioCreate, PerfilUpdate, user_list
 
 
 
@@ -16,7 +16,10 @@ urlpatterns = [
     path('cadastro_user/', UsuarioCreate.as_view(), name="cadastro-usuario"),
     path('cadastro_concluido/', UsuarioCreate.as_view(template_name="cadastro_concluido.html"), name="cadastro-concluido" ),
     path("update/perfil", PerfilUpdate.as_view(), name="perfil-update"),
-
+    
+    path('users/', user_list, name='user_list'),
+    
+    
    # REDEFINIÇÃO DE SENHA DE USER
     path('reset_password', auth_views.PasswordResetView.as_view(template_name='resetnewpassword1.html'),name='resetnewpassword'),
     path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(template_name='resetnewpassword2.html'),name='password_reset_done'),
