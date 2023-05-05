@@ -13,10 +13,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from telnetlib import LOGOUT
 import os 
-#import dj_database_url
+import dj_database_url
+import django_heroku
 
 # Usando PostgreeSQL com Heroku
-#DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
+DEBUG = False #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
 #ALLOWED_HOSTS = ['https://dashboard.heroku.com/apps/yoursprojects-pa'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
 ALLOWED_HOSTS = []
@@ -55,8 +57,8 @@ INSTALLED_APPS = [
 
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
     'django.middleware.security.SecurityMiddleware',
-    #"whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -172,6 +174,7 @@ MEDIA_URL = '/uploads/' # Constante que possibilita a vizualização do arquivo
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+django_heroku.settings(locals())
 
 # CONFIGURAÇÃO DE AUTENTICAÇÃO (Login/Logout) -> Controle de entrada e saída do usuário
 
@@ -182,12 +185,13 @@ LOGIN_URL = "login" # Redireciona para a url de login
 LOGOUT_REDIRECT = "login"
 
 
+
 # REDEFINIÇÃO DE SENHA (Configurações para envio de e-mail)
 
 # S M T P -> Simple Mail Transfer Protocol (Protocolo de envio de e-mail simples).
 #Mime -> É uma norma de envio de mensagens pela internet, padrão de envio de mensagem códificado.
 
-
+"""
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
@@ -203,3 +207,4 @@ EMAIL_HOST_PASSWORD = "yhxkbvfujatnenaz"
 
 server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
 
+"""
