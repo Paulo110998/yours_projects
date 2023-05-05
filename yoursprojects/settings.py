@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
+DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
 #ALLOWED_HOSTS = ['https://dashboard.heroku.com/apps/yoursprojects-pa'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
 ALLOWED_HOSTS = []
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'yoursprojects.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -104,7 +104,7 @@ DATABASES = {
 
     }
 }
-
+"""
 
 
 # Password validation
@@ -141,13 +141,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/' # Usando durando o desenvolvimento
+#STATIC_URL = 'static/' # Usando durando o desenvolvimento
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+#STATICFILES_DIRS = [
+ #   BASE_DIR / "static",
+#]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
 
 #STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
 #STATICFILES_DIRS = (
