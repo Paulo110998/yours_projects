@@ -13,11 +13,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from telnetlib import LOGOUT
 import os 
-import dj_database_url
-import django_heroku
+#import dj_database_url
+#import django_heroku
 
 # Usando PostgreeSQL com Heroku
-DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+#DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
-    "whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
+    #"whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'yoursprojects.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -104,7 +104,7 @@ DATABASES = {
 
     }
 }
-"""
+
 
 
 # Password validation
@@ -141,13 +141,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-#STATIC_URL = 'static/' # Usando durando o desenvolvimento
+STATIC_URL = 'static/' # Usando durando o desenvolvimento
 
 #STATICFILES_DIRS = [
  #   BASE_DIR / "static",
 #]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
 
 #STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
 #STATICFILES_DIRS = (
@@ -174,7 +174,7 @@ MEDIA_URL = '/uploads/' # Constante que possibilita a vizualização do arquivo
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 # CONFIGURAÇÃO DE AUTENTICAÇÃO (Login/Logout) -> Controle de entrada e saída do usuário
 
@@ -191,7 +191,6 @@ LOGOUT_REDIRECT = "login"
 # S M T P -> Simple Mail Transfer Protocol (Protocolo de envio de e-mail simples).
 #Mime -> É uma norma de envio de mensagens pela internet, padrão de envio de mensagem códificado.
 
-"""
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
@@ -207,4 +206,3 @@ EMAIL_HOST_PASSWORD = "yhxkbvfujatnenaz"
 
 server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
 
-"""

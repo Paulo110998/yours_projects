@@ -5,10 +5,9 @@ from braces.views import GroupRequiredMixin
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Negocio, Pipeline
-
-
 from django.contrib import messages
-
+from django.shortcuts import render
+from django.db.models import Sum
 
 # Create your views here.
 ############### CREATE ##################
@@ -147,13 +146,20 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         return negocio
 
 
-class Negociochart(GroupRequiredMixin, LoginRequiredMixin, ListView):
-    login_url = '/login/'
-    redirect_field_name = 'login'
-    group_required = [u'CEO',u'Managers', u'Assistants']
-    model = Negocio
-    template_name = 'chart.html'
+# values_list() -> é uma otimização para obter dados específicos do banco de dados
+# flat=true -> Apenas retornará valores únicos, em vez de tuplas.
+# distinct() ->  Garante que os resultados sejam filtrados e retornados corretamente, remove quaisquer resultados duplicados.
+def quantidade_negocio(request):
+    negocios = Negocio.objects.values_list('ticket', flat=True).distinct() 
+    contagens = {}
+    for ticket in negocios:
+        contagens[ticket] = Negocio.objects.filter(ticket=ticket).count() # Buscando a quantidade de tickets 
+    return render(request, 'chart.html',  {'contagens': contagens})
 
+# Relatório de clientes
+def Negocios(request):
+    relatorio = Negocio.objects.all()
+    return render(request, 'business_relatorio.html', {'relatorio': relatorio})
   
 
 class PipelineList(GroupRequiredMixin, LoginRequiredMixin, ListView):
