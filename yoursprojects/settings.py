@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0
 DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
 #ALLOWED_HOSTS = ['https://dashboard.heroku.com/apps/yoursprojects-pa'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://yoursprojects-pa.herokuapp.com/']
 
 # Application definition
 INSTALLED_APPS = [
