@@ -14,10 +14,12 @@ from pathlib import Path
 from telnetlib import LOGOUT
 import os 
 import dj_database_url
-import django_heroku
+
 
 # Usando PostgreeSQL com Heroku
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,7 +38,6 @@ DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvime
 ALLOWED_HOSTS = []
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,8 +51,6 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'projectos.apps.ProjectosConfig',
     'business.apps.BusinessConfig',
-    
-    
 ]
 
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
@@ -167,8 +166,6 @@ MEDIA_URL = '/uploads/' # Constante que possibilita a vizualização do arquivo
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-#django_heroku.settings(locals())
 
 # CONFIGURAÇÃO DE AUTENTICAÇÃO (Login/Logout) -> Controle de entrada e saída do usuário
 
