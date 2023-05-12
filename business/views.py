@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from .models import Negocio, Pipeline
 from django.contrib import messages
 from django.shortcuts import render
-from django.db.models import Sum
+
 
 # Create your views here.
 ############### CREATE ##################

@@ -1,8 +1,5 @@
 from django.db import models
 from distutils.command.upload import upload
-from tabnanny import verbose
-from turtle import width
-from unittest.util import _MAX_LENGTH
 from django.contrib.auth.models import User
 
 # Create your models here.

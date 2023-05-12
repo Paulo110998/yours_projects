@@ -3,8 +3,7 @@ from distutils.command.upload import upload
 from tabnanny import verbose
 from django.contrib.auth.models import User
 
-# Definindo a data de criação
-from django.utils.timezone import now
+
 
 
 # Create your models here.
