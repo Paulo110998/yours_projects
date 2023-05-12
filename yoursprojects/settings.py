@@ -13,12 +13,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from telnetlib import LOGOUT
 import os 
-#import dj_database_url
-#import django_heroku
+import dj_database_url
+import django_heroku
 
 # Usando PostgreeSQL com Heroku
-#DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -57,8 +56,8 @@ INSTALLED_APPS = [
 
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
-    #"whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", # White Noise -> Serve para arquivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,7 +88,7 @@ TEMPLATES = [
 # WSGI = Padrão de aplicação web python, o django segue esse padrão.
 WSGI_APPLICATION = 'yoursprojects.wsgi.application'
 
-
+"""
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -105,7 +104,7 @@ DATABASES = {
     }
 }
 
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -141,21 +140,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/' # Usando durando o desenvolvimento
 
-#STATICFILES_DIRS = [
- #   BASE_DIR / "static",
-#]
+STATIC_ROOT = 'static' # Usando em produção
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Usando em produção
+#STATIC_URL = 'static/' # Usando durando o desenvolvimento
 
-#STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
 #STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
+ #  os.path.join(BASE_DIR, 'static'),
 #)
 
-STORAGES = {
-     
+STORAGES = {     
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
@@ -185,7 +179,7 @@ LOGIN_URL = "login" # Redireciona para a url de login
 LOGOUT_REDIRECT = "login"
 
 
-
+"""
 # REDEFINIÇÃO DE SENHA (Configurações para envio de e-mail)
 
 # S M T P -> Simple Mail Transfer Protocol (Protocolo de envio de e-mail simples).
@@ -196,7 +190,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 
 # Conexão com o servidor do gmail
-DEFAULT_FROM_EMAIL = 'Yours Projects'
+#DEFAULT_FROM_EMAIL = os.environ('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = "Yours Projects"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = "587"
@@ -205,4 +200,4 @@ EMAIL_HOST_USER = 'testes.djangoframe@gmail.com'
 EMAIL_HOST_PASSWORD = "yhxkbvfujatnenaz"
 
 server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
-
+"""
