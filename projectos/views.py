@@ -218,18 +218,6 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 
 
-    # Exportando dados em csv
-    def export_csv(request, self):
-        
-        response = HttpResponse(
-            content_type = 'text/csv',
-            headers={'Content-Disposition': 'attachment; filename="mylists.csv"'},
-        )
-
-        writer = csv.writer(response)
-        writer.writerow(Cards.objects.all(['titulo', 'descriçao', 'prioridade', 'criador', 'projetos']))
-        writer.save()
-        return response
     
     
     
