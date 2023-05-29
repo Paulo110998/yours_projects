@@ -181,7 +181,7 @@ LOGOUT_REDIRECT = "login"
 #Mime -> É uma norma de envio de mensagens pela internet, padrão de envio de mensagem códificado.
 
 
-"""
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
@@ -197,5 +197,3 @@ EMAIL_HOST_USER = 'testes.djangoframe@gmail.com'
 EMAIL_HOST_PASSWORD = "yhxkbvfujatnenaz"
 
 server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
-
-"""

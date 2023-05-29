@@ -9,6 +9,11 @@ from django.contrib import messages
 from django.shortcuts import render
 
 
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+import reportlab
+
 # Create your views here.
 ############### CREATE ##################
 class CreateNegocio(LoginRequiredMixin, GroupRequiredMixin, CreateView):
@@ -155,6 +160,34 @@ def quantidade_negocio(request):
     for ticket in negocios:
         contagens[ticket] = Negocio.objects.filter(ticket=ticket).count() # Buscando a quantidade de tickets 
     return render(request, 'chart.html',  {'contagens': contagens})
+
+
+# Extraindo PDF do Gráfico
+def export_chart(request):
+    # Crie um buffer semelhante a um arquivo para receber dados em PDF
+    buffer = io.BytesIO()
+
+    # Crie o objeto PDF, usando o buffer como seu "arquivo".
+    p = canvas.Canvas(buffer)
+
+    # Desenhe coisas no PDF. Aqui é onde a geração do PDF acontece.
+    # Consulte a documentação do ReportLab para obter a lista completa de funcionalidades.
+    p.drawString(100, 100, 'Chart.html')
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    # FileResponse define o cabeçalho Content-Disposition para que os navegadores
+    # Apresenta a opção de salvar o arquivo.
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="charts.pdf")
+    
+
+
+
+
+
 
 # Relatório de clientes
 def Negocios(request):
