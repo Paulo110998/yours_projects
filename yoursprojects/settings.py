@@ -138,9 +138,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 #STATIC_ROOT = 'static' # Usando em produção
 
-STATIC_URL = 'static/' # Usando durando o desenvolvimento
+STATIC_URL = '/static/' # Usando durando o desenvolvimento
 
 STATICFILES_DIRS = (  # Usando durante o desenvolvimento 
    os.path.join(BASE_DIR, 'static'),
@@ -151,8 +153,6 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # ARQUIVOS DE MEDIA/UPLOAD
 

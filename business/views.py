@@ -8,11 +8,19 @@ from .models import Negocio, Pipeline
 from django.contrib import messages
 from django.shortcuts import render
 
-
+# EXTRAINDO PDF COM REPORTLAB
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 import reportlab
+
+# EXTRAINDO PDF COM WeasyPrint
+from django.core.files.storage import FileSystemStorage
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+
+
+
 
 # Create your views here.
 ############### CREATE ##################
@@ -162,32 +170,56 @@ def quantidade_negocio(request):
     return render(request, 'chart.html',  {'contagens': contagens})
 
 
-# Extraindo PDF do Gráfico
-def export_chart(request):
-    # Crie um buffer semelhante a um arquivo para receber dados em PDF
+# Extraindo PDF com "REPORTLAB"
+def get_pdf(request):
+    
+    # Crie um arquivo temporário para receber os dados e gerar pdf
     buffer = io.BytesIO()
 
     # Crie o objeto PDF, usando o buffer como seu "arquivo".
-    p = canvas.Canvas(buffer)
+    pdf = canvas.Canvas(buffer) 
 
     # Desenhe coisas no PDF. Aqui é onde a geração do PDF acontece.
     # Consulte a documentação do ReportLab para obter a lista completa de funcionalidades.
-    p.drawString(100, 100, 'Chart.html')
+    
+    pdf.drawString(100, 100, 'Chart.html')
 
     # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
-
+    pdf.showPage()
+    pdf.save()
+    
+    # Retorna o buffer pro início do arquivo
+    buffer.seek(0)
+    
     # FileResponse define o cabeçalho Content-Disposition para que os navegadores
     # Apresenta a opção de salvar o arquivo.
-    buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename="charts.pdf")
+    #return FileResponse(buffer, as_attachment=True, filename="charts.pdf")
+    
+    # Abre o arquivo direto no navegador
+    return FileResponse(buffer,  filename="charts.pdf")
     
 
+"""
+def get_pdf_weasy(self, request, *args, **kwargs):
+    # Buscando os dados do banco 
+    contagens = Negocio.objects.all() 
+    
+    # Renderizando o conteúdo do template com o for do template
+    html_string = render_to_string('chart.html', {'contagens' : contagens})
 
+    html = HTML(string=html_string)
 
+    # Escrevendo o pdf e adicionando ao diretório "tmp"
+    html.write_pdf(target='/tmp/chart.pdf')
+    # Com o FileSystem é possível que o django consiga escrever
+    fs = FileSystemStorage('/tmp')
 
-
+    # Abrindo o arquivo
+    with fs.open('chart.pdf') as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="chart.pdf"'
+        return response
+"""
 
 # Relatório de clientes
 def Negocios(request):
