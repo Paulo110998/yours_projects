@@ -12,6 +12,8 @@ from django.shortcuts import render
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus import SimpleDocTemplate, Paragraph
 import reportlab
 
 # EXTRAINDO PDF COM WeasyPrint
@@ -172,31 +174,39 @@ def quantidade_negocio(request):
 
 # Extraindo PDF com "REPORTLAB"
 def get_pdf(request):
+    negocios = Negocio.objects.all().order_by('id')
     
-    # Crie um arquivo temporário para receber os dados e gerar pdf
-    buffer = io.BytesIO()
+    # Crie o objeto PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="chart.pdf"'
 
-    # Crie o objeto PDF, usando o buffer como seu "arquivo".
-    pdf = canvas.Canvas(buffer) 
-
-    # Desenhe coisas no PDF. Aqui é onde a geração do PDF acontece.
-    # Consulte a documentação do ReportLab para obter a lista completa de funcionalidades.
+    # Crie o documento PDF
+    #pdf = canvas.Canvas(response) 
     
-    pdf.drawString(100, 100, 'Chart.html')
+    # Criar o documento PDF usando o tamanho de página 'A4'
+    pdf = canvas.Canvas(response, pagesize=A4)
 
-    # Close the PDF object cleanly, and we're done.
-    pdf.showPage()
+    # Adicionar os dados ao PDF
+    for objeto in negocios:
+        # Extrair os campos relevantes do objeto
+        campo1 = objeto.cliente
+        campo2 = objeto.descriçao
+        campo3 = objeto.ticket
+        campo4 = objeto.commercial_manager.username
+
+    # Adicione os dados ao documento PDF
+        pdf.drawString(100, 750, campo1)
+        pdf.drawString(100, 700, campo2)
+        pdf.drawString(100, 650, campo3)
+        pdf.drawString(100, 600, campo4)
+       
+        # Concluir o pdf
+        pdf.showPage()
+
+    # Salvamento
     pdf.save()
-    
-    # Retorna o buffer pro início do arquivo
-    buffer.seek(0)
-    
-    # FileResponse define o cabeçalho Content-Disposition para que os navegadores
-    # Apresenta a opção de salvar o arquivo.
-    #return FileResponse(buffer, as_attachment=True, filename="charts.pdf")
-    
-    # Abre o arquivo direto no navegador
-    return FileResponse(buffer,  filename="charts.pdf")
+
+    return response
     
 
 """

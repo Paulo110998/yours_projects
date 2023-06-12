@@ -83,8 +83,7 @@ h5, h6, p{
 .card-container{
     display: flex;
     margin-left: 20px;
-    
-    /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
+    /* O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
 form{
   margin-left: 50px;
@@ -136,6 +135,8 @@ form{
       var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
       chart.draw(view, options);
   }
+
+  
   </script>
 
 
@@ -173,9 +174,9 @@ form{
 </svg></h3>
 
 
-<button onclick="downloadChart('columnchart_values')">Download Chart</button>
+
 <br>
- 
+
 <div id="columnchart_values" style="width: 700px; height: 200px;
 margin: 0 auto;
 width: 65%;
@@ -185,7 +186,7 @@ width: 65%;
 		max-width: 70%;
 	}
 }
-"></div> 
+"></div>
     
 
   
@@ -242,17 +243,20 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
 {% endif %}
 
  <script>
-  function downloadChart(chartId, filename) {
-  // Obtém a referência para o elemento canvas do gráfico
-  const chartCanvas = document.getElementById(chartId);
+    function downloadPNG() {
+      // URL do arquivo PNG
+      var url = "{% url 'export' %}";
 
-  // Cria um link de download
-  const downloadLink = document.createElement('a');
-  downloadLink.href = chartCanvas.toDataURL('image/png');
-  downloadLink.download = filename;
+      // Nome do arquivo para download
+      var fileName = 'chart.png';
 
-  // Simula um clique no link para iniciar o download
-  downloadLink.click();
-}
- </script>
+      var link = document.getElementById('columnchart_values');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+    }
+
+    // Chame a função para fazer o download
+    downloadPNG();
+  </script>
 </html>
