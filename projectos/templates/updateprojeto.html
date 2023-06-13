@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
     <style>
+ body{    
+  background-attachment:fixed;
+  background-size: 100% 110%; 
+  background-image: url("{% static 'imgs/projects.jpeg' %}");
+  background-repeat: no-repeat;
+}
      header{
     margin-top: 1px; /* Margem do topo*/
     padding: 1rem 10%; /* Altura da borda*/
@@ -18,7 +24,7 @@
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
     justify-content:left; /* Espaço entre os itens*/
-    background-image: linear-gradient(to top, #30cfd0 -240%, #330867 80%);
+    background-color:transparent;
     align-items: center;
 }
   
@@ -80,7 +86,7 @@ h5, h6, p{
     <body>
     <div class="container">
     <header class="header">
-    <a href="{% url 'welcome' %}"  style="color:white;margin-top:x;" >Voltar</a>
+    <b><a href="{% url 'welcome' %}"  style="color:white;margin-top:x;" >Voltar</a></b>
     <div class="sidebar">
     <ul class="menu" >
     {% if user.perfil.foto_perfil %}
@@ -108,15 +114,15 @@ h5, h6, p{
 <div class= "col-md-4 mx-auto">
 <div class="shadow p-5 mb-7  rounded">
     {% block criar_projeto %}
-    <h2>{{criar_pj}}</h2> <h2 style="color:white;">{{editar_projeto}}</h2>
+    <h2>{{criar_pj}}</h2> <h2 style="color:black;">{{editar_projeto}}</h2>
     <br>
-    <form action="" method="POST" style="color:white;">
+    <b><form action="" method="POST" style="color:black;">
     {% csrf_token %}
 
     {{ form|crispy }}
     <br>
     <button type="submit" class="btn btn-light ">Atualizar</button>
-    </form>
+    </form></b>
     </div>
   
     {% endblock criar_projeto %}

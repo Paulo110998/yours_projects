@@ -15,7 +15,7 @@ class Negocio(models.Model):
 
     
     def __str__(self):
-        return f'{self.cliente} - {self.descriçao} - {self.ticket} - {self.business_partner}'
+        return f'{self.cliente} - {self.descriçao} - {self.ticket} - {self.business_partner} - {self.data_registro}'
 
 
 

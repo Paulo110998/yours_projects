@@ -13,15 +13,16 @@ import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import SimpleDocTemplate, Paragraph
 import reportlab
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
 
 # EXTRAINDO PDF COM WeasyPrint
 from django.core.files.storage import FileSystemStorage
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 
-
+from datetime import datetime
 
 
 # Create your views here.
@@ -43,7 +44,7 @@ class CreateNegocio(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     
     def get_context_data(self, *args ,**kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['criar_negocio'] = 'Adicionar Negócio'
+        context['criar_negocio'] = 'Create Business'
         return context
 
 
@@ -174,7 +175,7 @@ def quantidade_negocio(request):
 
 # Extraindo PDF com "REPORTLAB"
 def get_pdf(request):
-    negocios = Negocio.objects.all().order_by('id')
+    negocios = Negocio.objects.all().order_by('cliente')
     
     # Crie o objeto PDF
     response = HttpResponse(content_type='application/pdf')
@@ -185,6 +186,15 @@ def get_pdf(request):
     
     # Criar o documento PDF usando o tamanho de página 'A4'
     pdf = canvas.Canvas(response, pagesize=A4)
+    
+    # Título no documento
+    title = "CUSTOMER REPORT"   
+
+    nome_cliente = "Cliente:"
+    descriçao_cliente = "Descrição:"
+    valor_ticket = "Ticket:"
+    parceiro = "Business Partner:"
+    data_de_registro = "Data de Registro:"
 
     # Adicionar os dados ao PDF
     for objeto in negocios:
@@ -193,43 +203,34 @@ def get_pdf(request):
         campo2 = objeto.descriçao
         campo3 = objeto.ticket
         campo4 = objeto.commercial_manager.username
+        campo5 = objeto.data_registro.strftime("%d/%m/%Y") # Convertendo data para string com 'strftime', do módulo 'datetime'.
+       
 
-    # Adicione os dados ao documento PDF
-        pdf.drawString(100, 750, campo1)
-        pdf.drawString(100, 700, campo2)
-        pdf.drawString(100, 650, campo3)
-        pdf.drawString(100, 600, campo4)
+    # Adicione os dados ao documento PDF - Ex: drawString(horizontal(x), vertical(y), string )
+        # Título do doc
+        pdf.drawString(240, 800, title)
+        
+        # Subtítulos
+        pdf.drawString(100, 750, nome_cliente)
+        pdf.drawString(100, 700, descriçao_cliente)
+        pdf.drawString(100, 650, valor_ticket)
+        pdf.drawString(100, 600, parceiro)
+        pdf.drawString(100, 300, data_de_registro)
+
+        # Dados
+        pdf.drawString(150, 750, campo1)
+        pdf.drawString(160, 700, campo2)
+        pdf.drawString(140, 650, campo3)
+        pdf.drawString(200, 600, campo4)
+        pdf.drawString(200, 300, campo5)
        
         # Concluir o pdf
         pdf.showPage()
 
     # Salvamento
     pdf.save()
-
     return response
     
-
-"""
-def get_pdf_weasy(self, request, *args, **kwargs):
-    # Buscando os dados do banco 
-    contagens = Negocio.objects.all() 
-    
-    # Renderizando o conteúdo do template com o for do template
-    html_string = render_to_string('chart.html', {'contagens' : contagens})
-
-    html = HTML(string=html_string)
-
-    # Escrevendo o pdf e adicionando ao diretório "tmp"
-    html.write_pdf(target='/tmp/chart.pdf')
-    # Com o FileSystem é possível que o django consiga escrever
-    fs = FileSystemStorage('/tmp')
-
-    # Abrindo o arquivo
-    with fs.open('chart.pdf') as pdf:
-        response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="chart.pdf"'
-        return response
-"""
 
 # Relatório de clientes
 def Negocios(request):

@@ -10,6 +10,12 @@
         <link href="{% static 'css/welcome.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <style>
+    body{    
+  background-attachment:fixed;
+  background-size: 100% 110%; 
+  background-image: url("{% static 'imgs/business.jpeg' %}");
+  background-repeat: no-repeat;
+  }
      header{
     margin-top: 1px; /* Margem do topo*/
     padding: 1.5rem 10%; /* Altura da borda*/
@@ -18,7 +24,7 @@
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
     justify-content:left; /* Espaço entre os itens*/
-    background-image: linear-gradient(to top, #30cfd0 -240%, #330867 80%);
+    background-color: transparent;
     align-items: center;
 }
 
@@ -31,6 +37,13 @@
         color: black;
     
     }
+    .sidebar {
+ margin-left: 1000px;
+ padding: -0.1rem 10%;
+}
+.container{
+    border: 40px solid transparent;
+}
     </style>
     </head>
     
@@ -38,33 +51,46 @@
     {% block conteudo %}
     <div class="container">
     <header class="header">
-    <nav class="navbar" >
-        <ul>
-        <li><a href="{% url 'your-business' %}" style="color:white; margin-top:10px;">Voltar</a></li>
-        </ul> 
-    </nav>
-        
-    </header>
+    <b><a href="{% url 'your-business' %}"  style="color:white;  ">Voltar</a></b>
+    <div class="sidebar">
+    <ul class="menu" >
+    {% if user.perfil.foto_perfil %}
+    <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
+    {% else %}
+    <li><a href="" style="color:white;" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </svg></a>
+    {% endif %}
+      <ul>
+        <li><a href="{% url 'user_list' %}">Users</a></li>
+        <li><a href="#">Alterar Senha</a></li>
+        <li><a href="{% url 'perfil-update' %}">Perfil</a></li>
+        <li><a href="{% url 'logout' %}">Sair</a></li>
+      </ul>
+    </ul>
+ </div>
+  </header>
     
    
     
-    <h3 style="text-align:center; margin-top:60px; color:white;">Customer Report</h3>
+    <strong><h3 style="text-align:center; margin-top:110px; color:white;">Customer Report</h3></strong>
     
     <br>
-    <a href="{% url 'export' %}" download style="color:white;">Exportar Pdf <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-top: -10px;" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+    <b><a href="{% url 'export' %}" style="margin-left: 15px;" download style="color:black;">Exportar Pdf <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-top: -10px;" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
-</svg></a>
+</svg></a></b>
     <br>
-    <div style="text-align: center; margin-top:15px;"  class="table-responsive">
-    <table class="table table-striped table-hover" >
-        <thead>
+    <div style="text-align: center; margin-top:15px; border-radius: 20px 20px 20px 20px;" class="table-responsive">
+    <table class="table table-hover table-striped table-dark"  >
+        <thead  class="thead-dark">
             <tr style="color:white;">
                 <th>Cliente</th>
                 <th>Ticket</th>
                 <th>Commercial Manager</th>
                 
             </tr>
-        </thead>
+        </thead >
         <tbody>
             {% for clientes in relatorio %}
                 <tr>

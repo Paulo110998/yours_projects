@@ -10,6 +10,12 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
     <style>
+    body{    
+  background-attachment:fixed;
+  background-size: 100% 110%; 
+  background-image: url("{% static 'imgs/business.jpeg' %}");
+  background-repeat: no-repeat;
+  }
      header{
     margin-top: -1px; /* Margem do topo*/
     padding: 1rem 10%; /* Altura da borda*/
@@ -18,7 +24,7 @@
     display:inline-flex;
     box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
     justify-content:left; /* Espaço entre os itens*/
-    background-image: linear-gradient(to top, #30cfd0 -300%, #330867 70%);
+    background-color: transparent;
     align-items: center;
 }
 .menu {
@@ -76,14 +82,13 @@ h5, h6, p{
       height: 340px;
       margin-left: 20px;
       background-color: white;
-      border: 5px solid transparent;
+      border: 1px solid transparent;
       border-radius: 15px 15px 15px 15px;
       margin-top: 20px;
 }
 .card-container{
     display: flex;
     margin-left: 20px;
-    
     /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
 form{
@@ -107,7 +112,7 @@ form{
     {% if request.user.is_authenticated %}
     <div class="container">
     <header class="header">
-    <a href="{% url 'welcome' %}"  style="color:white;margin-top:x;" >Início</a>
+    <strong><a href="{% url 'welcome' %}"  style="color:white; " >Início</a></strong>
   <div class="sidebar">
     <ul class="menu" >
     {% if user.perfil.foto_perfil %}
@@ -130,13 +135,13 @@ form{
 </div>
 
 <div class="container">
-<h3 style="text-align:center; color:white; margin-top:px;" href="#" style="color:white; ">Business <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -12px;" width="30" height="25" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+<h3 style="text-align:center; color:white;  ">Business <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -12px;" width="30" height="25" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
 </svg></h3>
 
 <ul style="margin-top: 40px; ">
     <div role="group" aria-label="Basic example" style="margin-left:-150px;">
-    <a class="btn btn-light" href="{% url 'create-business' %}">Criar Negócio <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px; " width="20" height="20" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+    <a class="btn btn-light" href="{% url 'create-business' %}">Create business <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px; " width="20" height="20" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
   <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
 </svg></a>
  <!--<a class="btn btn-light" href="">Pipeline<svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">

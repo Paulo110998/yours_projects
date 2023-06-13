@@ -4,12 +4,13 @@
 	box-sizing: border-box;
 }
 body{    
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   background-attachment:fixed;
   background-position: center top;
   background-size: 100% 100%; 
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  background-image: url("{% static 'imgs/projects.jpg' %}");
+  background-repeat: no-repeat;
 }
 
 header{
