@@ -2,6 +2,7 @@ from django.db import models
 from distutils.command.upload import upload
 from tabnanny import verbose
 from django.contrib.auth.models import User
+from datetime import datetime  
 
 
 
@@ -24,7 +25,7 @@ PRIORIDADE_CARDS = (
     ('Alta', 'Alta Prioridade'),
 )
 
-class Cards(models.Model):
+class List(models.Model):
     titulo = models.CharField(max_length=50, null=True, verbose_name="Título")
     descriçao = models.CharField(max_length=100, null=True, verbose_name="Descrição")
     prioridade = models.CharField(max_length=5, choices=PRIORIDADE_CARDS , verbose_name = 'Prioridade')

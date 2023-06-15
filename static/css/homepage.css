@@ -1,15 +1,12 @@
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
     
 
-body{    
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-  background-attachment:fixed;
-  background-position: center top;
-  background-size: 100% 100%; 
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-}
-
+  body{    
+    background-attachment:fixed;
+    background-size: 100% 110%; 
+    background-image: url("{% static 'imgs/projects.jpeg' %}");
+    background-repeat: no-repeat;
+  }
 header{
   margin-top: 1px; /* Margem do topo*/
   padding: 3rem 10%; /* Altura da borda*/

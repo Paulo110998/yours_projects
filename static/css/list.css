@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+
+header{
+      margin-top: -1px; /* Margem do topo*/
+      padding: 1rem 10%; /* Altura da borda*/
+      position: fixed; /* Fixar */
+      top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+      display:inline-flex;
+      box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+      justify-content:left; /* Espaço entre os itens*/
+      background-color: transparent;
+      align-items: center;
+  }
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu li {
+    position: sticky;
+  }
+  .menu ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+  }
+  .menu li:hover > ul {
+    display: block;
+  }
+  .menu a {
+    display: block;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+  }
+  .menu a:hover {
+    background-color: white;
+    color: blue;
+  }
+  .btn-group{
+    margin-left: 10px;
+    margin-top: -20px;
+  }
+  a:link, a:visited, a:active {
+    text-decoration: none;
+    }
+  a:hover, img {text-decoration: underline;
+    color: rgb(25, 47, 175);
+    font-size:100%;
+    background-image: linear-gradient(to bottom right, transparent, transparent);
+    border-radius: 30px 30px 30px 30px;
+      }
+  
+  li{ 
+    float: left;
+    display: flex;
+    background-color: transparent;
+    
+    }
+  h5, h6, p{
+    color: black;
+  }
+  .container {
+      /* container responsivo abaixo*/
+      display: flex;
+      top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+      display:inline-flex;
+      border: solid 3px transparent;
+  }
+  @media screen and (max-width: 750px) {
+      .container {
+          max-width: 70%;
+      }
+  }
+  .list-group{
+    border: 20px solid transparent;
+    display: flex;
+    justify-content: justify;
+    align-items: justify;
+    list-style: none;
+    margin-top: -11px;
+  }
+  @media screen and (max-width: 750px) {
+      .list-group {
+          max-width: 100%;
+      }
+  }
+  .list-group-item{
+    border: 3px solid white;
+    border-radius: 15px 15px 15px 15px;
+  }
+  .sidebar {
+   margin-left: 900px;
+   padding: 0.1rem 10%;
+  }
+  .col-md-4{
+          border: 5px solid transparent;
+          width: 300px;
+          border-radius: 10px 10px 10px 10px;
+          margin: auto;
+          text-align: center;
+          background: white;
+  }
+  .swal-modal {
+    background-color: white;
+    margin-top: -310px;
+    margin-right:-930px;
+    border: 10px solid white;
+    width: 270px;
+    height: 120px;
+  }
+  .swal-text{
+    color: black;
+  }
+  

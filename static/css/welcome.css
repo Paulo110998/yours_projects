@@ -3,164 +3,114 @@
 * {
 	box-sizing: border-box;
 }
+
 body{    
   background-attachment:fixed;
-  background-position: center top;
-  background-size: 100% 100%; 
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  background-image: url("{% static 'imgs/projects.jpg' %}");
+  background-size: 100% 110%; 
+  background-image: url("{% static 'imgs/projects.jpeg' %}");
   background-repeat: no-repeat;
 }
 
 header{
-  margin-top: 1px; /* Margem do topo*/
-  padding: 2rem 10%; /* Altura da borda*/
+  margin-top: -1px; /* Margem do topo*/
+  padding: 1.5rem 10%; /* Altura da borda*/
   position: fixed; /* Fixar */
   top:0; left: 0; right: 0; /* Topo, direita, esquerda */
   display:inline-flex;
   box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
   justify-content:left; /* Espaço entre os itens*/
-  background: #f8f8f8;
+  background-color: transparent;
   align-items: center;
 }
-nav {
-  display: flex;
-  align-items: center;
- 
-}
-
+.col-md-4{
+      border: 5px solid black;
+      border-radius: 15px 15px 15px 15px;
+      margin: auto 0;
+      margin-top: 130px;
+      text-align: justify;
+      background: white;
+      align-items: center;
+      justify-content: center; /* opcional - para centralizar horizontalmente também */
+     /* definir a altura da div pai */
+  }
 .menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 .menu li {
-  position: sticky;
+position: sticky;
 }
 .menu ul{
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;
+position: absolute;
+top: 100%;
+left: 0;
+display: none;
 }
 .menu li:hover > ul {
-  display: block;
+display: block;
 }
 .menu a {
-  display: block;
-  padding: 10px;
-  background-color: transparent;
-  color: white;
-  text-decoration: none;
+display: block;
+padding: 10px;
+background-color: transparent;
+color: white;
+text-decoration: none;
 }
 .menu a:hover {
-  background-color: white;
-  color: blue;
+background-color: white;
+color: blue;
 }
 .btn-group{
-  margin-left: 10px;
-  margin-top: -40px;
-  position: fixed; /* Fixar */
+margin-left: 10px;
+margin-top: -40px;
+ /* Fixar */
 }
 
-.hamburger-menu {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
+h5, h6, p{
+color: black;
 }
-  
-.line {
-  width: 23px;
-  height: 3px;
-  background-color: #0a0909;
-  margin: 5px;
+form{
+margin-left: 20px;
+margin-top: -10px;
 }
-  
-.menu {
+.card{
+    width: 225px;
+    height: 300px;
+    margin-left: 20px;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 15px 15px 15px 15px;
+    margin-top:10px;
+}
+.card-container{
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
 }
-  
-.menu li {
-  margin-right: 20px;
-    
-}
-  
-.menu li:last-child {
-  margin-right: 0;
-}
-  
-  @media (max-width: 768px) {
-    .hamburger-menu {
-      display: flex;
-    }
-    
-    .menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background-color: #ffffff;
-      padding: 20px;
-    }
-    
-    .menu li {
-      margin-right: 0;
-      margin-bottom: 10px;
-      
-      
-    }
-    
-    .menu li:last-child {
-      margin-bottom: 0;
-      
-    }
-    
-    .menu li a:link {
-      color: #0c0c0c;
-      font-size: 18px;
-      
-    }
-    
-    .menu.active {
-      display: flex;
-      
-    }
-  }
-  
-
-a:link, a:visited, a:active {
-  text-decoration: none;
-  }
-a:hover, img {text-decoration: underline;
-  color: rgb(25, 47, 175);
-  font-size:100%;
-  background-image: linear-gradient(to bottom right, transparent, transparent);
-  border-radius: 30px 30px 30px 30px;
-    }
-
-li{ 
-  float: left;
-  display: flex;
-  background-color: transparent;
-  
-  }
-
-h1,h2, h3, h5, a{
-    color:rgb(252, 249, 249);
-    
-   
-}
- a{
-    color: black;
+.sidebar {
+margin-left: 1000px;
+padding: -0.2rem 10%;
 }
 .container{
-    margin: auto;
-    border: 80px solid transparent;
-    border-radius: 20px 20px 20px 20px;
+  margin: auto;
+  border: solid 7px transparent;
+  margin-top: 60px;
+ }
+.swal-modal {
+background-color: white;
+margin-top: -310px;
+margin-right:-930px;
+border: 10px solid white;
+width: 270px;
+height: 120px;
+}
+.swal-text{
+color: black;
+}
+.menu-vertical{
+background: transparent;
+margin-left: 20px;
+display: flex;
+width:100px;
+height:300px;
 }

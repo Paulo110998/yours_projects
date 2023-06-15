@@ -215,7 +215,7 @@ def get_pdf(request):
         pdf.drawString(100, 700, descriçao_cliente)
         pdf.drawString(100, 650, valor_ticket)
         pdf.drawString(100, 600, parceiro)
-        pdf.drawString(100, 300, data_de_registro)
+        pdf.drawString(200, 300, data_de_registro)
 
         # Dados
         pdf.drawString(150, 750, campo1)

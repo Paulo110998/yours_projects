@@ -9,12 +9,14 @@ from django.contrib.auth.models import User
 # Configura uma página de erro mais bonita e clean
 from django.shortcuts import get_object_or_404 
 # Importando models dos projectos
-from .models import Projetos, Cards
+from .models import Projetos, List
 from django.urls import reverse_lazy
-# Importando módulo para gerar csv
-import csv
+
 from django.http import HttpResponse
 from django.contrib import messages
+
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
 
 
 # Create your views here.
@@ -54,14 +56,14 @@ class ProjetosCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     
 
 # CARDS
-class CardsCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
+class ListCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
-    model = Cards
+    model = List
     fields = ['titulo', 'descriçao', 'prioridade', 'projetos', 'criador']
     template_name= "criarcards.html"
-    success_url = reverse_lazy('listar-cards') 
+    success_url = reverse_lazy('listar-list') 
     
 
 
@@ -100,14 +102,14 @@ class ProjetosUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
         return url
 
 # CARDS
-class CardsUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
+class ListUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
-    model = Cards
+    model = List
     fields = ['titulo', 'descriçao', 'prioridade', 'projetos']
     template_name = 'updatecard.html'
-    success_url = reverse_lazy('listar-cards')
+    success_url = reverse_lazy('listar-list')
 
     
     def get_context_data(self, *args ,**kwargs):
@@ -143,13 +145,13 @@ class ProjetosDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
         return url
 
 # CARDS
-class CardsDelete(DeleteView, LoginRequiredMixin, GroupRequiredMixin):
+class ListDelete(DeleteView, LoginRequiredMixin, GroupRequiredMixin):
     login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
-    model = Cards
+    model = List
     template_name = "excluircards.html"
-    success_url = reverse_lazy('listar-cards')
+    success_url = reverse_lazy('listar-list')
 
     def get_context_data(self, *args , **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -188,13 +190,62 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
             
         return projetos   
 
+
+def export_projetos(request):
+    projetos = Projetos.objects.all().order_by('titulo')
+
+    # Criando o PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="projetos.pdf"'
+
+    # Criando o documento, usando o tamanho 'A4
+    pdf = canvas.Canvas(response, pagesize=A4)
+
+    # Título do Doc
+    title = "YOUR PROJECTS"
+
+    titulo_projeto = "Projeto:"
+    descriçoes = "Descrição:"
+    manager = "Manager:"
+    data = "Data de Registro:"
+    
+
+    # Buscando os campos que eu quero adicionar ao pdf
+    for projeto in projetos:
+        campo1 = projeto.titulo
+        campo2 = projeto.descriçao
+        campo3 = projeto.criador.username
+        campo4 = projeto.data_registro.strftime("%d/%m/%Y")
+    
+        # Adicionando informações ao PDF
+        pdf.drawString(240, 800, title)
+
+        # Subtítulos
+        pdf.drawString(100, 750, titulo_projeto)
+        pdf.drawString(100, 700, descriçoes)
+        pdf.drawString(100, 650, manager)
+        pdf.drawString(100, 300, data)
+
+        # Dados
+        pdf.drawString(150, 750, campo1)
+        pdf.drawString(160, 700, campo2)
+        pdf.drawString(150, 650, campo3)    
+        pdf.drawString(200, 300, campo4)
+
+        # Concluir pdf
+        pdf.showPage()
+
+    # Salvar
+    pdf.save()
+    return response
+
     
 # CARDS
-class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+class ListList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = '/login/'
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
-    model = Cards
+    model = List
     template_name = 'cards.html'
     paginate_by = 5
     ordering = ['titulo'] # Ordenando a listagem por 'titulo'
@@ -204,14 +255,71 @@ class CardsList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
         get_cards = self.request.GET.get('titulo')
         if get_cards:
-            cards = Cards.objects.filter(titulo__icontains=get_cards)
+            cards = List.objects.filter(titulo__icontains=get_cards)
         else:
-            cards = Cards.objects.all().order_by('titulo') # Ordenando a listagem dos objetos
+            cards = List.objects.all().order_by('titulo') # Ordenando a listagem dos objetos
         
         return cards
     
+
+def export_list(request):
+    listas = List.objects.all().order_by('titulo')
+
+    # Criando o PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="list.pdf"'
+
+    # Criando o documento, usando o tamanho A4
+    pdf = canvas.Canvas(response, pagesize=A4)
+
+    # Título do doc
+    title = "YOUR LIST"
+
+    name_list = 'Lista:'
+    descriçoes = "Descrição:"
+    prioridades = "Prioridade:"
+    projetos = "Projetos:".encode(encoding='utf8')
+    manager = "Manager: "
+    data = "Data de Registro:"
     
+    for lista in listas:
+        campo1 = lista.titulo
+        campo2 = lista.descriçao
+        campo3 = lista.prioridade
+        campo4 = lista.projetos
+        campo5 = lista.criador.username
+        campo6 = lista.data_registro.strftime("%d/%m/%Y")
+        
+        # Adicionando informações ao pdf
+        pdf.drawString(240, 800, title)
+
+        # Subtítulos
+        pdf.drawString(100, 750, name_list)
+        pdf.drawString(100, 700, descriçoes)
+        pdf.drawString(100, 650, prioridades)
+        pdf.drawString(100, 600, projetos)
+        pdf.drawString(100, 550, manager)
+        pdf.drawString(100, 300, data)
+
+        # Dados
+        pdf.drawString(150, 750, campo1)
+        pdf.drawString(160, 700, campo2)
+        pdf.drawString(150, 650, campo3)
+        pdf.drawString(100, 600, campo4)
+        pdf.drawString(100, 550, campo5)
+        pdf.drawString(150, 300, campo6)
     
+
+        # Concluir PDF
+        pdf.showPage()
+    
+    # Salvar
+    pdf.save()
+    return response
+
+
+
+
 
 
 

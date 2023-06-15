@@ -141,7 +141,7 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-#STATIC_ROOT = 'static' # Usando em produção
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # Usando em produção
 
 STATIC_URL = '/static/' # Usando durando o desenvolvimento
 
@@ -149,11 +149,16 @@ STATICFILES_DIRS = (  # Usando durante o desenvolvimento
   os.path.join(BASE_DIR, 'static'),
 )
 
-STORAGES = {     
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
+STORAGES = {
+    # ...
+    "staticfiles": {"BACKEND": "yours_projects.storage.S3Storage"}
 }
+
+#STORAGES = {     
+ #   "staticfiles": {
+  #      "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+   # },
+#}
 
 # ARQUIVOS DE MEDIA/UPLOAD
 

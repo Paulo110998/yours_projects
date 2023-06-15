@@ -6,118 +6,21 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static  'css/homepage.css' %}" rel="stylesheet">
+        <link href="{% static  'css/list.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
     <style>
-    body{    
+ 
+
+     body{    
   background-attachment:fixed;
-  background-size: 100% 110%; 
+  background-size: 100% 100%; 
   background-image: url("{% static 'imgs/list.jpeg' %}");
   background-repeat: no-repeat;
   }
-     header{
-    margin-top: -1px; /* Margem do topo*/
-    padding: 1rem 10%; /* Altura da borda*/
-    position: fixed; /* Fixar */
-    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
-    display:inline-flex;
-    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
-    justify-content:left; /* Espaço entre os itens*/
-    background-color: transparent;
-    align-items: center;
-}
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  float: right;
-}
-.menu li {
-  position: relative;
-}
-.menu ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;}
-
-.menu li:hover > ul {
-  display: block;
-}
-.menu a {
-  display: block;
-  padding: 9px;
-  background-color: transparent;
-  color: white;
-  text-decoration: none;
-}
-.menu a:hover {
-  background-color: white;
-  color: blue;
-}
-.btn-group{
-  margin-left: 10px;
-  margin-top: -20px;
-}
-h5, h6, p{
-  color: black;
-}
-.container {
-    /* container responsivo abaixo*/
-    display: flex;
-    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
-    display:inline-flex;
-    border: solid 3px transparent;
-}
-@media screen and (max-width: 750px) {
-	.container {
-		max-width: 70%;
-	}
-}
-.list-group{
-  border: 20px solid transparent;
-  display: flex;
-  justify-content: justify;
-  align-items: justify;
-  list-style: none;
-  margin-top: -11px;
-}
-@media screen and (max-width: 750px) {
-	.list-group {
-		max-width: 100%;
-	}
-}
-.list-group-item{
-  border: 3px solid white;
-  border-radius: 15px 15px 15px 15px;
-}
-.sidebar {
- margin-left: 900px;
- padding: 0.1rem 10%;
-}
-.col-md-4{
-        border: 5px solid transparent;
-        width: 300px;
-        border-radius: 10px 10px 10px 10px;
-        margin: auto;
-        margin-top: 
-        text-align: center;
-        background: white;
-}
-.swal-modal {
-  background-color: white;
-  margin-top: -310px;
-  margin-right:-930px;
-  border: 10px solid white;
-  width: 270px;
-  height: 120px;
-}
-.swal-text{
-  color: black;
-}
 
 </style>
     </head>
@@ -154,7 +57,7 @@ h5, h6, p{
 </svg></h3>
    <ul style="margin-top: 80px;">
     <div role="group" aria-label="Basic example" style=" margin-left:10px;">
-    <a class="btn btn-light " href="{% url 'criar-cards' %}">Nova Lista <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+    <a class="btn btn-light " href="{% url 'criar-list' %}">Nova Lista <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
   <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
 </svg></a>
     <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
@@ -165,7 +68,10 @@ h5, h6, p{
 {% csrf_token %}
     <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
     <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-5px;">Buscar</button>
-    <a href="{% url 'listar-cards' %}"  class="btn btn-light btn-sm"style="margin-top:-5px;">Limpar</a>
+    <a href="{% url 'listar-list' %}"  class="btn btn-light btn-sm"style="margin-top:-5px;">Limpar</a>
+    <a href="{% url 'export_list' %}" style="text-align:left; color:sky; margin-top: 6px;" download style="color:black;">Exportar Listas<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-top: -10px;" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
+</svg></a>
     <!--<input name="myfile"  type="file" value="">
     <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>-->
 </form>
@@ -175,7 +81,7 @@ h5, h6, p{
 {% csrf_token %}
 {% for projectos in object_list %}
 <div>
-<a href="{% url 'editar-card' projectos.pk %}"  style="color:black;"><ul class="list-group " class="border border-primary"  >
+<a href="{% url 'editar-list' projectos.pk %}"  style="color:black;"><ul class="list-group " class="border border-primary"  >
   <li class="list-group-item">
   <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
   <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -191,7 +97,7 @@ h5, h6, p{
 </svg> {{projectos.criador}}  
  | Projeto: {{projectos.projetos}}  
 <!--<input type="checkbox" name="" value="">-->
-|  <a href="{% url 'deletar-card' projectos.pk %}"  class="btn btn-primary btn-sm" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;"  width="25" height="25" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
+|  <a href="{% url 'deletar-list' projectos.pk %}"  class="btn btn-primary btn-sm" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;"  width="25" height="25" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
   <path d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
 </svg></a>
 </li>
