@@ -17,7 +17,7 @@ from django.contrib import messages
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-
+from django.utils.encoding import smart_str
 
 # Create your views here.
 ########## CREATE ##############
@@ -278,7 +278,7 @@ def export_list(request):
     name_list = 'Lista:'
     descriçoes = "Descrição:"
     prioridades = "Prioridade:"
-    projetos = "Projetos:".encode(encoding='utf8')
+    projetos = "Projetos:"
     manager = "Manager: "
     data = "Data de Registro:"
     
@@ -286,12 +286,12 @@ def export_list(request):
         campo1 = lista.titulo
         campo2 = lista.descriçao
         campo3 = lista.prioridade
-        campo4 = lista.projetos
+        campo4 = smart_str(lista.projetos, encoding='utf-8', strings_only=False, errors='strict') # smart_str -> converte sua entrada em uma string.
         campo5 = lista.criador.username
         campo6 = lista.data_registro.strftime("%d/%m/%Y")
         
         # Adicionando informações ao pdf
-        pdf.drawString(240, 800, title)
+        pdf.drawString(265, 800, title)
 
         # Subtítulos
         pdf.drawString(100, 750, name_list)
@@ -302,12 +302,12 @@ def export_list(request):
         pdf.drawString(100, 300, data)
 
         # Dados
-        pdf.drawString(150, 750, campo1)
+        pdf.drawString(130, 750, campo1)
         pdf.drawString(160, 700, campo2)
-        pdf.drawString(150, 650, campo3)
-        pdf.drawString(100, 600, campo4)
-        pdf.drawString(100, 550, campo5)
-        pdf.drawString(150, 300, campo6)
+        pdf.drawString(160, 650, campo3)
+        pdf.drawString(150, 600, campo4)
+        pdf.drawString(155, 550, campo5)
+        pdf.drawString(195, 300, campo6)
     
 
         # Concluir PDF

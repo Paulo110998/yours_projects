@@ -7,27 +7,14 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'css/welcome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/business.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
     <style>
-    body{    
-  background-attachment:fixed;
-  background-size: 100% 100%; 
-  background-image: url("{% static 'imgs/projects.jpeg' %}");
-  background-repeat: no-repeat;
-}
-     header{
-    margin-top: 1px; /* Margem do topo*/
-    padding: 1.5rem 10%; /* Altura da borda*/
-    position: fixed; /* Fixar */
-    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
-    display:inline-flex;
-    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
-    justify-content:left; /* Espaço entre os itens*/
-    background-color: transparent;
-    align-items: center;
-}
+  
+    .navbar{
+        margin-top: 10px;
+    }
 
     h2{
         color: black;
@@ -47,23 +34,23 @@
     <header class="header">
     <nav class="navbar" >
         <ul>
-        <b><li><a href="{% url 'welcome' %}" style="color:white; margin-top:10px;">Início</a></li></b>
+        <b><li><a href="{% url 'welcome' %}" style="color:white; margin-top:25px;">Início</a></li></b>
         </ul> 
     </nav>
         
     </header>
     
    
-    
+    <br>
     <h3 style="text-align:center; margin-top:60px; color:white;">Usuários Ativos</h3>
     
     <br>
-    <div style="text-align: center; border-radius: 20px 20px 20px 20px;""  class="table-responsive">
-    <table class="table table-hover table-striped table-dark"  style="background-color: white; border-radius: 10px 10px 10px 10px;">
+    <div style="text-align: center; border-radius: 20px 20px 20px 20px;"  class="table-responsive">
+    <table class="table table-hover table"  style="border-radius: 10px 10px 10px 10px;">
         <thead>
-            <tr class="table table-hover table-striped table-dark">
-                <th>Username</th>
-                <th>E-mail</th>
+            <tr class="table table-hover table-striped ">
+                <th style="color:white;">Username</th>
+                <th style="color:white;">E-mail</th>
                 
             </tr>
         </thead>

@@ -7,15 +7,10 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'css/welcome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/homepage.css' %}" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
     <style>
-    body{    
-  background-attachment:fixed;
-  background-size: 100% 100%; 
-  background-image: url("{% static 'imgs/projects.jpeg' %}");
-  background-repeat: no-repeat;
-}
+  
      header{
     margin-top: 1px; /* Margem do topo*/
     padding: 1.5rem 10%; /* Altura da borda*/
@@ -29,7 +24,7 @@
 }
  
    .col-md-4{
-        border: 5px solid black;
+        border: 5px solid transparent;
         border-radius: 15px 15px 15px 15px;
         margin: auto 0;
         margin-top: 30px;

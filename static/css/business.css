@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+    
+
+body{    
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  background-attachment:fixed;
+  background-position: center top;
+  background-size: 100% 100%; 
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+
+header{
+    margin-top: -2px; /* Margem do topo*/
+    padding: 0.1rem 10%; /* Altura da borda*/
+    position: fixed; /* Fixar */
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    display:inline-flex;
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+    justify-content:left; /* Espaço entre os itens*/
+    background-color: transparent;
+    align-items: center;
+}
+nav {
+  display: flex;
+  align-items: center;
+}
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu li {
+    position: sticky;
+  }
+  .menu ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+  }
+  .menu li:hover > ul {
+    display: block;
+  }
+  .menu a {
+    display: block;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+  }
+  .menu a:hover {
+    background-color: white;
+    color: white;
+  }
+  
+  @media screen and (max-width: 750px) {
+	.container {
+		max-width: 70%;
+	}
+}
+.sidebar {
+ margin-left: 900px;
+ padding: 0.1rem 10%;
+}
+a:link, a:visited, a:active {
+  text-decoration: none;
+  }
+a:hover, img:hover{text-decoration: underline;
+  color: rgb(236, 236, 236);
+  font-size:100%;
+  background-image: linear-gradient(to top, #445974 0%, #537895 100%);
+  border-radius: 20px 20px 20px 20px;
+  }
+
+li{ 
+  float: left ;
+  display: block;
+  padding: 7px;
+  background-color: transparent;
+  text-align: justify;
+  } 
+
+h1,h2, h3, h5, a{
+    color:white;  
+}
+h5{
+    text-align:center; margin-top:10px; color:black;
+}
+p{
+  color: black;
+  
+}
+.container {
+    margin: auto;
+    border: solid 75px transparent;
+    margin-top:-40px;
+    
+}
+img{
+  border-radius: 30px 30px 30px 30px;
+}
+
+.card{
+    width: 260px;
+    height: 270px;
+    margin-left: 10px;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 15px 15px 15px 15px;
+    margin-top: 20px;
+    align-items: right;
+    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
+    
+}
+.card-container, .card-container:hover{
+    display: flex;
+    margin-left: 30px;
+    height: 370px;
+    
+    /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
+}
+.swal-modal {
+    background-color: white;
+    margin-top: -310px;
+    margin-right:-930px;
+    border: 10px solid white;
+    width: 270px;
+    height: 120px;
+  }
+  .swal-text{
+    color: black;
+  }
+  .pagination{
+    margin-left: 10px;
+  }

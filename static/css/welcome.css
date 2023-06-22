@@ -1,19 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
     
-* {
-	box-sizing: border-box;
-}
 
 body{    
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   background-attachment:fixed;
-  background-size: 100% 110%; 
-  background-image: url("{% static 'imgs/projects.jpeg' %}");
-  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 100%; 
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
 }
-
 header{
-  margin-top: -1px; /* Margem do topo*/
-  padding: 1.5rem 10%; /* Altura da borda*/
+  margin-top: -2px; /* Margem do topo*/
+  padding: 0.1rem 10%; /* Altura da borda*/
   position: fixed; /* Fixar */
   top:0; left: 0; right: 0; /* Topo, direita, esquerda */
   display:inline-flex;
@@ -22,17 +20,10 @@ header{
   background-color: transparent;
   align-items: center;
 }
-.col-md-4{
-      border: 5px solid black;
-      border-radius: 15px 15px 15px 15px;
-      margin: auto 0;
-      margin-top: 130px;
-      text-align: justify;
-      background: white;
-      align-items: center;
-      justify-content: center; /* opcional - para centralizar horizontalmente também */
-     /* definir a altura da div pai */
+img{
+    border-radius: 30px 30px 30px 30px;
   }
+
 .menu {
 list-style: none;
 margin: 0;
@@ -57,16 +48,15 @@ background-color: transparent;
 color: white;
 text-decoration: none;
 }
-.menu a:hover {
-background-color: white;
-color: blue;
-}
+
 .btn-group{
 margin-left: 10px;
 margin-top: -40px;
  /* Fixar */
 }
-
+.container{
+  border: 40px solid transparent;   
+}
 h5, h6, p{
 color: black;
 }
@@ -74,28 +64,10 @@ form{
 margin-left: 20px;
 margin-top: -10px;
 }
-.card{
-    width: 225px;
-    height: 300px;
-    margin-left: 20px;
-    background-color: white;
-    border: 1px solid transparent;
-    border-radius: 15px 15px 15px 15px;
-    margin-top:10px;
-}
-.card-container{
-  display: flex;
-  /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
-}
 .sidebar {
 margin-left: 1000px;
 padding: -0.2rem 10%;
 }
-.container{
-  margin: auto;
-  border: solid 7px transparent;
-  margin-top: 60px;
- }
 .swal-modal {
 background-color: white;
 margin-top: -310px;
@@ -107,10 +79,7 @@ height: 120px;
 .swal-text{
 color: black;
 }
-.menu-vertical{
-background: transparent;
-margin-left: 20px;
-display: flex;
-width:100px;
-height:300px;
+.pagination{
+
+margin-top: 90px;
 }

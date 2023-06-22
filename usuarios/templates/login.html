@@ -7,42 +7,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{% static 'css/homepage.css' %}" rel="stylesheet">
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
        
     <style>
-   body{    
-  background-attachment:fixed;
-  background-size: 100% 100%; 
-  background-image: url("{% static 'imgs/projects.jpeg' %}");
-  background-repeat: no-repeat;
-}
-      header{
-    margin-top: 1px; /* Margem do topo*/
-    padding: 1rem 10%; /* Altura da borda*/
-    position: fixed; /* Fixar */
-    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
-    display:inline-flex;
-    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
-    justify-content:left; /* Espaço entre os itens*/
-    background-color: transparent;
-    align-items: center;
-}
-
-   .col-md-4{
-        border: 5px solid transparent;
-        border-radius: 15px 15px 15px 15px;
-        margin: auto 0;
-        margin-top: 130px;
-        text-align: justify;
-        background: white;
-        align-items: center;
-        justify-content: center; /* opcional - para centralizar horizontalmente também */
-       /* definir a altura da div pai */
-    }
+   
+   
     form{
         color: black;
         text-align: justify;
+        
     }
     h2{
         color: black;
@@ -57,19 +31,31 @@
         margin-top: 7px;
         
     }
-   
+    .container{
+        margin-top: -10px;
+        }
+  
+    a{
+        color: white;
+    }
     </style>
     </head>
     <body>
-
-    <div class="container">
+   
+    {% block menu %}
     <header class="header">
-    <nav class="navbar" >
-        <ul>
-        <b><li><a href="{% url 'homepaginas' %}" style="color:white; margin-top:20px;">Home</a></li></b>
-        </ul> 
+    <nav class="navbar">
+    <a href="{% url 'homepaginas' %}">Home</a>
+        
     </nav>
+        
     </header>
+    
+    {% endblock menu %}
+    
+   
+    <div class="container">
+  
     <div class= "col-md-4 mx-auto">
     <div class="shadow p-5 mb-6 bg-white rounded">
     {% if request.user.is_authenticated %}
@@ -95,8 +81,8 @@
     <a href="{% url 'cadastro-usuario' %}" class="btn btn-primary btn-sm" style="margin-top:10px;">Cadastre-se</a>
     <br>
     <br>
-    <a href="{% url 'resetnewpassword' %}">Esqueci a senha</a>
-   
+    <a style="color:black;" href="{% url 'resetnewpassword' %}">Esqueci a senha</a>
+    <br>
     </form>
     </div>
     

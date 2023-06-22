@@ -6,110 +6,11 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static  'css/homepage.css' %}" rel="stylesheet">
+        <link href="{% static  'css/business.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
         <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
-    <style>
-    body{    
-  background-attachment:fixed;
-  background-size: 100% 100%; 
-  background-image: url("{% static 'imgs/business.jpeg' %}");
-  background-repeat: no-repeat;
-  }
-     header{
-    margin-top: -1px; /* Margem do topo*/
-    padding: 1rem 10%; /* Altura da borda*/
-    position: fixed; /* Fixar */
-    top:0; left: 0; right: 0; /* Topo, direita, esquerda */
-    display:inline-flex;
-    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
-    justify-content:left; /* Espaço entre os itens*/
-    background-color: transparent;
-    align-items: center;
-}
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  float: right;
-}
-.menu li {
-  position: relative;
-}
-.menu ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;}
-
-.menu li:hover > ul {
-  display: block;
- 
-}
-.menu a {
-  display: block;
-  padding: 9px;
-  background-color: transparent;
-  color: white;
-  text-decoration: none;
-}
-.menu a:hover {
-  background-color: white;
-  color: blue;
-}
-
-h5, h6, p{
-  color: black;
-}
-
-
-@media screen and (max-width: 750px) {
-	.container {
-		max-width: 70%;
-	}
-}
-.sidebar {
- margin-left: 900px;
- padding: 0.1rem 10%;
-}
-.container {
-    margin: auto;
-    border: solid 75px transparent;
-    margin-top:-40px;
-}
-.card{
-      width: 260px;
-      height: 340px;
-      margin-left: 20px;
-      background-color: white;
-      border: 5px solid transparent;
-      border-radius: 15px 15px 15px 15px;
-      margin-top: 20px;
-}
-.card-container{
-    display: flex;
-    margin-left: 20px;
-    /* O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
-}
-form{
-  margin-left: 50px;
-  margin-top:-50px;
-}
-.swal-modal {
-  background-color: white;
-  margin-top: -220px;
-  margin-right:-930px;
-  border: 10px solid white;
-  width: 270px;
-  height: 120px;
-}
-.swal-text{
-  color: black;
-}
-
-</style>
- 
+     
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load("current", {packages:['corechart']});

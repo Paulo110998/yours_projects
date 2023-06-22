@@ -34,8 +34,27 @@ SECRET_KEY = 'django-insecure-^!apz-vgmb8b64t=7f=c2u3omo9o6(kbhcd%nb#53ene(wchm0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
-#ALLOWED_HOSTS = ['https://yoursprojects-pa.herokuapp.com/'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
+#ALLOWED_HOSTS = ['https://yoursprojects-pa.herokuapp.com/static'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
 #ALLOWED_HOSTS = ['.herokuapp.com']
+
+
+# Autenticação back-end - Login Social
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '17810887911-7g1icln2u0a09g6bbeu2ca5i6cs4dgjb.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
 
 # Application definition
 INSTALLED_APPS = [
@@ -51,7 +70,17 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'projectos.apps.ProjectosConfig',
     'business.apps.BusinessConfig',
+    # Login social
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    
 ]
+
+
+
 
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
@@ -79,6 +108,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -143,11 +173,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static') # Usando em produção
 
-STATIC_URL = '/static/' # Usando durando o desenvolvimento
+#STATIC_ROOT = 'https://yoursprojects-pa.herokuapp.com/static'
 
-STATICFILES_DIRS = (  # Usando durante o desenvolvimento 
-  os.path.join(BASE_DIR, 'static'),
-)
+STATIC_URL = "static/" # Usando durando o desenvolvimento
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    
+]
 
 STORAGES = {
     # ...

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 #importando o settings e static para a vizualização de arquivos de uploads
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,12 +26,13 @@ urlpatterns = [
     path('', include('paginas.urls')),
     path('', include('usuarios.urls')),
     path('', include('projectos.urls')),
-    path('',include('business.urls')),
+    path('', include('business.urls')),
+    #path('accounts/', include('allauth.urls')),
     
     
-]
+    
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Criando um if para vizualizar link url do arquivo de upload no template (em listas)
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Se DEBUG = TRUE 

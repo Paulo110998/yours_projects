@@ -5,26 +5,15 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
         <script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script> 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
-    
-* {
-	box-sizing: border-box;
-}
 
-body{    
-  background-attachment:fixed;
-  background-size: 100% 100%; 
-  background-image: url("{% static 'imgs/projects.jpeg' %}");
-  background-repeat: no-repeat;
-}
 header{
-    margin-top: -1px; /* Margem do topo*/
-    padding: 1.5rem 10%; /* Altura da borda*/
+    margin-top: -2px; /* Margem do topo*/
+    padding: 0.1rem 10%; /* Altura da borda*/
     position: fixed; /* Fixar */
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     display:inline-flex;
@@ -33,17 +22,10 @@ header{
     background-color: transparent;
     align-items: center;
 }
-.col-md-4{
-        border: 5px solid black;
-        border-radius: 15px 15px 15px 15px;
-        margin: auto 0;
-        margin-top: 130px;
-        text-align: justify;
-        background: white;
-        align-items: center;
-        justify-content: center; /* opcional - para centralizar horizontalmente também */
-       /* definir a altura da div pai */
+ img{
+      border-radius: 30px 30px 30px 30px;
     }
+
 .menu {
   list-style: none;
   margin: 0;
@@ -68,16 +50,15 @@ header{
   color: white;
   text-decoration: none;
 }
-.menu a:hover {
-  background-color: white;
-  color: blue;
-}
+
 .btn-group{
   margin-left: 10px;
   margin-top: -40px;
    /* Fixar */
 }
-
+.container{
+    border: 40px solid transparent;   
+}
 h5, h6, p{
   color: black;
 }
@@ -85,28 +66,10 @@ form{
   margin-left: 20px;
   margin-top: -10px;
 }
-.card{
-      width: 225px;
-      height: 300px;
-      margin-left: 20px;
-      background-color: white;
-      border: 1px solid transparent;
-      border-radius: 15px 15px 15px 15px;
-      margin-top:10px;
-}
-.card-container{
-    display: flex;
-    /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
-}
 .sidebar {
  margin-left: 1000px;
  padding: -0.2rem 10%;
 }
-.container{
-    margin: auto;
-    border: solid 7px transparent;
-    margin-top: 60px;
-   }
 .swal-modal {
   background-color: white;
   margin-top: -310px;
@@ -118,14 +81,10 @@ form{
 .swal-text{
   color: black;
 }
-.menu-vertical{
-  background: transparent;
-  margin-left: 20px;
-  display: flex;
-  width:100px;
-  height:300px;
+.pagination{
+  
+  margin-top: 90px;
 }
-
 </style>
     </head>
     <body>
@@ -174,7 +133,6 @@ form{
 </svg></h4>
   <br>
 
- 
 <ul style="margin-top: 10px; margin-left:0px;">
   <div role="group" aria-label="Basic example">
   <a class="btn btn-light" href="{% url 'criar-projeto' %}">Criar Projeto  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-3px;" width="20" height="20" fill="currentColor" class="bi bi-rocket" viewBox="0 0 16 16">
@@ -194,7 +152,7 @@ form{
 
   </div>
 </ul>
-
+<br>
 
 <form action="?" method="GET" enctype="multipart/form-data">
 
@@ -204,7 +162,7 @@ form{
     <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-5px;">Buscar</button>
     <a href="{% url 'welcome' %}"  class="btn btn-light btn-sm" style="margin-top:-4px;margin-left:6px;">Limpar</a>
     
-    <a href="{% url 'export_projetos' %}" style="text-align:left; color:sky; margin-top: 6px;" download style="color:black;">Exportar Projetos <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-top: -10px;" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+    <a href="{% url 'export_projetos' %}" style="text-align:left; color:white; margin-top: 6px;" download style="color:black;">Exportar Projetos <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-top: -10px;" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
 </svg></a>
     <!--<input name="myfile"  type="file" value="">
@@ -225,7 +183,7 @@ form{
         <p style="margin-left:10px">Manager: {{projectos.criador}}</p>
         <a style="margin-left:10px" href="{% url 'editar-projeto' projectos.pk %}">Editar</a>
         <a style="margin-left:10px" href="{% url 'deletar-projeto' projectos.pk %}">Deletar</a>
-        <p style="margin-left:10px; margin-top:10px;"> <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="15" height="15" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+        <p style="margin-left:5px; margin-top:10px; text-align:left;"><svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;" width="15" height="15" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
       <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
       <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
       </svg> {{projectos.data_registro}}</p>
@@ -237,8 +195,11 @@ form{
 </li>
 {% endfor %}
 
-<!--Se eu tiver uma página anterior -->
-<nav aria-label="Page navigation example" style="margin-right:5px; margin-left: 10px;">
+</div>
+</div>
+    
+ <!--Se eu tiver uma página anterior -->
+<nav aria-label="Page navigation example" >
     <ul class="pagination">
     {% if page_obj.has_previous %}
       <li class="page-item"><a class="btn btn-light"  class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
@@ -251,13 +212,14 @@ form{
       
       </a></li>
       </ul>
+    {% endif %}
 </nav>
 </div>
-    {% endif %}
- 
+</div>
 {% endif %}
 
-</div>
+
+
 </body>
 
 <script>

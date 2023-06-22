@@ -179,7 +179,7 @@ def get_pdf(request):
     
     # Crie o objeto PDF
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="chart.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="customer_report.pdf"'
 
     # Crie o documento PDF
     #pdf = canvas.Canvas(response) 
