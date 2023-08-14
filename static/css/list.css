@@ -1,14 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
     
 
-body{    
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-  background-attachment:fixed;
-  background-position: center top;
-  background-size: 100% 100%; 
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-}
+
 
 header{
   margin-top: -2px; /* Margem do topo*/
@@ -16,7 +9,7 @@ header{
   position: fixed; /* Fixar */
   top:0; left: 0; right: 0; /* Topo, direita, esquerda */
   display:inline-flex;
-  box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.2);
   justify-content:left; /* Espaço entre os itens*/
   background-color: transparent;
   align-items: center;
@@ -27,73 +20,7 @@ nav {
   align-items: center;
 }
   
-.hamburger-menu {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-  
-.line {
-  width: 25px;
-  height: 3px;
-  background-color: rgb(255, 252, 252);
-  margin: 5px;
-}
-  
-.menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  
-}
-  
-.menu li {
-  margin-right: 20px;
-    
-}
-  
-.menu li:last-child {
-  margin-right: 0;
-}
-  
-  @media (max-width: 768px) {
-    .hamburger-menu {
-      display: flex;
-    }
-    
-    .menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-      padding: 20px;
-    }
-    
-    .menu li {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    
-    .menu li:last-child {
-      margin-bottom: 0;
-      
-    }
-    
-    .menu li a:link {
-      color: white;
-      font-size: 18px;
-      
-    }
-    
-    .menu.active {
-      display: flex;
-      
-    }
-  }
+
 a:link, a:visited, a:active {
   text-decoration: none;
   }
@@ -119,61 +46,13 @@ h1,h2, h3, h5, a{
  a{
     color: white;
 }
-.sidebar {
-  margin-left: 950px;
-  padding: 0.1rem 10%;
- }
-.menu {
-   list-style: none;
-   margin: 0;
-   padding: 0;
- }
- .menu li {
-   position: sticky;
- }
- .menu ul{
-   position: absolute;
-   top: 100%;
-   left: 0;
-   display: none;
- }
- .menu li:hover > ul {
-   display: block;
- }
- .menu a {
-   display: block;
-   padding: 10px;
-   background-color: transparent;
-   color: white;
-   text-decoration: none;
- }
- .menu a:hover {
-   background-color: white;
-   color: white;
- }
-.list-group{
-   border: 20px solid transparent;
-   display: flex;
-   justify-content: justify;
-   align-items: justify;
-   list-style: none;
-   margin-top: -11px;
- }
- @media screen and (max-width: 750px) {
-     .list-group {
-         max-width: 100%;
-     }
- }
- .list-group-item{
-   border: 3px solid white;
-   border-radius: 15px 15px 15px 15px;
- }
+
 .container {
      /* container responsivo abaixo*/
      display: flex;
      top:0; left: 0; right: 0; /* Topo, direita, esquerda */
      display:inline-flex;
-     border: solid 3px transparent;
+     border: solid 20px transparent;
  }
  @media screen and (max-width: 750px) {
      .container {

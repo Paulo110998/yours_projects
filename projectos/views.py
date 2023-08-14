@@ -1,4 +1,3 @@
-
 # Views de Crud e Lis
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -11,13 +10,14 @@ from django.shortcuts import get_object_or_404
 # Importando models dos projectos
 from .models import Projetos, List
 from django.urls import reverse_lazy
-
 from django.http import HttpResponse
 from django.contrib import messages
-
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from django.utils.encoding import smart_str
+# view para checkbox no html
+from django.shortcuts import render
+from .forms import Checkbox
 
 # Create your views here.
 ########## CREATE ##############
@@ -61,12 +61,11 @@ class ListCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = List
-    fields = ['titulo', 'descriçao', 'prioridade', 'projetos', 'criador']
+    fields = ['titulo', 'prioridade', 'projetos', 'criador']
     template_name= "criarcards.html"
     success_url = reverse_lazy('listar-list') 
     
-
-
+    
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         url = super().form_valid(form)
@@ -107,7 +106,7 @@ class ListUpdate(UpdateView, GroupRequiredMixin, LoginRequiredMixin):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = List
-    fields = ['titulo', 'descriçao', 'prioridade', 'projetos']
+    fields = ['titulo', 'prioridade', 'projetos']
     template_name = 'updatecard.html'
     success_url = reverse_lazy('listar-list')
 
@@ -172,7 +171,7 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     models = Projetos
     template_name = 'welcome.html'
-    paginate_by = 4
+    paginate_by = 3
     ordering = ['titulo'] # Ordenando a listagem de objetos
     
     
@@ -192,11 +191,11 @@ class ProjetosList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 
 def export_projetos(request):
-    projetos = Projetos.objects.all().order_by('titulo')
+    projetos = Projetos.objects.all().order_by('titulo') # Buscando dados dos objetos no banco e filtrando por "Título"
 
     # Criando o PDF
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="projetos.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="Your_Projects.pdf"'
 
     # Criando o documento, usando o tamanho 'A4
     pdf = canvas.Canvas(response, pagesize=A4)
@@ -247,7 +246,7 @@ class ListList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = List
     template_name = 'cards.html'
-    paginate_by = 5
+    paginate_by = 4
     ordering = ['titulo'] # Ordenando a listagem por 'titulo'
 
     
@@ -267,7 +266,7 @@ def export_list(request):
 
     # Criando o PDF
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="list.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="Your_List.pdf"'
 
     # Criando o documento, usando o tamanho A4
     pdf = canvas.Canvas(response, pagesize=A4)
@@ -317,6 +316,17 @@ def export_list(request):
     pdf.save()
     return response
 
+# View para checkbox no html
+def minha_visualizacao(request):
+    if request.method == 'POST':
+        form = Checkbox(request.POST)
+        if form.is_valid():
+            metodo_selecionado = form.cleaned_data['metodo']
+            # Faça algo com o método selecionado, como redirecionar para outra página ou processar os dados
+            return render(request, 'list_update.html', {'metodo_selecionado': metodo_selecionado})
+    else:
+        form = Checkbox()
+    return render(request, 'list_update.html', {'form': form})
 
 
 

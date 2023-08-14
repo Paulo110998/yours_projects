@@ -1,0 +1,170 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static  'css/list.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{%  static 'imgs/projects.jpeg' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
+    <style>
+.swal-modal {
+    background-color: white;
+    margin-top: -310px;
+    margin-right:-930px;
+    border: 10px solid white;
+    width: 270px;
+    height: 120px;
+  }
+  .swal-text{
+    color: black;
+  }
+
+</style>
+    </head>
+    <body>
+    {% if request.user.is_authenticated %}
+    <div class="container">
+    <header class="header">
+    <b><a href="{% url 'welcome' %}"  style="color:white;margin-top:x;" >Início</a></b>
+  <div class="sidebar">
+    <ul class="menu" >
+    {% if user.perfil.foto_perfil %}
+    <li><a style="color:black; " href="#"><img src="{{ user.perfil.foto_perfil.url }}" alt="retrato" width="50" height="50"></a>
+    {% else %}
+    <li><a href="" style="color:white;" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg></a>
+    {% endif %}
+    <ul>
+      <li><a href="{% url 'user_list' %}">Users</a></li>
+      <li><a href="{% url 'resetnewpassword' %}">Alterar Senha</a></li>
+      <li><a href="{% url 'perfil-update' %}">Perfil</a></li>
+      <li><a href="{% url 'logout' %}">Sair</a></li>
+    </ul>
+ </ul>
+  </header>
+  </div>
+  <br>
+  <br>
+</div>
+<h3 style="text-align:center; color:white; margin-top:100px;" href="#" style="color:white; ">Your list <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-10px;" width="30" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></h3>
+   <ul style="margin-top: 80px;">
+    <div role="group" aria-label="Basic example" style=" margin-left:10px;">
+    <a class="btn btn-light " href="{% url 'criar-list' %}">Nova Lista <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+</svg></a>
+    <!--<a class="btn btn-light" href="#">Adicionar Membros</a>-->
+</div>
+<br>
+
+<form action="?" method="GET" enctype="multipart/form-data">
+{% csrf_token %}
+    <input style="text-align:center; margin-left:10px;" type="text" name="titulo" id ="" value="{{request.GET.titulo}}" , placeholder="Pesquisar">
+    <button type="submit" class=" btn btn-primary btn-sm" style="margin-top:-5px;">Buscar</button>
+    <a href="{% url 'listar-list' %}"  class="btn btn-light btn-sm"style="margin-top:-5px;">Limpar</a>
+    <a href="{% url 'export_list' %}" style="text-align:left; color:white; margin-top: 6px;" download style="color:black;">Exportar Listas<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-top: -10px;" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
+</svg></a>
+    <!--<input name="myfile"  type="file" value="">
+    <button type="submit" class=" btn btn-primary btn-sm-lg">Upload</button>-->
+</form>
+
+</ul>
+
+{% csrf_token %}
+{% for projectos in object_list %}
+<a href="{% url 'editar-list' projectos.pk %}"  style="color:black;">
+<div>
+<ul class="list-group " class="border border-primary"  >
+  <li class="list-group-item">
+  <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+  <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+ </svg>
+  {{projectos.titulo}} -
+
+   {{projectos.descriçao}} | Prioridade: {{projectos.prioridade}}  
+
+ | <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg> {{projectos.criador}}
+ | Projeto: {{projectos.projetos}}  
+<!--<input type="checkbox" name="" value="">-->
+|  <a href="{% url 'deletar-list' projectos.pk %}"  class="btn btn-primary btn-sm" ><svg xmlns="http://www.w3.org/2000/svg" style="color:white;"  width="25" height="25" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
+  <path d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
+</svg></a>
+
+
+
+
+
+</li>
+     
+{% empty %}
+    <li style="margin-left:50px; color:white;">Nenhuma lista registrada..</li>
+</ul>
+{% endfor %}
+</div></a>
+
+<!--Se eu tiver uma página anterior -->
+<nav aria-label="Page navigation example" style="margin-top:-10px; margin-left:30px; text-align:center;">
+    <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="btn btn-light" class="page-link" aria-label="Previous" href="?page{{page_obj.previous_page_number}}">
+      <span aria-hidden="true">&laquo;</span>
+      </a></li>
+      <li class="page-item" ><a class="btn btn-light" class="page-link" href="?page=1">1</a></li>
+      <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page=2">2</a></li>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+    
+       <li class="page-item"><a class="btn btn-light" class="page-link"  href="?page={{page_obj.next_page_number}}"> Next
+      </a></li>
+  </ul>
+</nav>
+{% endif %}
+</div>
+{% endif %}
+</body>
+</html>
+
+<script>
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.menu');
+    hamburgerMenu.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    });
+
+
+</script>
+
+<!-- Alerta java script ao salvar os dados -->
+{% if messages %}
+    {% for message in messages %}
+        <script type="text/javascript">
+          swal("{{ message }}",{
+          buttons: false,});
+          
+          setTimeout(function() {
+          swal.close(); //O SweetAlert torna as mensagens pop-up fáceis e bonitas.
+          
+        }, 1000); // Tempo em milissegundos (1000 = 1 segundo)
+        
+       
+        </script>
+    {% endfor %}
+{% endif %}
+
+</html>

@@ -34,7 +34,7 @@ class List(models.Model):
     projetos = models.ForeignKey(Projetos, on_delete=models.CASCADE ,verbose_name="Adicionar Projeto")
 
     def __str__(self):
-        return f'{self.titulo} - {self.descriçao} - {self.prioridade} - {self.projetos}'
+        return f'{self.titulo} - {self.prioridade} - {self.criador}'
     
     
 

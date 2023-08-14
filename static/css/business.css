@@ -67,12 +67,7 @@ nav {
 a:link, a:visited, a:active {
   text-decoration: none;
   }
-a:hover, img:hover{text-decoration: underline;
-  color: rgb(236, 236, 236);
-  font-size:100%;
-  background-image: linear-gradient(to top, #445974 0%, #537895 100%);
-  border-radius: 20px 20px 20px 20px;
-  }
+
 
 li{ 
   float: left ;
@@ -114,21 +109,8 @@ img{
     top:0; left: 0; right: 0; /* Topo, direita, esquerda */
     
 }
-.card-container, .card-container:hover{
-    display: flex;
-    margin-left: 30px;
-    height: 370px;
-    
-    /*O display: flex; cria um contêiner flexível, enquanto justify-content: center; e align-items: center; centralizam o contêiner na página tanto horizontal quanto verticalmente. height: 100vh; define a altura do contêiner como a altura da janela de visualização.*/
-}
-.swal-modal {
-    background-color: white;
-    margin-top: -310px;
-    margin-right:-930px;
-    border: 10px solid white;
-    width: 270px;
-    height: 120px;
-  }
+
+
   .swal-text{
     color: black;
   }
