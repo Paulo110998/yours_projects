@@ -41,6 +41,8 @@ class UsuarioCreate(CreateView):
         Perfil.objects.create(usuario=self.object)
         return url
 
+def cadastro_concluído(request):
+    return render(request, 'cadastro_concluido.html')
 
 def user_list(request):
     users = User.objects.all()

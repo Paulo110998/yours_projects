@@ -5,7 +5,7 @@ from re import template
 from django.conf.urls import include
 from django.urls import path
 from django.contrib.auth import views as auth_views 
-from .views import  UsuarioCreate, PerfilUpdate, user_list
+from .views import  UsuarioCreate, PerfilUpdate, user_list, cadastro_concluído
 
 
 
@@ -15,7 +15,7 @@ urlpatterns = [
     
     path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name="logout"),
     path('cadastro_user/', UsuarioCreate.as_view(), name="cadastro-usuario"),
-    path('cadastro_concluido/', UsuarioCreate.as_view(template_name="cadastro_concluido.html"), name="cadastro-concluido" ),
+    path('cadastro_concluido/', cadastro_concluído, name="cadastro-concluido" ),
     path("update/perfil", PerfilUpdate.as_view(), name="perfil-update"),
     
     path('users_list', user_list, name='user_list'),
