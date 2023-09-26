@@ -34,23 +34,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True" #Serve para as mensagens de erros 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 
-# Autenticação back-end - Login Social
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
-)
 
-SITE_ID = 1
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '17810887911-7g1icln2u0a09g6bbeu2ca5i6cs4dgjb.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-    }
-}
 
 # Application definition
 INSTALLED_APPS = [
@@ -66,13 +50,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'projectos.apps.ProjectosConfig',
     'business.apps.BusinessConfig',
-    # Login social
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    
+        
 ]
 
 
@@ -192,7 +170,7 @@ STATICFILES_DIRS = [
 ]
 """
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 
