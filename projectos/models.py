@@ -27,7 +27,6 @@ PRIORIDADE_CARDS = (
 
 class List(models.Model):
     titulo = models.CharField(max_length=50, null=True, verbose_name="Título")
-    descriçao = models.CharField(max_length=100, null=True, verbose_name="Descrição")
     prioridade = models.CharField(max_length=5, choices=PRIORIDADE_CARDS , verbose_name = 'Prioridade')
     criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True ,verbose_name="Criador")
     data_registro = models.DateTimeField(auto_now_add=True)

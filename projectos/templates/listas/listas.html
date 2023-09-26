@@ -112,7 +112,7 @@ height: 130px;
 {% csrf_token %}
 {% for projectos in object_list %}
 <a href="{% url 'editar-list' projectos.pk %}"  style="color:black;">
-<div>
+<div class="lista">
 <ul class="list-group " class="border border-primary"  >
   <li class="list-group-item">
   <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-2px;" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">

@@ -2,7 +2,7 @@
 from django.urls import path
 from projectos.models import Projetos, List, User
 
-from .views import ProjetosCreate, ProjetosUpdate, ProjetosDelete, ProjetosList
+from .views import ProjetosCreate, ProjetosUpdate, ProjetosDelete, ProjetosList, ProjetosDetail
 from . views import ListCreate, ListUpdate, ListDelete, ListList, export_projetos
 from usuarios.models import User
 from . import views 
@@ -17,6 +17,8 @@ urlpatterns = [
     path('deletar_projeto/<int:pk>/', ProjetosDelete.as_view(queryset=Projetos.objects.all()), name='deletar-projeto'),
     # List Projeto
     path('welcome_user', ProjetosList.as_view(queryset=Projetos.objects.all()), name='welcome'),
+    # Projetos Detail
+    path('projeto/<int:pk>/', ProjetosDetail.as_view(), name='projeto-detalhe'),
     # Exportando Projeto
     path('export_projects', views.export_projetos, name="export_projetos"),
 

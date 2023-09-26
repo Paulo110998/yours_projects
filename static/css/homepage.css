@@ -79,14 +79,13 @@ nav {
       
     }
   }
-a:link, a:visited, a:active {
+a:link, a:visited, a:active, a , .card-container:hover ,.lista{
   text-decoration: none;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
   }
-a:hover{text-decoration: underline;
+a:hover, .card-container:hover, .lista:hover{text-decoration: underline;
+  transform: translateX(8px);
   color: rgb(236, 236, 236);
-  font-size:100%;
-  background-image: linear-gradient(to top, #445974 0%, #537895 100%);
   border-radius: 20px 20px 20px 20px;
   
   }

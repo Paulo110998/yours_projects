@@ -51,8 +51,7 @@ nav {
     text-decoration: none;
   }
   .menu a:hover {
-    background-color: white;
-    color: white;
+      color: white;
   }
   
   @media screen and (max-width: 750px) {

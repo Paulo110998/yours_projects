@@ -11,15 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from django.core.management.utils import get_random_secret_key
 from pathlib import Path
+import os
+import sys
+import dj_database_url
+
 from telnetlib import LOGOUT
-import os 
 
-#import django_heroku
-
-# Usando PostgreeSQL com Heroku
-#DATABASES = DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
-#django_heroku.settings(locals())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,10 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
+DEBUG = os.getenv("DEBUG", "False") == "True" #Serve para as mensagens de erros apareçam em fase de desenvolvimento, ao fazer deploy, temos que retirar.
 
-#ALLOWED_HOSTS = ['https://yoursprojects-pa.herokuapp.com/static'] # Ao fazer deploy, temos que especificar o domínio da aplicação dentro do ALLOWED_HOSTS
-#ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 
 # Autenticação back-end - Login Social
@@ -120,7 +116,23 @@ WSGI_APPLICATION = 'yoursprojects.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
+if DEVELOPMENT_MODE is True:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv("DATABASE_URL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -132,7 +144,7 @@ DATABASES = {
 
     }
 }
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -171,27 +183,18 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # Usando em produção
-
-#STATIC_ROOT = 'https://yoursprojects-pa.herokuapp.com/static'
-
+"""
 STATIC_URL = "static/" # Usando durando o desenvolvimento
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     
 ]
+"""
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-STORAGES = {
-    # ...
-    "staticfiles": {"BACKEND": "yours_projects.storage.S3Storage"}
-}
 
-#STORAGES = {     
- #   "staticfiles": {
-  #      "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-   # },
-#}
 
 # ARQUIVOS DE MEDIA/UPLOAD
 

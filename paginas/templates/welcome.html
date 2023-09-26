@@ -30,6 +30,7 @@ height: 130px;
       <div class="line"></div>
       <div class="line"></div>
     </div>
+    
     <div class="menu">
     <b><li style="color:white;">Your Projects</li></b>
     {% if user.perfil.foto_perfil %}
@@ -101,7 +102,7 @@ height: 130px;
 {% csrf_token %}
 {% for projectos in object_list %}
 <li>
-<a href="{% url 'editar-projeto' projectos.pk %}">
+<a href="{% url 'projeto-detalhe' projectos.pk %}">
 <div class="card-container" >
     <div class="card" >
         <h5 style="text-align:center; margin-top:10px; color: black; ">{{projectos.titulo}}</h5>
