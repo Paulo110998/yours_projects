@@ -25,7 +25,7 @@ class UsuarioCreate(CreateView):
     template_name = 'cadastro_user.html' # Template html
     #classe que criará o registro
     form_class = Usuarioform
-    success_url = reverse_lazy('cadastro-concluido')
+    success_url = reverse_lazy('login')
     
     # Validando o cadastro e redirecionando o usuário ao um grupo de acesso
     def  form_valid(self, form):

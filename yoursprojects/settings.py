@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'yoursprojects.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-
+"""
 if DEVELOPMENT_MODE is True:
     DATABASES = {
         "default": {
@@ -122,7 +122,7 @@ DATABASES = {
 
     }
 }
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
