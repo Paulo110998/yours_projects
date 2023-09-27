@@ -55,7 +55,6 @@ INSTALLED_APPS = [
 
 
 
-
 # MIDDLEWARE = Mediador entre o cliente e o servidor - EX: Browser(cliente) -> Middleware <- Servidor
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -170,7 +169,7 @@ STATICFILES_DIRS = [
 ]
 """
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 

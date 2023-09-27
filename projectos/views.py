@@ -233,7 +233,7 @@ class ListDelete(DeleteView, LoginRequiredMixin, GroupRequiredMixin):
     redirect_field_name = 'login'
     group_required = [u'Managers', u'Assistants']
     model = List
-    template_name = "excluircards.html"
+    template_name = "listas/list_delete.html"
     success_url = reverse_lazy('listar-list')
 
     def get_context_data(self, *args , **kwargs):
