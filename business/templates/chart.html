@@ -18,12 +18,13 @@
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
-        ["Element", "Ticket Máximo", { role: "style" } ];
+        ["Element", "Ticket Máximo", { role: "style" } ],
         
         //["Total Prospect", 1 , "Blue"],
         {% for ticket, contagem in contagens.items %}
         ["Nº Clientes: {{contagem}} ", {{ticket}}, "blue"],
         {% endfor %}
+        
         ]);
 
       var view = new google.visualization.DataView(data);
