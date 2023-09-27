@@ -54,10 +54,13 @@ nav {
       color: white;
   }
   
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 768px) {
 	.container {
 		max-width: 70%;
 	}
+  .columnchart_material{
+    max-width: 90%;
+  }
 }
 .sidebar {
  margin-left: 900px;
