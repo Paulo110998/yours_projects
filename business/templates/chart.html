@@ -1,5 +1,7 @@
 {% load static %}
 {% if request.user.is_authenticated %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -392,15 +394,15 @@
                         <a href="{% url 'your-business' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-project fa-sm text-white-50"></i>Voltar </a>
                                                        
-                        <a href="" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Exportar gráfico (PDF)</a>
+                        <a  onclick="downloadChart()" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Exportar gráfico</a>
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
-                        <div class="col-xl-8 col-lg-7">
+                    <div class="row justify-content-center" >
+                        <div class="col-xl-8 col-lg-10">
                             <!-- Bar Chart -->
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4  ">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-dark">Clientes em prospecção</h6>
                                 </div>
@@ -415,22 +417,7 @@
 
                         </div>
                         
-                        <!-- Donut Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-dark">Detalhes</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <hr>
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
 
                 </div>
@@ -497,42 +484,50 @@
     <!-- Page level plugins -->
     <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
     <!-- Page level custom scripts -->
-    <script>
+  <script>
     var ctx = document.getElementById("myBarChart");
     var myBarChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["January", "February", "March", "April", "May", "June"],
+        labels: [{% for cliente in clientes %}"{{ cliente }}", {% endfor %}],
         datasets: [{
-          label: "Tickets",
+          label: "Clientes",
           backgroundColor: "#555d50",
           hoverBackgroundColor: "#808080",
           borderColor: "#4e73df",
           // Use valores dinâmicos de 'ticket_values' aqui
-          data: {{ ticket_values|safe }},
+          data: [
+            {% for value in ticket_values %}
+              {{ value|floatformat }},
+            {% endfor %}
+          ],
         }],
       },
     });
-  </script>
 
-  <script>
-  var ctx = document.getElementById("myPieChart");
-  var myPieChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["Direct", "Referral", "Social"],
-    datasets: [{
-      data: {{ ticket_values|safe }},
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  });
- 
-    
-  </script>
+
+     function downloadChart() {
+    // Use html2canvas para converter o gráfico em uma imagem
+    html2canvas(document.getElementById("myBarChart")).then(function(canvas) {
+      // Crie um link de download
+      var link = document.createElement('a');
+      link.href = canvas.toDataURL("image/png");
+      link.download = 'chart.png';
+      // Adicione o link ao corpo do documento e clique automaticamente para iniciar o download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+</script>
+
+
+
 
      
 

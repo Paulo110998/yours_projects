@@ -182,8 +182,9 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 def chart(request):
     negocios = Negocio.objects.all()
-    ticket_values = [negocio.ticket for negocio in negocios] 
-    return render(request, 'chart.html', {'ticket_values': ticket_values})
+    clientes = [negocio.cliente for negocio in negocios]
+    ticket_values = [float(negocio.ticket) for negocio in negocios]
+    return render(request, 'chart.html', {'clientes': clientes, 'ticket_values': ticket_values})
 
 
 
