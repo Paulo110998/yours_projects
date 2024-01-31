@@ -8,9 +8,7 @@ from .models import Negocio, Pipeline
 from django.contrib import messages
 from django.shortcuts import render
 from django.db.models import Sum
-import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use('agg')
+
 import threading
 from io import BytesIO
 import base64
