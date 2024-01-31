@@ -18,7 +18,6 @@ class Negocio(models.Model):
         return f'{self.cliente} - {self.descriçao} - {self.ticket} - {self.business_partner} - {self.data_registro}'
 
 
-
 CONTATO = (
     ('Feito', 'Contato Feito'),
     ('Pendente', 'Contato Pedente'),

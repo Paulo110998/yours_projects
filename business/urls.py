@@ -11,8 +11,9 @@ urlpatterns = [
     path('customer_report', views.Negocios, name="customer-report"),
     #path('chart_sales', Negociochart.as_view(), name='sales'),
     
-    path('chart_sales', views.quantidade_negocio, name="sales"),
-    path('chart_export', views.get_pdf, name="export"),
+    #path('chart_sales', views.quantidade_negocio, name="sales"),
+    path('grafico', views.chart, name='grafico'),
+    path('chart_export', views.get_pdf, name="export-clientes"),
 
     path('create_pipeline', CreatePipeline.as_view(), name='create-pipeline'),
     path('update_pipeline/<int:pk>/', UpdatePipeline.as_view(queryset=Pipeline.objects.all()), name='update-pipeline'),

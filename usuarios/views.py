@@ -18,6 +18,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 
+from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.contrib import messages
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+
+
 
 # Create your views here.
 # CREATEVIEW PARA CADASTRO DE USUÁRIO
@@ -45,8 +52,58 @@ def cadastro_concluído(request):
     return render(request, 'cadastro_concluido.html')
 
 def user_list(request):
-    users = User.objects.all()
+    users = User.objects.all()    
     return render(request,'users_list.html', {'users': users})
+
+def export_users(request):
+    users = User.objects.all().order_by('username') # Buscando dados dos objetos no banco e filtrando por "Título"
+    
+    # Criando o PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Users.pdf"'
+
+    # Criando o documento, usando o tamanho 'A4
+    pdf = canvas.Canvas(response, pagesize=A4)
+
+    # Título do Doc
+    title = "RELATÓRIO DE USUÁRIOS"
+
+    username = "Usuário: "
+    email = "E-mail:"
+    cadastro = "Entrou:"
+    log = "Último login:"
+    
+    
+
+    # Buscando os campos que eu quero adicionar ao pdf
+    for user in users:
+        campo1 = user.username
+        campo2 = user.email
+        campo3 = user.date_joined.strftime("%d/%m/%Y %H:%M:%S") if user.date_joined else "N/A"
+        campo4 = user.last_login.strftime("%d/%m/%Y %H:%M:%S") if user.last_login else "N/A"
+  
+    
+        # Adicionando informações ao PDF
+        pdf.drawString(240, 800, title)
+
+        # Subtítulos
+        pdf.drawString(100, 750, username)
+        pdf.drawString(100, 700, email)
+        pdf.drawString(100, 650, cadastro)
+        pdf.drawString(100, 500, log)
+
+        # Dados
+        pdf.drawString(150, 750, campo1)
+        pdf.drawString(140, 700, campo2)
+        pdf.drawString(140, 650, campo3)    
+        pdf.drawString(170, 500, campo4)
+
+        # Concluir pdf
+        pdf.showPage()
+
+    # Salvar
+    pdf.save()
+    return response
 
 #@login_required
 #def grupo_users(request):

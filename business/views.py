@@ -7,6 +7,13 @@ from django.urls import reverse_lazy
 from .models import Negocio, Pipeline
 from django.contrib import messages
 from django.shortcuts import render
+from django.db.models import Sum
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('agg')
+import threading
+from io import BytesIO
+import base64
 
 # EXTRAINDO PDF COM REPORTLAB
 import io
@@ -149,7 +156,7 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = [u'Managers', u'Assistants']
     model = Negocio
     template_name = 'business.html'
-    paginate_by = 4
+    paginate_by = 7
     ordering = ['cliente']
     
     
@@ -165,12 +172,22 @@ class NegocioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 # values_list() -> é uma otimização para obter dados específicos do banco de dados
 # flat=true -> Apenas retornará valores únicos, em vez de tuplas.
 # distinct() ->  Garante que os resultados sejam filtrados e retornados corretamente, remove quaisquer resultados duplicados.
-def quantidade_negocio(request):
-    negocios = Negocio.objects.values_list('ticket', flat=True).distinct() 
-    contagens = {}
-    for ticket in negocios:
-        contagens[ticket] = Negocio.objects.filter(ticket=ticket).count() # Buscando a quantidade de tickets 
-    return render(request, 'chart.html',  {'contagens': contagens})
+#def quantidade_negocio(request):
+ #   negocios = Negocio.objects.values_list('ticket', flat=True).distinct() 
+  #  contagens = {}
+   # for ticket in negocios:
+    #    contagens[ticket] = Negocio.objects.filter(ticket=ticket).count() # Buscando a quantidade de tickets 
+    #return render(request, 'chart.html',  {'contagens': contagens})
+
+
+
+
+def chart(request):
+    negocios = Negocio.objects.all()
+    ticket_values = [negocio.ticket for negocio in negocios] 
+    return render(request, 'chart.html', {'ticket_values': ticket_values})
+
+
 
 
 # Extraindo PDF com "REPORTLAB"
@@ -188,7 +205,7 @@ def get_pdf(request):
     pdf = canvas.Canvas(response, pagesize=A4)
     
     # Título no documento
-    title = "CUSTOMER REPORT"   
+    title = "RELATÓRIO DE CLIENTES"   
 
     nome_cliente = "Cliente:"
     descriçao_cliente = "Descrição:"
@@ -215,7 +232,7 @@ def get_pdf(request):
         pdf.drawString(100, 700, descriçao_cliente)
         pdf.drawString(100, 650, valor_ticket)
         pdf.drawString(100, 600, parceiro)
-        pdf.drawString(200, 300, data_de_registro)
+        pdf.drawString(100, 300, data_de_registro)
 
         # Dados
         pdf.drawString(150, 750, campo1)
